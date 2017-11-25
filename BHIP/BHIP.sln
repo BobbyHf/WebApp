@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BHIP.Model", "BHIP.Model\BHIP.Model.csproj", "{64C4975D-E227-4CB8-895A-1B540154510B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BHIP", "BHIP\BHIP.csproj", "{47539A17-204E-4F20-A6CB-ACD747F883C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcPaging", "MvcPaging\MvcPaging.csproj", "{AAF30968-1118-4937-B392-E9863EA8D76D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{64C4975D-E227-4CB8-895A-1B540154510B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64C4975D-E227-4CB8-895A-1B540154510B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64C4975D-E227-4CB8-895A-1B540154510B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64C4975D-E227-4CB8-895A-1B540154510B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47539A17-204E-4F20-A6CB-ACD747F883C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47539A17-204E-4F20-A6CB-ACD747F883C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47539A17-204E-4F20-A6CB-ACD747F883C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47539A17-204E-4F20-A6CB-ACD747F883C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAF30968-1118-4937-B392-E9863EA8D76D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAF30968-1118-4937-B392-E9863EA8D76D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAF30968-1118-4937-B392-E9863EA8D76D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAF30968-1118-4937-B392-E9863EA8D76D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://randomgates.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = BHIP.Model\\BHIP.Model.csproj
+		SccProjectName1 = BHIP.Model
+		SccLocalPath1 = BHIP.Model
+		SccProjectUniqueName2 = BHIP\\BHIP.csproj
+		SccProjectName2 = BHIP
+		SccLocalPath2 = BHIP
+		SccProjectUniqueName3 = MvcPaging\\MvcPaging.csproj
+		SccProjectName3 = MvcPaging
+		SccLocalPath3 = MvcPaging
+	EndGlobalSection
+EndGlobal

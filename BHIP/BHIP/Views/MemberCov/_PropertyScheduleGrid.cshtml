@@ -1,0 +1,158 @@
+﻿@using BHIP.MVCHelpers
+@model IEnumerable<BHIP.Model.PropertyViewModel>
+<script>
+    $(document).ready(function () {
+
+        $("a[name='DisableIt']").click(function (e) {
+            e.preventDefault();
+            return false;
+        })
+    });
+
+        function ConfirmPropertyDelete(objThis) {
+            if (confirm("Do you want to delete this property?")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+</script>
+@{
+    int memberCoverageId = 0;
+    
+    if (Model != null)
+    {
+        if (Model.Count() > 0)
+        {
+            memberCoverageId = Model.FirstOrDefault().MemberCoverageID;
+        }
+        else
+        {
+            memberCoverageId = Convert.ToInt32(ViewData["MemberCoverageID"]);
+        }
+    }
+}
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table table-striped table-bordered">
+    <thead>
+        <tr style="color: white; font-weight: bold; background-color: #808080; text-align: left; -moz-border-radius: 15px; border-radius: 15px;">
+            <td colspan="8" class="table-header">
+                @*@if(Model.PropertyList.Count() > 0)
+                {*@
+                @Html.ImageDialogLink("PropertyAdd", "MemberCov", new { id = memberCoverageId }, "Add Property", "PropertyScheduleHoldGrid", Url.Action("RefreshPropertyHold/" + memberCoverageId), Html.ResolveUrl("~/Content/images/add-button.png"), "Add Driver Information", "600", "800", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                @*}
+                else
+                {
+                    @Html.ImageDialogLink("PropertyAdd", "MemberCov", new { id = Model.MemberCoverageID }, "Add Property", "PropertyScheduleHoldGrid", Url.Action("RefreshPropertyHold/" + Model.MemberCoverageID), Html.ResolveUrl("~/Content/images/add-button.png"), "Add Driver Information", "600", "800", new { style = "text-decoration:none;", @name = "DisableIt" }, new { style = "text-decoration:none; border-style: none;" })
+                }*@
+                Add New Property
+            </td>
+        </tr>
+        <tr class="table-header">
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+            @*<th>
+                Loc #
+            </th>*@
+            <th>
+               Location
+            </th>
+            <th>
+                Type of<br />
+                Const<br />
+                Fire System
+            </th>
+            <th>
+                Square Ftg<br />
+                $/Sqft<br />
+                Own/Lease
+            </th>
+            <th>
+                Bldg<br />
+                Contents<br />
+                @*BI & EE*@
+            </th>
+            <th>
+                Const<br />
+                Remodel
+            </th>
+            <th>
+                Added<br />
+                Removed
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.ImageDialogLink("PropertyEdit", "MemberCov", new { id = item.PropertyScheduleID }, "Edit Property", "PropertyScheduleHoldGrid", Url.Action("RefreshPropertyHold/" + item.MemberCoverageID), Html.ResolveUrl("~/Content/images/edit-button.png"), "Edit Property", "600", "800", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                    </td>
+                    <td>
+                        <div title="Delete Premise">
+                            @Html.ImageDialogLink("PropertyDelete", "MemberCov", new { id = item.PropertyScheduleID }, "Delete Property", "PropertyScheduleHoldGrid", Url.Action("RefreshPropertyHold/" + item.MemberCoverageID), Html.ResolveUrl("~/Content/images/delete-button.png"), "Delete Property", "300", "450", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                        </div>
+                    </td>
+                    @*<td>
+                        @item.LocationNumber
+                    </td>*@
+                    <td>
+                        @item.LocationName<br />
+                        @item.LocationAddress<br />
+                        @item.City, @item.StateName @item.Zip
+                    </td>
+                    <td>
+                        @item.ConstructionName<br />
+                        @item.FireName<br />
+                    </td>
+                    <td>
+                        @(string.Format("{0:N0}", (item.SquareFoot)))<br />
+                        @(string.Format("{0:C}", item.SquareFoot == 0 ? 0 : (item.BuildingValue + item.ContentValue) / item.SquareFoot))<br />
+                        @item.OwnLeaseName
+                    </td>
+                    <td>
+                        @(string.Format("{0:C}", item.BuildingValue))<br />
+                        @(string.Format("{0:C}", item.ContentValue))<br />
+                        @*@(string.Format("{0:C}", item.BI_EE))*@
+                    </td>
+                    <td>
+                        @(item.ConstructionDate.HasValue == true ? Convert.ToDateTime(item.ConstructionDate).ToShortDateString() : string.Empty)<br />
+                        @(item.RemodelDate.HasValue == true ? Convert.ToDateTime(item.RemodelDate).ToShortDateString() : string.Empty)<br />
+                    </td>
+                    <td>
+                        @(item.DateAdded.HasValue == true ? Convert.ToDateTime(item.DateAdded).ToShortDateString() : string.Empty)<br />
+                        @(item.DateRemoved.HasValue == true ? Convert.ToDateTime(item.DateRemoved).ToShortDateString() : string.Empty)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr style="color: white; font-weight: bold; background-color: #808080; text-align: left; -moz-border-radius: 15px; border-radius: 15px;">
+            <td colspan="8" class="table-header">
+                @*@if (Model.PropertyList.Count() > 0)
+                {*@
+                    @Html.ImageDialogLink("PropertyAdd", "MemberCov", new { id = memberCoverageId }, "Add Property", "PropertyScheduleHoldGrid", Url.Action("RefreshPropertyHold/" + memberCoverageId), Html.ResolveUrl("~/Content/images/add-button.png"), "Add Driver Information", "600", "800", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                @*}
+                else
+                {
+                    @Html.ImageDialogLink("PropertyAdd", "MemberCov", new { id = Model.MemberCoverageID }, "Add Property", "PropertyScheduleHoldGrid", Url.Action("RefreshPropertyHold/" + Model.MemberCoverageID), Html.ResolveUrl("~/Content/images/add-button.png"), "Add Driver Information", "600", "800", new { style = "text-decoration:none;", @disabled = "true" }, new { style = "text-decoration:none; border-style: none;", @disabled = "true" })
+                }*@
+                Add New Property
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+
+
+

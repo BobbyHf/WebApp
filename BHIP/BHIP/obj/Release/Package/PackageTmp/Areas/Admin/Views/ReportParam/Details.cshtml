@@ -1,0 +1,75 @@
+﻿@model BHIP.Model.ReportParam
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div style="text-align: left; width: 100%; padding: 40px 50px 40px 50px;">
+    <h2>Details</h2>
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ReportID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReportID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ReportParamTypeID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReportParamTypeID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ParamName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ParamName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ParamTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ParamTitle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ParamWidth)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ParamWidth)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DisplayOrder)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DisplayOrder)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DropSQL)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DropSQL)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ReportParamID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

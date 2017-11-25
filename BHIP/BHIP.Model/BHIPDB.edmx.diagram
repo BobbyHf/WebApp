@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7c2984bb33324bff979baaca609ea53d" Name="Diagram1" ZoomLevel="18">
+        <EntityTypeShape EntityType="BHIPModel.Menu" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BHIPModel.MenuRole" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BHIPModel.ContactSchedule" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BHIPModel.EntityType" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BHIPModel.State" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BHIPModel.DriverInfoSchedule" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BHIPModel.PolicyYear" Width="1.5" PointX="8.75" PointY="7.75" />
+        <EntityTypeShape EntityType="BHIPModel.Premium" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BHIPModel.VehicleSchedule" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="BHIPModel.MemberStatu" Width="1.5" PointX="2.75" PointY="10.75" />
+        <EntityTypeShape EntityType="BHIPModel.OwnLease" Width="1.5" PointX="4.75" PointY="10.75" />
+        <EntityTypeShape EntityType="BHIPModel.ConstructionType" Width="1.5" PointX="10.75" PointY="5.75" />
+        <EntityTypeShape EntityType="BHIPModel.FireBurglar" Width="1.5" PointX="6.75" PointY="10.75" />
+        <EntityTypeShape EntityType="BHIPModel.BoardCertified" Width="1.5" PointX="10.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BHIPModel.BoardEligible" Width="1.5" PointX="8.75" PointY="11.75" />
+        <EntityTypeShape EntityType="BHIPModel.EmploymentType" Width="1.5" PointX="10.75" PointY="11.75" />
+        <EntityTypeShape EntityType="BHIPModel.Malpractice" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BHIPModel.SpecialtyType" Width="1.5" PointX="12.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BHIPModel.PrimaryCareSchedule" Width="1.5" PointX="12.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BHIPModel.Member" Width="1.5" PointX="4.75" PointY="13.75" />
+        <EntityTypeShape EntityType="BHIPModel.ReportParam" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BHIPModel.ReportParamType" Width="1.5" PointX="14.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BHIPModel.ReportRole" Width="1.5" PointX="6.75" PointY="14.75" />
+        <EntityTypeShape EntityType="BHIPModel.ReportTrust" Width="1.5" PointX="14.75" PointY="7.75" />
+        <EntityTypeShape EntityType="BHIPModel.ReportType" Width="1.5" PointX="8.75" PointY="14.75" />
+        <EntityTypeShape EntityType="BHIPModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="BHIPModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="BHIPModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" />
+        <EntityTypeShape EntityType="BHIPModel.AspNetUser" Width="1.5" PointX="3" PointY="1.125" />
+        <AssociationConnector Association="BHIPModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="BHIPModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="BHIPModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="BHIPModel.ScheduleStatu" Width="1.5" PointX="14.75" PointY="10.75" />
+        <EntityTypeShape EntityType="BHIPModel.PrimaryCareScheduleHold" Width="1.5" PointX="14.75" PointY="13.75" />
+        <EntityTypeShape EntityType="BHIPModel.VehicleScheduleHold" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BHIPModel.ContactScheduleHold" Width="1.5" PointX="16.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BHIPModel.DriverInfoScheduleHold" Width="1.5" PointX="10.75" PointY="16.75" />
+        <EntityTypeShape EntityType="BHIPModel.MemberCoverage" Width="1.5" PointX="16.75" PointY="11.75" />
+        <EntityTypeShape EntityType="BHIPModel.PropertySchedule" Width="1.5" PointX="4.75" PointY="17.75" />
+        <EntityTypeShape EntityType="BHIPModel.PropertyScheduleHold" Width="1.5" PointX="6.75" PointY="17.75" />
+        <EntityTypeShape EntityType="BHIPModel.QuestionAnswer" Width="1.5" PointX="18.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BHIPModel.QuestionSection" Width="1.5" PointX="18.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BHIPModel.Question" Width="1.5" PointX="18.75" PointY="7.75" />
+        <EntityTypeShape EntityType="BHIPModel.LicenseSchedule" Width="1.5" PointX="0.75" PointY="19.75" />
+        <EntityTypeShape EntityType="BHIPModel.JobFunction" Width="1.5" PointX="19.375" PointY="15.75" />
+        <EntityTypeShape EntityType="BHIPModel.DocumentType" Width="1.5" PointX="21.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BHIPModel.HandleFund" Width="1.5" PointX="21.375" PointY="3.75" />
+        <EntityTypeShape EntityType="BHIPModel.InspectionBody" Width="1.5" PointX="21.375" PointY="7.75" />
+        <EntityTypeShape EntityType="BHIPModel.AgencyPlanSchedule" Width="1.5" PointX="19.375" PointY="11.75" />
+        <EntityTypeShape EntityType="BHIPModel.Document" Width="1.5" PointX="19.375" PointY="18.75" />
+        <EntityTypeShape EntityType="BHIPModel.Renewal" Width="1.5" PointX="13.375" PointY="19.75" />
+        <EntityTypeShape EntityType="BHIPModel.PsychiatrySchedule" Width="1.5" PointX="9.375" PointY="21.75" />
+        <EntityTypeShape EntityType="BHIPModel.PsychiatryScheduleHold" Width="1.5" PointX="21.375" PointY="11.75" />
+        <EntityTypeShape EntityType="BHIPModel.OtherSchedule" Width="1.5" PointX="21.375" PointY="17.75" />
+        <EntityTypeShape EntityType="BHIPModel.OtherScheduleHold" Width="1.5" PointX="15.375" PointY="22.75" />
+        <EntityTypeShape EntityType="BHIPModel.PremiumHold" Width="1.5" PointX="17.75" PointY="22.75" />
+        <EntityTypeShape EntityType="BHIPModel.t_Users" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="BHIPModel.JobFunction1" Width="1.5" PointX="20.375" PointY="22.75" />
+        <EntityTypeShape EntityType="BHIPModel.CustomParam" Width="1.5" PointX="20.75" PointY="22.75" />
+        <EntityTypeShape EntityType="BHIPModel.CustomParamType" Width="1.5" PointX="22.75" PointY="22.75" />
+        <EntityTypeShape EntityType="BHIPModel.CustomReport" Width="1.5" PointX="23.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BHIPModel.CustomReportType" Width="1.5" PointX="0.75" PointY="23.75" />
+        <EntityTypeShape EntityType="BHIPModel.CustomRole" Width="1.5" PointX="2.75" PointY="23.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

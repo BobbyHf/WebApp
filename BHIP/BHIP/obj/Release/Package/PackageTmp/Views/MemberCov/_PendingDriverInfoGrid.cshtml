@@ -1,0 +1,92 @@
+﻿@using BHIP.MVCHelpers
+@model IEnumerable<BHIP.Model.DriverInfoHoldViewModel>
+<script>
+    $(document).ready(function () {
+
+    });
+
+        function ConfirmDriverInfoDelete() {
+            if (confirm("Do you want to delete this driver information record?")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+</script>
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <td colspan="9" class="table-header">
+                Driver - Pending Changes
+            </td>
+        </tr>
+        <tr class="table-header">
+            <th>
+                Select
+            </th>
+            <th>
+                Name<br />
+                Birth Date
+            </th>
+            <th>
+                Drivers Lic#<br />
+                State
+            </th>
+            <th>
+                Added<br />
+                Removed
+            </th>
+            <th>Comment</th>
+            <th>
+                Requested By
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        <input type="checkbox" name="chkSelect" schedule_id="@item.DriverInfoScheduleHoldID" />
+                    </td>
+                    <td>
+                        @item.FirstName @item.LastName<br />
+                        @(item.DOB.HasValue == true ? Convert.ToDateTime(item.DOB).ToShortDateString() : string.Empty)
+                    </td>
+                    <td>
+                        @item.LicenseNumber<br />
+                        @item.StateName
+                    </td>
+                    <td>
+                        @(item.DateAdded.HasValue == true ? Convert.ToDateTime(item.DateAdded).ToShortDateString() : string.Empty)<br />
+                        @(item.DateRemoved.HasValue == true ? Convert.ToDateTime(item.DateRemoved).ToShortDateString() : string.Empty)
+                    </td>
+                    <td>
+                        @item.Comments
+                    </td>
+                    <td>
+                        @item.UserName<br />
+                        @item.UserEmail
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr style="color: white; font-weight: bold; background-color: #808080; text-align: left; -moz-border-radius: 15px; border-radius: 15px;">
+            <td colspan="9" class="table-header">
+                &nbsp;
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+
+
+

@@ -1,0 +1,54 @@
+﻿@model BHIP.Model.EmailPrimaryCare
+
+@if (Model.PrimaryCareAddList.Count > 0)
+{
+    @Html.Raw("Please see the following new Primary Care Provider(s) for " + Model.MemberName + ":%0D%0A")
+    foreach (BHIP.Model.SendingPrimaryCare primarycareAdd in Model.PrimaryCareAddList)
+    {
+        @Html.Raw("Provider: " + primarycareAdd.FirstName + " " + primarycareAdd.LastName + ", " + primarycareAdd.Title + "%0D%0A")
+        @Html.Raw("Date of Hire: " + primarycareAdd.DateOfHire + "%0D%0A")
+        @Html.Raw("Board Certified: " + primarycareAdd.BoardCertified + "%0D%0A")
+        @Html.Raw("Board Eligible: " + primarycareAdd.BoardEligible + "%0D%0A")
+        @Html.Raw("Hours per week: " + primarycareAdd.HoursPerWeek + "%0D%0A")
+        @Html.Raw("Contracted or Employed: " + primarycareAdd.EmploymentType + "%0D%0A")
+        @Html.Raw("Carries own malpractice: " + primarycareAdd.Malpractice + "%0D%0A")
+        @Html.Raw("%0D%0A")
+    }
+    @Html.Raw("%0D%0A%0D%0A")
+}
+
+@if (Model.PrimaryCareDeleteList.Count > 0)
+{
+    @Html.Raw("Please remove the following Primary Care Provider(s) for " + Model.MemberName + ":%0D%0A")
+    foreach (BHIP.Model.SendingPrimaryCare primarycareDelete in Model.PrimaryCareDeleteList)
+    {
+        @Html.Raw("Provider: " + primarycareDelete.FirstName + " " + primarycareDelete.LastName + ", " + primarycareDelete.Title + "%0D%0A")
+        @Html.Raw("Date of Hire: " + primarycareDelete.DateOfHire + "%0D%0A")
+        @Html.Raw("Board Certified: " + primarycareDelete.BoardCertified + "%0D%0A")
+        @Html.Raw("Board Eligible: " + primarycareDelete.BoardEligible + "%0D%0A")
+        @Html.Raw("Hours per week: " + primarycareDelete.HoursPerWeek + "%0D%0A")
+        @Html.Raw("Contracted or Employed: " + primarycareDelete.EmploymentType + "%0D%0A")
+        @Html.Raw("Carries own malpractice: " + primarycareDelete.Malpractice + "%0D%0A")
+        @Html.Raw("Date Deleted: " + primarycareDelete.DateRemoved + "%0D%0A")
+        @Html.Raw("%0D%0A")
+    }
+    @Html.Raw("%0D%0A%0D%0A")
+}
+
+@if (Model.PrimaryCareCOIList.Count > 0)
+{
+    @Html.Raw("A certificate of insurance has been requested for the following:%0D%0A")
+    foreach (BHIP.Model.SendingPrimaryCare primarycareCOI in Model.PrimaryCareCOIList)
+    {
+        @Html.Raw("Provider: " + primarycareCOI.FirstName + " " + primarycareCOI.LastName + ", " + primarycareCOI.Title + "%0D%0A")
+        @Html.Raw("Date of Hire: " + primarycareCOI.DateOfHire + "%0D%0A")
+        @Html.Raw("Board Certified: " + primarycareCOI.BoardCertified + "%0D%0A")
+        @Html.Raw("Board Eligible: " + primarycareCOI.BoardEligible + "%0D%0A")
+        @Html.Raw("Hours per week: " + primarycareCOI.HoursPerWeek + "%0D%0A")
+        @Html.Raw("Contracted or Employed: " + primarycareCOI.EmploymentType + "%0D%0A")
+        @Html.Raw("Carries own malpractice: " + primarycareCOI.Malpractice + "%0D%0A")
+        @Html.Raw("%0D%0A")
+    }
+    @Html.Raw("%0D%0A%0D%0A")
+}
+

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<BHIP.Model.ReportType>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div style="text-align: left; width: 100%; padding: 40px 50px 40px 50px;">
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReportTypeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TypeName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.ReportTypeID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TypeName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ReportTypeID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ReportTypeID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ReportTypeID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

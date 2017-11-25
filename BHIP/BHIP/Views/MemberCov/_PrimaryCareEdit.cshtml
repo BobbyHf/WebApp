@@ -1,0 +1,118 @@
+﻿@model BHIP.Model.PrimaryCareViewModel
+@using BHIP.Model.Helper
+
+<script>
+    $(document).ready(function () {
+        $('.PrimaryCareDateAdded').mask("99/99/9999")
+        $('.PrimaryCareDateRemoved').mask("99/99/9999")
+        $('.PrimaryCareRetroDate').mask("99/99/9999")
+
+        $('.intcomma').masked('###,###,###,##0', { reverse: true, maxlength: false });
+        $('.decimalcomma').masked('###,###,###,##0.00', { reverse: true, maxlength: false });
+
+        $("#myPrimaryCareForm").submit(function () {
+            $('.intcomma').unmask();
+            $('.decimalcomma').unmask();
+        });
+    });
+
+</script>
+
+<div class="main">
+    <div style="text-align: left; width: 100%;">
+        @{Html.EnableClientValidation();}
+        @{Html.EnableUnobtrusiveJavaScript();}
+        @using (Html.BeginForm("EditPrimaryCare", "MemberCov", System.Web.Mvc.FormMethod.Post, new { enctype = "multipart/form-data", id = "myPrimaryCareForm" }))
+        {
+            @Html.HiddenFor(m => m.PrimaryCareScheduleID)
+            @Html.HiddenFor(m => m.MemberCoverageID)
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control inputfield inputwidth-500" })
+                    @Html.ValidationMessageFor(m => m.FirstName)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control inputfield inputwidth-500" })
+                    @Html.ValidationMessageFor(m => m.LastName)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.SpecialtyID, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.SpecialtyID, MemberInformation.GetSpecialty(Model.SpecialtyID), "--Select--", new { @class = "form-control inputfield inputwidth-150" })
+                    @Html.ValidationMessageFor(m => m.SpecialtyID)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.RetroDate, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.RetroDate, new { @class = "form-control PrimaryCareRetroDate inputfield inputwidth-150", @Value = (Model.RetroDate == null ? string.Empty : Model.RetroDate.Value.ToString("MM/dd/yyyy")) })
+                    @Html.ValidationMessageFor(m => m.RetroDate)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.BoardCertifiedID, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.BoardCertifiedID, MemberInformation.GetBoardCertified(Model.BoardCertifiedID), "--Select--", new { @class = "form-control inputfield inputwidth-150" })
+                    @Html.ValidationMessageFor(m => m.BoardCertifiedID)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.BoardEligibleID, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.BoardEligibleID, MemberInformation.GetBoardEligible(Model.BoardEligibleID), "--Select--", new { @class = "form-control inputfield inputwidth-150" })
+                    @Html.ValidationMessageFor(m => m.BoardEligibleID)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.HoursWorked, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.HoursWorked, new { @class = "form-control intcomma inputfield inputwidth-150" })
+                    @Html.ValidationMessageFor(m => m.HoursWorked)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ContractorEmployeeID, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.ContractorEmployeeID, MemberInformation.GetEmployeeType(Model.ContractorEmployeeID), "--Select--", new { @class = "form-control inputfield inputwidth-150" })
+                    @Html.ValidationMessageFor(m => m.ContractorEmployeeID)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.OwnMalpracticeID, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.OwnMalpracticeID, MemberInformation.GetMalpractice(Model.OwnMalpracticeID), "--Select--", new { @class = "form-control inputfield inputwidth-150" })
+                    @Html.ValidationMessageFor(model => model.OwnMalpracticeID)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.DateAdded, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.DateAdded, new { @class = "form-control PrimaryCareDateAdded inputfield inputwidth-150", @Value = (Model.DateAdded == null ? string.Empty : Model.DateAdded.Value.ToString("MM/dd/yyyy")) })
+                    @Html.ValidationMessageFor(m => m.DateAdded)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.DateRemoved, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.DateRemoved, new { @class = "form-control PrimaryCareDateRemoved inputfield inputwidth-150", @Value = (Model.DateRemoved == null ? string.Empty : Model.DateRemoved.Value.ToString("MM/dd/yyyy")) })
+                    @Html.ValidationMessageFor(m => m.DateRemoved)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.COI, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.CheckBoxFor(m => m.COI, new { @class = "" })
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+

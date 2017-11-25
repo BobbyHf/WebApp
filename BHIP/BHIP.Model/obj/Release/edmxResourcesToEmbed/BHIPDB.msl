@@ -1,0 +1,1056 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BHIPModelStoreContainer" CdmEntityContainer="BHIPEntities">
+    <EntitySetMapping Name="Menus">
+      <EntityTypeMapping TypeName="BHIPModel.Menu">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="LeftNode" ColumnName="LeftNode" />
+          <ScalarProperty Name="RightNode" ColumnName="RightNode" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuRoles">
+      <EntityTypeMapping TypeName="BHIPModel.MenuRole">
+        <MappingFragment StoreEntitySet="MenuRoles">
+          <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactSchedules">
+      <EntityTypeMapping TypeName="BHIPModel.ContactSchedule">
+        <MappingFragment StoreEntitySet="ContactSchedule">
+          <ScalarProperty Name="ContactPhoneExt" ColumnName="ContactPhoneExt" />
+          <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+          <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+          <ScalarProperty Name="ContactTitle" ColumnName="ContactTitle" />
+          <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+          <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+          <ScalarProperty Name="MemberCoverageID" ColumnName="MemberCoverageID" />
+          <ScalarProperty Name="ContactScheduleID" ColumnName="ContactScheduleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EntityTypes">
+      <EntityTypeMapping TypeName="BHIPModel.EntityType">
+        <MappingFragment StoreEntitySet="EntityTypes">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="EntityTypeID" ColumnName="EntityTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="BHIPModel.State">
+        <MappingFragment StoreEntitySet="States">
+          <ScalarProperty Name="Abbr" ColumnName="Abbr" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DriverInfoSchedules">
+      <EntityTypeMapping TypeName="BHIPModel.DriverInfoSchedule">
+        <MappingFragment StoreEntitySet="DriverInfoSchedule">
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="DateRemoved" ColumnName="DateRemoved" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MemberCoverageID" ColumnName="MemberCoverageID" />
+          <ScalarProperty Name="DriverInfoScheduleID" ColumnName="DriverInfoScheduleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PolicyYears">
+      <EntityTypeMapping TypeName="BHIPModel.PolicyYear">
+        <MappingFragment StoreEntitySet="PolicyYear">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="PolicyYearId" ColumnName="PolicyYearId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Premiums">
+      <EntityTypeMapping TypeName="BHIPModel.Premium">
+        <MappingFragment StoreEntitySet="Premium">
+          <ScalarProperty Name="Cyber" ColumnName="Cyber" />
+          <ScalarProperty Name="Kidnap" ColumnName="Kidnap" />
+          <ScalarProperty Name="Pollution" ColumnName="Pollution" />
+          <ScalarProperty Name="PrimaryCare" ColumnName="PrimaryCare" />
+          <ScalarProperty Name="Umbrella" ColumnName="Umbrella" />
+          <ScalarProperty Name="PL_GL" ColumnName="PL_GL" />
+          <ScalarProperty Name="EmployedLawyers" ColumnName="EmployedLawyers" />
+          <ScalarProperty Name="Fiduciary" ColumnName="Fiduciary" />
+          <ScalarProperty Name="Crime" ColumnName="Crime" />
+          <ScalarProperty Name="D_O" ColumnName="D_O" />
+          <ScalarProperty Name="Auto" ColumnName="Auto" />
+          <ScalarProperty Name="Property" ColumnName="Property" />
+          <ScalarProperty Name="PolicyYearID" ColumnName="PolicyYearID" />
+          <ScalarProperty Name="MemberCoverageID" ColumnName="MemberCoverageID" />
+          <ScalarProperty Name="PremiumID" ColumnName="PremiumID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleSchedules">
+      <EntityTypeMapping TypeName="BHIPModel.VehicleSchedule">
+        <MappingFragment StoreEntitySet="VehicleSchedule">
+          <ScalarProperty Name="VehicleValue" ColumnName="VehicleValue" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="OwnLeaseID" ColumnName="OwnLeaseID" />
+          <ScalarProperty Name="VIN" ColumnName="VIN" />
+          <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="MakeModel" ColumnName="MakeModel" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="MemberCoverageID" ColumnName="MemberCoverageID" />
+          <ScalarProperty Name="VehicleScheduleID" ColumnName="VehicleScheduleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemberStatus">
+      <EntityTypeMapping TypeName="BHIPModel.MemberStatu">
+        <MappingFragment StoreEntitySet="MemberStatus">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OwnLeases">
+      <EntityTypeMapping TypeName="BHIPModel.OwnLease">
+        <MappingFragment StoreEntitySet="OwnLease">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="OwnLeaseID" ColumnName="OwnLeaseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConstructionTypes">
+      <EntityTypeMapping TypeName="BHIPModel.ConstructionType">
+        <MappingFragment StoreEntitySet="ConstructionType">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ConstTypeID" ColumnName="ConstTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FireBurglars">
+      <EntityTypeMapping TypeName="BHIPModel.FireBurglar">
+        <MappingFragment StoreEntitySet="FireBurglar">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="FireBurglarID" ColumnName="FireBurglarID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BoardCertifieds">
+      <EntityTypeMapping TypeName="BHIPModel.BoardCertified">
+        <MappingFragment StoreEntitySet="BoardCertified">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="BoardCertifiedID" ColumnName="BoardCertifiedID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BoardEligibles">
+      <EntityTypeMapping TypeName="BHIPModel.BoardEligible">
+        <MappingFragment StoreEntitySet="BoardEligible">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="BoardEligibleID" ColumnName="BoardEligibleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmploymentTypes">
+      <EntityTypeMapping TypeName="BHIPModel.EmploymentType">
+        <MappingFragment StoreEntitySet="EmploymentType">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="EmploymentTypeID" ColumnName="EmploymentTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Malpractices">
+      <EntityTypeMapping TypeName="BHIPModel.Malpractice">
+        <MappingFragment StoreEntitySet="Malpractice">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="MalpracticeID" ColumnName="MalpracticeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SpecialtyTypes">
+      <EntityTypeMapping TypeName="BHIPModel.SpecialtyType">
+        <MappingFragment StoreEntitySet="SpecialtyType">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="SpecialtyTypeID" ColumnName="SpecialtyTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrimaryCareSchedules">
+      <EntityTypeMapping TypeName="BHIPModel.PrimaryCareSchedule">
+        <MappingFragment StoreEntitySet="PrimaryCareSchedule">
+          <ScalarProperty Name="DateRemoved" ColumnName="DateRemoved" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="OwnMalPracticeID" ColumnName="OwnMalPracticeID" />
+          <ScalarProperty Name="ContractorEmployeeID" ColumnName="ContractorEmployeeID" />
+          <ScalarProperty Name="HoursWorked" ColumnName="HoursWorked" />
+          <ScalarProperty Name="BoardEligibleID" ColumnName="BoardEligibleID" />
+          <ScalarProperty Name="BoardCertifiedID" ColumnName="BoardCertifiedID" />
+          <ScalarProperty Name="RetroDate" ColumnName="RetroDate" />
+          <ScalarProperty Name="SpecialtyID" ColumnName="SpecialtyID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MemberCoverageID" ColumnName="MemberCoverageID" />
+          <ScalarProperty Name="PrimaryCareScheduleID" ColumnName="PrimaryCareScheduleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="BHIPModel.Member">
+        <MappingFragment StoreEntitySet="Members">
+          <ScalarProperty Name="AutoCard" ColumnName="AutoCard" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="TerminatedDate" ColumnName="TerminatedDate" />
+          <ScalarProperty Name="JoinDate" ColumnName="JoinDate" />
+          <ScalarProperty Name="EntityTypeID" ColumnName="EntityTypeID" />
+          <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+          <ScalarProperty Name="PhoneExtension" ColumnName="PhoneExtension" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="NameAbbr" ColumnName="NameAbbr" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReportParams">
+      <EntityTypeMapping TypeName="BHIPModel.ReportParam">
+        <MappingFragment StoreEntitySet="ReportParams">
+          <ScalarProperty Name="DropSQL" ColumnName="DropSQL" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="ParamWidth" ColumnName="ParamWidth" />
+          <ScalarProperty Name="ParamTitle" ColumnName="ParamTitle" />
+          <ScalarProperty Name="ParamName" ColumnName="ParamName" />
+          <ScalarProperty Name="ReportParamTypeID" ColumnName="ReportParamTypeID" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="ReportParamID" ColumnName="ReportParamID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReportParamTypes">
+      <EntityTypeMapping TypeName="BHIPModel.ReportParamType">
+        <MappingFragment StoreEntitySet="ReportParamType">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ReportParamTypeID" ColumnName="ReportParamTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReportRoles">
+      <EntityTypeMapping TypeName="BHIPModel.ReportRole">
+        <MappingFragment StoreEntitySet="ReportRoles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReportTrusts">
+      <EntityTypeMapping TypeName="BHIPModel.ReportTrust">
+        <MappingFragment StoreEntitySet="ReportTrust">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ReportTitle" ColumnName="ReportTitle" />
+          <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+          <ScalarProperty Name="ReportTypeID" ColumnName="ReportTypeID" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReportTypes">
+      <EntityTypeMapping TypeName="BHIPModel.ReportType">
+        <MappingFragment StoreEntitySet="ReportTypes">
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="ReportTypeID" ColumnName="ReportTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="BHIPModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="BHIPModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="BHIPModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="BHIPModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="BHIPModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUser">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRole">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="ScheduleStatus">
+      <EntityTypeMapping TypeName="BHIPModel.ScheduleStatu">
+        <MappingFragment StoreEntitySet="ScheduleStatus">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ScheduleStatusID" ColumnName="ScheduleStatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrimaryCareScheduleHolds">
+      <EntityTypeMapping TypeName="BHIPModel.PrimaryCareScheduleHold">
+        <MappingFragment StoreEntitySet="PrimaryCareScheduleHold">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ScheduleStatusID" ColumnName="ScheduleStatusID" />
+          <ScalarProperty Name="COI" ColumnName="COI" />
+          <ScalarProperty Name="EditType" ColumnName="EditType" />
+          <ScalarProperty Name="DateRemoved" ColumnName="DateRemoved" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="OwnMalPracticeID" ColumnName="OwnMalPracticeID" />
+          <ScalarProperty Name="ContractorEmployeeID" ColumnName="ContractorEmployeeID" />
+          <ScalarProperty Name="HoursWorked" ColumnName="HoursWorked" />
+          <ScalarProperty Name="BoardEligibleID" ColumnName="BoardEligibleID" />
+          <ScalarProperty Name="BoardCertifiedID" ColumnName="BoardCertifiedID" />
+          <ScalarProperty Name="RetroDate" ColumnName="RetroDate" />
+          <ScalarProperty Name="SpecialtyID" ColumnName="SpecialtyID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MemberCoverageID" ColumnName="MemberCoverageID" />
+          <ScalarProperty Name="PrimaryCareScheduleID" ColumnName="PrimaryCareScheduleID" />
+          <ScalarProperty Name="PrimaryCareScheduleHoldID" ColumnName="PrimaryCareScheduleHoldID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleScheduleHolds">
+      <EntityTypeMapping TypeName="BHIPModel.VehicleScheduleHold">
+        <MappingFragment StoreEntitySet="VehicleScheduleHold">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ScheduleStatusID" ColumnName="ScheduleStatusID" />
+          <ScalarProperty Name="COI" ColumnName="COI" />
+          <ScalarProperty Name="VehicleValue" ColumnName="VehicleValue" />
+          <ScalarProperty Name="EditType" ColumnName="EditType" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="OwnLeaseID" ColumnName="OwnLeaseID" />
+          <ScalarProperty Name="VIN" ColumnName="VIN" />
+          <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="MakeModel" ColumnName="MakeModel" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="MemberCoverageID" ColumnName="MemberCoverageID" />
+          <ScalarProperty Name="VehicleScheduleID" ColumnName="VehicleScheduleID" />
+          <ScalarProperty Name="VehicleScheduleHoldID" ColumnName="VehicleScheduleHoldID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactScheduleHolds">
+      <EntityTypeMapping TypeName="BHIPModel.ContactScheduleHold">
+        <MappingFragment StoreEntitySet="ContactScheduleHold">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ScheduleStatusID" ColumnName="ScheduleStatusID" />
+          <ScalarProperty Name="EditType" ColumnName="EditType" />
+          <ScalarProperty Name="ContactPhoneExt" ColumnName="ContactPhoneExt" />
+          <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+          <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+          <ScalarProperty Name="ContactTitle" ColumnName="ContactTitle" />
+          <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+          <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+          <ScalarProperty Name="MemberCoverageID" ColumnName="MemberCoverageID" />
+          <ScalarProperty Name="ContactScheduleID" ColumnName="ContactScheduleID" />
+          <ScalarProperty Name="ContactScheduleHoldID" ColumnName="ContactScheduleHoldID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DriverInfoScheduleHolds">
+      <EntityTypeMapping TypeName="BHIPModel.DriverInfoScheduleHold">
+        <MappingFragment StoreEntitySet="DriverInfoScheduleHold">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ScheduleStatusID" ColumnName="ScheduleStatusID" />
+          <ScalarProperty Name="EditType" ColumnName="EditType" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="DateRemoved" ColumnName="DateRemoved" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MemberCoverageID" ColumnName="MemberCoverageID" />
+          <ScalarProperty Name="DriverInfoScheduleID" ColumnName="DriverInfoScheduleID" />
+          <ScalarProperty Name="DriverInfoScheduleHoldID" ColumnName="DriverInfoScheduleHoldID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemberCoverages">
+      <EntityTypeMapping TypeName="BHIPModel.MemberCoverage">
+        <MappingFragment StoreEntitySet="MemberCoverages">
+          <ScalarProperty Name="OperationsStartDate" ColumnName="OperationsStartDate" />
+          <ScalarProperty Name="MemberNameAbbr" ColumnName="MemberNameAbbr" />
+          <ScalarProperty Name="AuthorizeEmail" ColumnName="AuthorizeEmail" />
+          <ScalarProperty Name="AuthorizePhoneExt" ColumnName="AuthorizePhoneExt" />
+          <ScalarProperty Name="AuthorizePhone" ColumnName="AuthorizePhone" />
+          <ScalarProperty Name="AuthorizeZip" ColumnName="AuthorizeZip" />
+          <ScalarProperty Name="AuthorizeStateID" ColumnName="AuthorizeStateID" />
+          <ScalarProperty Name="AuthorizeCity" ColumnName="AuthorizeCity" />
+          <ScalarProperty Name="AuthorizeAddress2" ColumnName="AuthorizeAddress2" />
+          <ScalarProperty Name="AuthorizeAddress1" ColumnName="AuthorizeAddress1" />
+          <ScalarProperty Name="AuthorizeTitle" ColumnName="AuthorizeTitle" />
+          <ScalarProperty Name="AuthorizeLastName" ColumnName="AuthorizeLastName" />
+          <ScalarProperty Name="AuthorizeFirstName" ColumnName="AuthorizeFirstName" />
+          <ScalarProperty Name="AuthorizePrefix" ColumnName="AuthorizePrefix" />
+          <ScalarProperty Name="IsBoardMember" ColumnName="IsBoardMember" />
+          <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+          <ScalarProperty Name="ContactPhoneExt" ColumnName="ContactPhoneExt" />
+          <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+          <ScalarProperty Name="ContactTitle" ColumnName="ContactTitle" />
+          <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+          <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+          <ScalarProperty Name="ContactPrefix" ColumnName="ContactPrefix" />
+          <ScalarProperty Name="MailZip" ColumnName="MailZip" />
+          <ScalarProperty Name="MailStateID" ColumnName="MailStateID" />
+          <ScalarProperty Name="MailCity" ColumnName="MailCity" />
+          <ScalarProperty Name="MailAddress2" ColumnName="MailAddress2" />
+          <ScalarProperty Name="MailAddress1" ColumnName="MailAddress1" />
+          <ScalarProperty Name="PrimaryStateID" ColumnName="PrimaryStateID" />
+          <ScalarProperty Name="PrimaryZip" ColumnName="PrimaryZip" />
+          <ScalarProperty Name="PrimaryCity" ColumnName="PrimaryCity" />
+          <ScalarProperty Name="PrimaryAddress2" ColumnName="PrimaryAddress2" />
+          <ScalarProperty Name="PrimaryAddress1" ColumnName="PrimaryAddress1" />
+          <ScalarProperty Name="CurrentStatusID" ColumnName="CurrentStatusID" />
+          <ScalarProperty Name="TerminatedBHIP" ColumnName="TerminatedBHIP" />
+          <ScalarProperty Name="JoinedBHIP" ColumnName="JoinedBHIP" />
+          <ScalarProperty Name="EntityTypeID" ColumnName="EntityTypeID" />
+          <ScalarProperty Name="FederalID" ColumnName="FederalID" />
+          <ScalarProperty Name="MemberWebsite" ColumnName="MemberWebsite" />
+          <ScalarProperty Name="MemberPhoneExt" ColumnName="MemberPhoneExt" />
+          <ScalarProperty Name="MemberPhone" ColumnName="MemberPhone" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="MemberName" ColumnName="MemberName" />
+          <ScalarProperty Name="MemberCoverageID" ColumnName="MemberCoverageID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PropertySchedules">
+      <EntityTypeMapping TypeName="BHIPModel.PropertySchedule">
+        <MappingFragment StoreEntitySet="PropertySchedule">
+          <ScalarProperty Name="DateRemoved" ColumnName="DateRemoved" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="RemodelDate" ColumnName="RemodelDate" />
+          <ScalarProperty Name="ConstructionDate" ColumnName="ConstructionDate" />
+          <ScalarProperty Name="FireBurglerID" ColumnName="FireBurglerID" />
+          <ScalarProperty Name="OwnLeaseID" ColumnName="OwnLeaseID" />
+          <ScalarProperty Name="BI_EE" ColumnName="BI_EE" />
+          <ScalarProperty Name="SquareFoot" ColumnName="SquareFoot" />
+          <ScalarProperty Name="ContentValue" ColumnName="ContentValue" />
+          <ScalarProperty Name="BuildingValue" ColumnName="BuildingValue" />
+          <ScalarProperty Name="ConstructionTypeID" ColumnName="ConstructionTypeID" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="LocationAddress" ColumnName="LocationAddress" />
+          <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+          <ScalarProperty Name="LocationNumber" ColumnName="LocationNumber" />
+          <ScalarProperty Name="MemberCoverageID" ColumnName="MemberCoverageID" />
+          <ScalarProperty Name="PropertyScheduleID" ColumnName="PropertyScheduleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PropertyScheduleHolds">
+      <EntityTypeMapping TypeName="BHIPModel.PropertyScheduleHold">
+        <MappingFragment StoreEntitySet="PropertyScheduleHold">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ScheduleStatusID" ColumnName="ScheduleStatusID" />
+          <ScalarProperty Name="COI" ColumnName="COI" />
+          <ScalarProperty Name="EditType" ColumnName="EditType" />
+          <ScalarProperty Name="DateRemoved" ColumnName="DateRemoved" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="RemodelDate" ColumnName="RemodelDate" />
+          <ScalarProperty Name="ConstructionDate" ColumnName="ConstructionDate" />
+          <ScalarProperty Name="FireBurglerID" ColumnName="FireBurglerID" />
+          <ScalarProperty Name="OwnLeaseID" ColumnName="OwnLeaseID" />
+          <ScalarProperty Name="BI_EE" ColumnName="BI_EE" />
+          <ScalarProperty Name="SquareFoot" ColumnName="SquareFoot" />
+          <ScalarProperty Name="ContentValue" ColumnName="ContentValue" />
+          <ScalarProperty Name="BuildingValue" ColumnName="BuildingValue" />
+          <ScalarProperty Name="ConstructionTypeID" ColumnName="ConstructionTypeID" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="StateID" ColumnName="StateID" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="LocationAddress" ColumnName="LocationAddress" />
+          <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+          <ScalarProperty Name="LocationNumber" ColumnName="LocationNumber" />
+          <ScalarProperty Name="MemberCoverageID" ColumnName="MemberCoverageID" />
+          <ScalarProperty Name="PropertyScheduleID" ColumnName="PropertyScheduleID" />
+          <ScalarProperty Name="PropertyScheduleHoldID" ColumnName="PropertyScheduleHoldID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionAnswers">
+      <EntityTypeMapping TypeName="BHIPModel.QuestionAnswer">
+        <MappingFragment StoreEntitySet="QuestionAnswer">
+          <ScalarProperty Name="RenewalID" ColumnName="RenewalID" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="CurrentYear" ColumnName="CurrentYear" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionSections">
+      <EntityTypeMapping TypeName="BHIPModel.QuestionSection">
+        <MappingFragment StoreEntitySet="QuestionSection">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="FooterText" ColumnName="FooterText" />
+          <ScalarProperty Name="HeaderText" ColumnName="HeaderText" />
+          <ScalarProperty Name="SectionText" ColumnName="SectionText" />
+          <ScalarProperty Name="SectionOrder" ColumnName="SectionOrder" />
+          <ScalarProperty Name="SectionName" ColumnName="SectionName" />
+          <ScalarProperty Name="QuestionSectionID" ColumnName="QuestionSectionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="BHIPModel.Question">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="Class" ColumnName="Class" />
+          <ScalarProperty Name="IsRequired" ColumnName="IsRequired" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="QuestionType" ColumnName="QuestionType" />
+          <ScalarProperty Name="DropDown" ColumnName="DropDown" />
+          <ScalarProperty Name="Question1" ColumnName="Question" />
+          <ScalarProperty Name="QuestionOrder" ColumnName="QuestionOrder" />
+          <ScalarProperty Name="QuestionNumber" ColumnName="QuestionNumber" />
+          <ScalarProperty Name="QuestionSectionID" ColumnName="QuestionSectionID" />
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LicenseSchedules">
+      <EntityTypeMapping TypeName="BHIPModel.LicenseSchedule">
+        <MappingFragment StoreEntitySet="LicenseSchedule">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+          <ScalarProperty Name="LicenseType" ColumnName="LicenseType" />
+          <ScalarProperty Name="StateAgency" ColumnName="StateAgency" />
+          <ScalarProperty Name="License" ColumnName="License" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="LicenseID" ColumnName="LicenseID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentTypes">
+      <EntityTypeMapping TypeName="BHIPModel.DocumentType">
+        <MappingFragment StoreEntitySet="DocumentType">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DocType" ColumnName="DocType" />
+          <ScalarProperty Name="DocTypeId" ColumnName="DocTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HandleFunds">
+      <EntityTypeMapping TypeName="BHIPModel.HandleFund">
+        <MappingFragment StoreEntitySet="HandleFunds">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="NumOfEmployees" ColumnName="NumOfEmployees" />
+          <ScalarProperty Name="JobFunction" ColumnName="JobFunction" />
+          <ScalarProperty Name="RenewalID" ColumnName="RenewalID" />
+          <ScalarProperty Name="HandleFundsID" ColumnName="HandleFundsID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InspectionBodies">
+      <EntityTypeMapping TypeName="BHIPModel.InspectionBody">
+        <MappingFragment StoreEntitySet="InspectionBody">
+          <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="InspectType" ColumnName="InspectType" />
+          <ScalarProperty Name="InspectName" ColumnName="InspectName" />
+          <ScalarProperty Name="RenewalID" ColumnName="RenewalID" />
+          <ScalarProperty Name="InspectBodyID" ColumnName="InspectBodyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AgencyPlanSchedules">
+      <EntityTypeMapping TypeName="BHIPModel.AgencyPlanSchedule">
+        <MappingFragment StoreEntitySet="AgencyPlanSchedule">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="NumberParticipants" ColumnName="NumberParticipants" />
+          <ScalarProperty Name="PlanAssetsPrior" ColumnName="PlanAssetsPrior" />
+          <ScalarProperty Name="PlanAssetsCurrent" ColumnName="PlanAssetsCurrent" />
+          <ScalarProperty Name="PlanType" ColumnName="PlanType" />
+          <ScalarProperty Name="PlanName" ColumnName="PlanName" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="AgencyPlanID" ColumnName="AgencyPlanID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documents">
+      <EntityTypeMapping TypeName="BHIPModel.Document">
+        <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Media" ColumnName="Media" />
+          <ScalarProperty Name="Document1" ColumnName="Document" />
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+          <ScalarProperty Name="LoadDate" ColumnName="LoadDate" />
+          <ScalarProperty Name="DocTypeId" ColumnName="DocTypeId" />
+          <ScalarProperty Name="RenewalId" ColumnName="RenewalId" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Renewals">
+      <EntityTypeMapping TypeName="BHIPModel.Renewal">
+        <MappingFragment StoreEntitySet="Renewal">
+          <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
+          <ScalarProperty Name="LockTime" ColumnName="LockTime" />
+          <ScalarProperty Name="LockUser" ColumnName="LockUser" />
+          <ScalarProperty Name="UserAgent" ColumnName="UserAgent" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+          <ScalarProperty Name="TransportFunds" ColumnName="TransportFunds" />
+          <ScalarProperty Name="SecuritiesOff" ColumnName="SecuritiesOff" />
+          <ScalarProperty Name="SecuritiesOvernight" ColumnName="SecuritiesOvernight" />
+          <ScalarProperty Name="SecuritiesOpen" ColumnName="SecuritiesOpen" />
+          <ScalarProperty Name="TotalDrivers" ColumnName="TotalDrivers" />
+          <ScalarProperty Name="TotalAutos" ColumnName="TotalAutos" />
+          <ScalarProperty Name="AnticipatedClient" ColumnName="AnticipatedClient" />
+          <ScalarProperty Name="MinorRatio" ColumnName="MinorRatio" />
+          <ScalarProperty Name="MinorClient" ColumnName="MinorClient" />
+          <ScalarProperty Name="MinorDirectStaff" ColumnName="MinorDirectStaff" />
+          <ScalarProperty Name="AdultRatio" ColumnName="AdultRatio" />
+          <ScalarProperty Name="AdultClient" ColumnName="AdultClient" />
+          <ScalarProperty Name="AdultDirectStaff" ColumnName="AdultDirectStaff" />
+          <ScalarProperty Name="SubmittedUser" ColumnName="SubmittedUser" />
+          <ScalarProperty Name="SubmittedDate" ColumnName="SubmittedDate" />
+          <ScalarProperty Name="Submitted" ColumnName="Submitted" />
+          <ScalarProperty Name="VisitAccord14" ColumnName="VisitAccord14" />
+          <ScalarProperty Name="VisitAccord13" ColumnName="VisitAccord13" />
+          <ScalarProperty Name="VisitAccord12" ColumnName="VisitAccord12" />
+          <ScalarProperty Name="VisitAccord11" ColumnName="VisitAccord11" />
+          <ScalarProperty Name="VisitAccord10" ColumnName="VisitAccord10" />
+          <ScalarProperty Name="VisitAccord9" ColumnName="VisitAccord9" />
+          <ScalarProperty Name="VisitAccord8" ColumnName="VisitAccord8" />
+          <ScalarProperty Name="VisitAccord7" ColumnName="VisitAccord7" />
+          <ScalarProperty Name="VisitAccord6" ColumnName="VisitAccord6" />
+          <ScalarProperty Name="VisitAccord5" ColumnName="VisitAccord5" />
+          <ScalarProperty Name="VisitAccord4" ColumnName="VisitAccord4" />
+          <ScalarProperty Name="VisitAccord3" ColumnName="VisitAccord3" />
+          <ScalarProperty Name="VisitAccord2" ColumnName="VisitAccord2" />
+          <ScalarProperty Name="VisitAccord1" ColumnName="VisitAccord1" />
+          <ScalarProperty Name="AnnualPayrollProjection" ColumnName="AnnualPayrollProjection" />
+          <ScalarProperty Name="AnnualPayrollYearEnd" ColumnName="AnnualPayrollYearEnd" />
+          <ScalarProperty Name="OutsideServiceProjection" ColumnName="OutsideServiceProjection" />
+          <ScalarProperty Name="OutsideServiceYearEnd" ColumnName="OutsideServiceYearEnd" />
+          <ScalarProperty Name="FreeServiceProjection" ColumnName="FreeServiceProjection" />
+          <ScalarProperty Name="FreeServiceYearEnd" ColumnName="FreeServiceYearEnd" />
+          <ScalarProperty Name="BadDeptProjection" ColumnName="BadDeptProjection" />
+          <ScalarProperty Name="BadDeptYearEnd" ColumnName="BadDeptYearEnd" />
+          <ScalarProperty Name="ContractualAdjustmentProjection" ColumnName="ContractualAdjustmentProjection" />
+          <ScalarProperty Name="ContractualAdjustmentYearEnd" ColumnName="ContractualAdjustmentYearEnd" />
+          <ScalarProperty Name="OtherIncomeProjection" ColumnName="OtherIncomeProjection" />
+          <ScalarProperty Name="OtherIncomeYearEnd" ColumnName="OtherIncomeYearEnd" />
+          <ScalarProperty Name="DonationsProjection" ColumnName="DonationsProjection" />
+          <ScalarProperty Name="DonationsYearEnd" ColumnName="DonationsYearEnd" />
+          <ScalarProperty Name="GrantsResearchProjection" ColumnName="GrantsResearchProjection" />
+          <ScalarProperty Name="GrantsResearchYearEnd" ColumnName="GrantsResearchYearEnd" />
+          <ScalarProperty Name="RentsLeasedProjection" ColumnName="RentsLeasedProjection" />
+          <ScalarProperty Name="RentsLeasedYearEnd" ColumnName="RentsLeasedYearEnd" />
+          <ScalarProperty Name="OutPatientServicesProjection" ColumnName="OutPatientServicesProjection" />
+          <ScalarProperty Name="OutPatientServicesYearEnd" ColumnName="OutPatientServicesYearEnd" />
+          <ScalarProperty Name="InPatientServicesProjection" ColumnName="InPatientServicesProjection" />
+          <ScalarProperty Name="InPatientServicesYearEnd" ColumnName="InPatientServicesYearEnd" />
+          <ScalarProperty Name="RevenueInOther2Next" ColumnName="RevenueInOther2Next" />
+          <ScalarProperty Name="RevenueInOther2Current" ColumnName="RevenueInOther2Current" />
+          <ScalarProperty Name="RevenueInOther1Next" ColumnName="RevenueInOther1Next" />
+          <ScalarProperty Name="RevenueInOther1Current" ColumnName="RevenueInOther1Current" />
+          <ScalarProperty Name="RevenueInChildrentNext" ColumnName="RevenueInChildrentNext" />
+          <ScalarProperty Name="RevenueInChildrentCurrent" ColumnName="RevenueInChildrentCurrent" />
+          <ScalarProperty Name="RevenueInMentalNext" ColumnName="RevenueInMentalNext" />
+          <ScalarProperty Name="RevenueInMentalCurrent" ColumnName="RevenueInMentalCurrent" />
+          <ScalarProperty Name="RevenueInGeneralMentalNext" ColumnName="RevenueInGeneralMentalNext" />
+          <ScalarProperty Name="RevenueInGeneralMentalCurrent" ColumnName="RevenueInGeneralMentalCurrent" />
+          <ScalarProperty Name="RevenueOutOtherNext" ColumnName="RevenueOutOtherNext" />
+          <ScalarProperty Name="RevenueOutOtherCurrent" ColumnName="RevenueOutOtherCurrent" />
+          <ScalarProperty Name="RevenueOutChildrenNext" ColumnName="RevenueOutChildrenNext" />
+          <ScalarProperty Name="RevenueOutChildrenCurrent" ColumnName="RevenueOutChildrenCurrent" />
+          <ScalarProperty Name="RevenueOutMentalNext" ColumnName="RevenueOutMentalNext" />
+          <ScalarProperty Name="RevenueOutMentalCurrent" ColumnName="RevenueOutMentalCurrent" />
+          <ScalarProperty Name="RevenueOutGeneralMentalNext" ColumnName="RevenueOutGeneralMentalNext" />
+          <ScalarProperty Name="RevenueOutGeneralMentalCurrent" ColumnName="RevenueOutGeneralMentalCurrent" />
+          <ScalarProperty Name="StabilizeChildrenNumOfBedDaysNext" ColumnName="StabilizeChildrenNumOfBedDaysNext" />
+          <ScalarProperty Name="StabilizeChildrenNumOfBedsNext" ColumnName="StabilizeChildrenNumOfBedsNext" />
+          <ScalarProperty Name="StabilizeChildrenNumOfBedDaysCurrent" ColumnName="StabilizeChildrenNumOfBedDaysCurrent" />
+          <ScalarProperty Name="StabilizeChildrenNumOfBedsCurrent" ColumnName="StabilizeChildrenNumOfBedsCurrent" />
+          <ScalarProperty Name="StabilizeMetallyNumOfBedDaysNext" ColumnName="StabilizeMetallyNumOfBedDaysNext" />
+          <ScalarProperty Name="StabilizeMentallyNumOfBedsNext" ColumnName="StabilizeMentallyNumOfBedsNext" />
+          <ScalarProperty Name="StabilizeMentallyNumOfBedDaysCurrent" ColumnName="StabilizeMentallyNumOfBedDaysCurrent" />
+          <ScalarProperty Name="StabilizeMentallyNumOfBedsCurrent" ColumnName="StabilizeMentallyNumOfBedsCurrent" />
+          <ScalarProperty Name="StabilizeGeneralHealthNumOfBedDaysNext" ColumnName="StabilizeGeneralHealthNumOfBedDaysNext" />
+          <ScalarProperty Name="StabilizeGeneralHealthNumOfBedsNext" ColumnName="StabilizeGeneralHealthNumOfBedsNext" />
+          <ScalarProperty Name="StabilizeGeneralHealthNumofBedDaysCurrent" ColumnName="StabilizeGeneralHealthNumofBedDaysCurrent" />
+          <ScalarProperty Name="StabilizeGeneralHealthNumOfBedsCurrent" ColumnName="StabilizeGeneralHealthNumOfBedsCurrent" />
+          <ScalarProperty Name="ServerdPsychiatricNumOfBedDayNext" ColumnName="ServerdPsychiatricNumOfBedDayNext" />
+          <ScalarProperty Name="ServedPsychiatricNumOfBedNext" ColumnName="ServedPsychiatricNumOfBedNext" />
+          <ScalarProperty Name="ServedPsychiatricNumOfBedDayCurrent" ColumnName="ServedPsychiatricNumOfBedDayCurrent" />
+          <ScalarProperty Name="ServedPsychiatricNumOfBedCurrent" ColumnName="ServedPsychiatricNumOfBedCurrent" />
+          <ScalarProperty Name="ServedSubstanceAbuseNumOfBedDayNext" ColumnName="ServedSubstanceAbuseNumOfBedDayNext" />
+          <ScalarProperty Name="ServedSubstanceAbuseNumOfBedNext" ColumnName="ServedSubstanceAbuseNumOfBedNext" />
+          <ScalarProperty Name="ServedSubstanceAbuseNumOfBedDayCurrent" ColumnName="ServedSubstanceAbuseNumOfBedDayCurrent" />
+          <ScalarProperty Name="ServedSubstanceAbuseNumOfBedCurrent" ColumnName="ServedSubstanceAbuseNumOfBedCurrent" />
+          <ScalarProperty Name="PopulationGroupProjected" ColumnName="PopulationGroupProjected" />
+          <ScalarProperty Name="PopulationGroupEstimated" ColumnName="PopulationGroupEstimated" />
+          <ScalarProperty Name="PopulationFamilyProjected" ColumnName="PopulationFamilyProjected" />
+          <ScalarProperty Name="PopulationFamilyEstimated" ColumnName="PopulationFamilyEstimated" />
+          <ScalarProperty Name="PopulationIndividualProjected" ColumnName="PopulationIndividualProjected" />
+          <ScalarProperty Name="PopulationIndividualEstimated" ColumnName="PopulationIndividualEstimated" />
+          <ScalarProperty Name="PopulationLivingSkillsProjected" ColumnName="PopulationLivingSkillsProjected" />
+          <ScalarProperty Name="PopulationLivingSkillsEstimated" ColumnName="PopulationLivingSkillsEstimated" />
+          <ScalarProperty Name="PopulationMethadoneProjected" ColumnName="PopulationMethadoneProjected" />
+          <ScalarProperty Name="PopulationMethadoneEstimated" ColumnName="PopulationMethadoneEstimated" />
+          <ScalarProperty Name="PopulationPsychiatryProjected" ColumnName="PopulationPsychiatryProjected" />
+          <ScalarProperty Name="PopulationPsychiatryEstimated" ColumnName="PopulationPsychiatryEstimated" />
+          <ScalarProperty Name="PopulationCaseManagementProjected" ColumnName="PopulationCaseManagementProjected" />
+          <ScalarProperty Name="PopulationCaseManagementEstimated" ColumnName="PopulationCaseManagementEstimated" />
+          <ScalarProperty Name="BillableChildrenProjected" ColumnName="BillableChildrenProjected" />
+          <ScalarProperty Name="BillableChildrenEstimated" ColumnName="BillableChildrenEstimated" />
+          <ScalarProperty Name="BillableMentalProjected" ColumnName="BillableMentalProjected" />
+          <ScalarProperty Name="BillableMentalEstimated" ColumnName="BillableMentalEstimated" />
+          <ScalarProperty Name="BillableGeneralHealthProjected" ColumnName="BillableGeneralHealthProjected" />
+          <ScalarProperty Name="BillableGeneralHealthEstimated" ColumnName="BillableGeneralHealthEstimated" />
+          <ScalarProperty Name="BillableSubstanceAbuseProjected" ColumnName="BillableSubstanceAbuseProjected" />
+          <ScalarProperty Name="BillableSubstanceAbuseEstimated" ColumnName="BillableSubstanceAbuseEstimated" />
+          <ScalarProperty Name="UnduplicatedChildrenProjected" ColumnName="UnduplicatedChildrenProjected" />
+          <ScalarProperty Name="UnduplicatedChildrenEstimated" ColumnName="UnduplicatedChildrenEstimated" />
+          <ScalarProperty Name="UnduplicatedMentallyProjected" ColumnName="UnduplicatedMentallyProjected" />
+          <ScalarProperty Name="UnduplicatedMentallyEstimated" ColumnName="UnduplicatedMentallyEstimated" />
+          <ScalarProperty Name="UnduplicatedGeneralHealthProjected" ColumnName="UnduplicatedGeneralHealthProjected" />
+          <ScalarProperty Name="UnduplicatedGeneralHealthEstimated" ColumnName="UnduplicatedGeneralHealthEstimated" />
+          <ScalarProperty Name="UnduplicatedSubstanceAbuseProjected" ColumnName="UnduplicatedSubstanceAbuseProjected" />
+          <ScalarProperty Name="UnduplicatedSubstanceAbuseEstimated" ColumnName="UnduplicatedSubstanceAbuseEstimated" />
+          <ScalarProperty Name="UnionIndependent" ColumnName="UnionIndependent" />
+          <ScalarProperty Name="UnionTemporary" ColumnName="UnionTemporary" />
+          <ScalarProperty Name="UnionSeasonal" ColumnName="UnionSeasonal" />
+          <ScalarProperty Name="UnionParttime" ColumnName="UnionParttime" />
+          <ScalarProperty Name="UnionFulltime" ColumnName="UnionFulltime" />
+          <ScalarProperty Name="NonunionIndependent" ColumnName="NonunionIndependent" />
+          <ScalarProperty Name="NonunionTemporary" ColumnName="NonunionTemporary" />
+          <ScalarProperty Name="NonunionSeasonal" ColumnName="NonunionSeasonal" />
+          <ScalarProperty Name="NonunionParttime" ColumnName="NonunionParttime" />
+          <ScalarProperty Name="NonunionFulltime" ColumnName="NonunionFulltime" />
+          <ScalarProperty Name="AgencyPlanDesc" ColumnName="AgencyPlanDesc" />
+          <ScalarProperty Name="AgencyPlans" ColumnName="AgencyPlans" />
+          <ScalarProperty Name="AlarmPremise" ColumnName="AlarmPremise" />
+          <ScalarProperty Name="SafePremise" ColumnName="SafePremise" />
+          <ScalarProperty Name="PayrollOff" ColumnName="PayrollOff" />
+          <ScalarProperty Name="PayrollOvernight" ColumnName="PayrollOvernight" />
+          <ScalarProperty Name="PayrollOpen" ColumnName="PayrollOpen" />
+          <ScalarProperty Name="ChecksOff" ColumnName="ChecksOff" />
+          <ScalarProperty Name="ChecksOvernight" ColumnName="ChecksOvernight" />
+          <ScalarProperty Name="ChecksOpen" ColumnName="ChecksOpen" />
+          <ScalarProperty Name="MoneyOff" ColumnName="MoneyOff" />
+          <ScalarProperty Name="MoneyOvernight" ColumnName="MoneyOvernight" />
+          <ScalarProperty Name="MoneyOpen" ColumnName="MoneyOpen" />
+          <ScalarProperty Name="HoldNone" ColumnName="HoldNone" />
+          <ScalarProperty Name="HoldSecurities" ColumnName="HoldSecurities" />
+          <ScalarProperty Name="HoldChecks" ColumnName="HoldChecks" />
+          <ScalarProperty Name="HoldMoney" ColumnName="HoldMoney" />
+          <ScalarProperty Name="OtherNext12" ColumnName="OtherNext12" />
+          <ScalarProperty Name="OtherLast12" ColumnName="OtherLast12" />
+          <ScalarProperty Name="OtherDesc" ColumnName="OtherDesc" />
+          <ScalarProperty Name="FeeServiceNext12" ColumnName="FeeServiceNext12" />
+          <ScalarProperty Name="FeeServiceLast12" ColumnName="FeeServiceLast12" />
+          <ScalarProperty Name="GovFundingNext12" ColumnName="GovFundingNext12" />
+          <ScalarProperty Name="GovFundingLast12" ColumnName="GovFundingLast12" />
+          <ScalarProperty Name="CharitableContribNext12" ColumnName="CharitableContribNext12" />
+          <ScalarProperty Name="CharitableContribLast12" ColumnName="CharitableContribLast12" />
+          <ScalarProperty Name="InspectAgency" ColumnName="InspectAgency" />
+          <ScalarProperty Name="EthicDesc" ColumnName="EthicDesc" />
+          <ScalarProperty Name="EthicViolations" ColumnName="EthicViolations" />
+          <ScalarProperty Name="LicenseRegs" ColumnName="LicenseRegs" />
+          <ScalarProperty Name="OperationsType" ColumnName="OperationsType" />
+          <ScalarProperty Name="OperationsStartDate" ColumnName="OperationsStartDate" />
+          <ScalarProperty Name="FederalID" ColumnName="FederalID" />
+          <ScalarProperty Name="AuthorizeStateID" ColumnName="AuthorizeStateID" />
+          <ScalarProperty Name="AuthorizeEmail" ColumnName="AuthorizeEmail" />
+          <ScalarProperty Name="AuthorizePhone" ColumnName="AuthorizePhone" />
+          <ScalarProperty Name="AuthorizeZip" ColumnName="AuthorizeZip" />
+          <ScalarProperty Name="AuthorizeCity" ColumnName="AuthorizeCity" />
+          <ScalarProperty Name="AuthorizeAddress1" ColumnName="AuthorizeAddress1" />
+          <ScalarProperty Name="AuthorizeTitle" ColumnName="AuthorizeTitle" />
+          <ScalarProperty Name="AuthorizeLastName" ColumnName="AuthorizeLastName" />
+          <ScalarProperty Name="AuthorizeFirstName" ColumnName="AuthorizeFirstName" />
+          <ScalarProperty Name="AuthorizePrefix" ColumnName="AuthorizePrefix" />
+          <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+          <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+          <ScalarProperty Name="ContactTitle" ColumnName="ContactTitle" />
+          <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+          <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+          <ScalarProperty Name="ContactPrefix" ColumnName="ContactPrefix" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhysicalZipcode" ColumnName="PhysicalZipcode" />
+          <ScalarProperty Name="PhysicalStateID" ColumnName="PhysicalStateID" />
+          <ScalarProperty Name="PhysicalCity" ColumnName="PhysicalCity" />
+          <ScalarProperty Name="PhysicalAddress" ColumnName="PhysicalAddress" />
+          <ScalarProperty Name="MailingStateID" ColumnName="MailingStateID" />
+          <ScalarProperty Name="MailingZipcode" ColumnName="MailingZipcode" />
+          <ScalarProperty Name="MailingCity" ColumnName="MailingCity" />
+          <ScalarProperty Name="MailingAddress" ColumnName="MailingAddress" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="CurrentYear" ColumnName="CurrentYear" />
+          <ScalarProperty Name="RenewalID" ColumnName="RenewalID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PsychiatrySchedules">
+      <EntityTypeMapping TypeName="BHIPModel.PsychiatrySchedule">
+        <MappingFragment StoreEntitySet="PsychiatrySchedule">
+          <ScalarProperty Name="SpecialtyOther" ColumnName="SpecialtyOther" />
+          <ScalarProperty Name="DateRemoved" ColumnName="DateRemoved" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="OwnMalpracticeID" ColumnName="OwnMalpracticeID" />
+          <ScalarProperty Name="ContractorEmployeeID" ColumnName="ContractorEmployeeID" />
+          <ScalarProperty Name="HoursWorked" ColumnName="HoursWorked" />
+          <ScalarProperty Name="BoardEligibleID" ColumnName="BoardEligibleID" />
+          <ScalarProperty Name="BoardCertifiedID" ColumnName="BoardCertifiedID" />
+          <ScalarProperty Name="RetroDate" ColumnName="RetroDate" />
+          <ScalarProperty Name="SpecialtyID" ColumnName="SpecialtyID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MemberCoverageID" ColumnName="MemberCoverageID" />
+          <ScalarProperty Name="PsychiatryScheduleID" ColumnName="PsychiatryScheduleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PsychiatryScheduleHolds">
+      <EntityTypeMapping TypeName="BHIPModel.PsychiatryScheduleHold">
+        <MappingFragment StoreEntitySet="PsychiatryScheduleHold">
+          <ScalarProperty Name="SpecialtyOther" ColumnName="SpecialtyOther" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ScheduleStatusID" ColumnName="ScheduleStatusID" />
+          <ScalarProperty Name="COI" ColumnName="COI" />
+          <ScalarProperty Name="EditType" ColumnName="EditType" />
+          <ScalarProperty Name="DateRemoved" ColumnName="DateRemoved" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="OwnMalpracticeID" ColumnName="OwnMalpracticeID" />
+          <ScalarProperty Name="ContractorEmployeeID" ColumnName="ContractorEmployeeID" />
+          <ScalarProperty Name="HoursWorked" ColumnName="HoursWorked" />
+          <ScalarProperty Name="BoardEligibleID" ColumnName="BoardEligibleID" />
+          <ScalarProperty Name="BoardCertifiedID" ColumnName="BoardCertifiedID" />
+          <ScalarProperty Name="RetroDate" ColumnName="RetroDate" />
+          <ScalarProperty Name="SpecialtyID" ColumnName="SpecialtyID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MemberCoverageID" ColumnName="MemberCoverageID" />
+          <ScalarProperty Name="PsychiatryScheduleID" ColumnName="PsychiatryScheduleID" />
+          <ScalarProperty Name="PsychiatryScheduleHoldID" ColumnName="PsychiatryScheduleHoldID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OtherSchedules">
+      <EntityTypeMapping TypeName="BHIPModel.OtherSchedule">
+        <MappingFragment StoreEntitySet="OtherSchedule">
+          <ScalarProperty Name="SpecialtyOther" ColumnName="SpecialtyOther" />
+          <ScalarProperty Name="DateRemoved" ColumnName="DateRemoved" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="OwnMalpracticeID" ColumnName="OwnMalpracticeID" />
+          <ScalarProperty Name="ContractorEmployeeID" ColumnName="ContractorEmployeeID" />
+          <ScalarProperty Name="HoursWorked" ColumnName="HoursWorked" />
+          <ScalarProperty Name="BoardEligibleID" ColumnName="BoardEligibleID" />
+          <ScalarProperty Name="BoardCertifiedID" ColumnName="BoardCertifiedID" />
+          <ScalarProperty Name="RetroDate" ColumnName="RetroDate" />
+          <ScalarProperty Name="SpecialtyID" ColumnName="SpecialtyID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MemberCoverageID" ColumnName="MemberCoverageID" />
+          <ScalarProperty Name="OtherScheduleID" ColumnName="OtherScheduleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OtherScheduleHolds">
+      <EntityTypeMapping TypeName="BHIPModel.OtherScheduleHold">
+        <MappingFragment StoreEntitySet="OtherScheduleHold">
+          <ScalarProperty Name="SpecialtyOther" ColumnName="SpecialtyOther" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ScheduleStatusID" ColumnName="ScheduleStatusID" />
+          <ScalarProperty Name="COI" ColumnName="COI" />
+          <ScalarProperty Name="EditType" ColumnName="EditType" />
+          <ScalarProperty Name="DateRemoved" ColumnName="DateRemoved" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="OwnMalpracticeID" ColumnName="OwnMalpracticeID" />
+          <ScalarProperty Name="ContractorEmployeeID" ColumnName="ContractorEmployeeID" />
+          <ScalarProperty Name="HoursWorked" ColumnName="HoursWorked" />
+          <ScalarProperty Name="BoardEligibleID" ColumnName="BoardEligibleID" />
+          <ScalarProperty Name="BoardCertifiedID" ColumnName="BoardCertifiedID" />
+          <ScalarProperty Name="RetroDate" ColumnName="RetroDate" />
+          <ScalarProperty Name="SpecialtyID" ColumnName="SpecialtyID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MemberCoverageID" ColumnName="MemberCoverageID" />
+          <ScalarProperty Name="OtherScheduleID" ColumnName="OtherScheduleID" />
+          <ScalarProperty Name="OtherScheduleHoldID" ColumnName="OtherScheduleHoldID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PremiumHolds">
+      <EntityTypeMapping TypeName="BHIPModel.PremiumHold">
+        <MappingFragment StoreEntitySet="PremiumHold">
+          <ScalarProperty Name="EditType" ColumnName="EditType" />
+          <ScalarProperty Name="Cyber" ColumnName="Cyber" />
+          <ScalarProperty Name="Kidnap" ColumnName="Kidnap" />
+          <ScalarProperty Name="Pollution" ColumnName="Pollution" />
+          <ScalarProperty Name="PrimaryCare" ColumnName="PrimaryCare" />
+          <ScalarProperty Name="Umbrella" ColumnName="Umbrella" />
+          <ScalarProperty Name="PL_GL" ColumnName="PL_GL" />
+          <ScalarProperty Name="EmployedLawyers" ColumnName="EmployedLawyers" />
+          <ScalarProperty Name="Fiduciary" ColumnName="Fiduciary" />
+          <ScalarProperty Name="Crime" ColumnName="Crime" />
+          <ScalarProperty Name="D_O" ColumnName="D_O" />
+          <ScalarProperty Name="Auto" ColumnName="Auto" />
+          <ScalarProperty Name="Property" ColumnName="Property" />
+          <ScalarProperty Name="PolicyYearID" ColumnName="PolicyYearID" />
+          <ScalarProperty Name="MemberCoverageID" ColumnName="MemberCoverageID" />
+          <ScalarProperty Name="PremiumHoldID" ColumnName="PremiumHoldID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_Users">
+      <EntityTypeMapping TypeName="BHIPModel.t_Users">
+        <MappingFragment StoreEntitySet="t_Users">
+          <ScalarProperty Name="userRole" ColumnName="userRole" />
+          <ScalarProperty Name="pwd" ColumnName="pwd" />
+          <ScalarProperty Name="uname" ColumnName="uname" />
+          <ScalarProperty Name="rid" ColumnName="rid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomParams">
+      <EntityTypeMapping TypeName="BHIPModel.CustomParam">
+        <MappingFragment StoreEntitySet="CustomParams">
+          <ScalarProperty Name="DropSQL" ColumnName="DropSQL" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="ParamWidth" ColumnName="ParamWidth" />
+          <ScalarProperty Name="ParamTitle" ColumnName="ParamTitle" />
+          <ScalarProperty Name="ParamName" ColumnName="ParamName" />
+          <ScalarProperty Name="CustomParamTypeID" ColumnName="CustomParamTypeID" />
+          <ScalarProperty Name="CustomReportID" ColumnName="CustomReportID" />
+          <ScalarProperty Name="CustomParamID" ColumnName="CustomParamID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomParamTypes">
+      <EntityTypeMapping TypeName="BHIPModel.CustomParamType">
+        <MappingFragment StoreEntitySet="CustomParamType">
+          <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CustomParamTypeID" ColumnName="CustomParamTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomReports">
+      <EntityTypeMapping TypeName="BHIPModel.CustomReport">
+        <MappingFragment StoreEntitySet="CustomReports">
+          <ScalarProperty Name="CustomReportTypeID" ColumnName="CustomReportTypeID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="ReportQuery" ColumnName="ReportQuery" />
+          <ScalarProperty Name="ReportName" ColumnName="ReportName" />
+          <ScalarProperty Name="CustomReportID" ColumnName="CustomReportID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomReportTypes">
+      <EntityTypeMapping TypeName="BHIPModel.CustomReportType">
+        <MappingFragment StoreEntitySet="CustomReportType">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DateDeleted" ColumnName="DateDeleted" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CustomReportTypeID" ColumnName="CustomReportTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomRoles">
+      <EntityTypeMapping TypeName="BHIPModel.CustomRole">
+        <MappingFragment StoreEntitySet="CustomRoles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="CustomReportTypeID" ColumnName="CustomReportTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JobFunctions">
+      <EntityTypeMapping TypeName="BHIPModel.JobFunction">
+        <MappingFragment StoreEntitySet="JobFunction">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="JobFunction1" ColumnName="JobFunction" />
+          <ScalarProperty Name="JobFunctionID" ColumnName="JobFunctionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

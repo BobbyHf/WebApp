@@ -1,0 +1,135 @@
+﻿@using BHIP.MVCHelpers
+@model IEnumerable<BHIP.Model.PropertyScheduleHoldViewModel>
+<script>
+    $(document).ready(function () {
+
+    });
+
+        function ConfirmPropertyDelete(objThis) {
+            if (confirm("Do you want to delete this property?")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+</script>
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <td colspan="10" class="table-header">
+                Property - Pending Changes
+            </td>
+        </tr>
+        <tr class="table-header">
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+            <th>
+                Loc #
+            </th>
+            @*<th>
+                Location
+            </th>*@
+            <th>
+                Type of<br />
+                Const<br />
+                Fire System
+            </th>
+            <th>
+                Square Ftg<br />
+                $/Sqft<br />
+                Own/Lease
+            </th>
+            <th>
+                Bldg<br />
+                Contents<br />
+                @*BI & EE*@
+            </th>
+            <th>
+                Const<br />
+                Remodel
+            </th>
+            <th>
+                Added<br />
+                Removed
+            </th>
+            <th>Requested By</th>
+            <th>COI</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.ImageDialogLink("EditPropertyHold", "MemberCov", new { id = item.PropertyScheduleHoldID }, "Edit Property", "PropertyScheduleHoldGrid", Url.Action("RefreshPropertyHold/" + item.MemberCoverageID), Html.ResolveUrl("~/Content/images/edit-button.png"), "Edit Psychiatry", "600", "800", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                    </td>
+                    <td>
+                        <div title="Delete Premise">
+                            @Ajax.ActionLink(" ", "DeletePropertyHold", new { id = item.PropertyScheduleHoldID, covId = item.MemberCoverageID }, new AjaxOptions() { UpdateTargetId = "PropertyScheduleHoldGrid", OnBegin = "return ConfirmPropertyDelete()", OnComplete = "" }, new { style = "background: url('" + Html.ResolveUrl("~/Content/images/delete-button.png") + "') no-repeat center right;display:block; height:32px; width:32px;margin-top:-2px;text-decoration:none;" })
+
+                        </div>
+                    </td>
+                    @*<td>
+                        @item.LocationNumber
+                    </td>*@
+                    <td>
+                        @item.LocationName<br />
+                        @item.LocationAddress<br />
+                        @item.City, @item.StateName @item.Zip
+                    </td>
+                    <td>
+                        @item.ConstructionName<br />
+                        @item.FireName<br />
+                    </td>
+                    <td>
+                        @(string.Format("{0:N0}", (item.SquareFoot)))<br />
+                        @(string.Format("{0:C}", item.SquareFoot == 0 ? 0 : (item.BuildingValue + item.ContentValue) / item.SquareFoot))<br />
+                        @item.OwnLeaseName
+                    </td>
+                    <td>
+                        @(string.Format("{0:C}", item.BuildingValue))<br />
+                        @(string.Format("{0:C}", item.ContentValue))<br />
+                        @*@(string.Format("{0:C}", item.BI_EE))*@
+                    </td>
+                    <td>
+                        @(item.ConstructionDate.HasValue == true ? Convert.ToDateTime(item.ConstructionDate).ToShortDateString() : string.Empty)<br />
+                        @(item.RemodelDate.HasValue == true ? Convert.ToDateTime(item.RemodelDate).ToShortDateString() : string.Empty)<br />
+                    </td>
+                    <td>
+                        @(item.DateAdded.HasValue == true ? Convert.ToDateTime(item.DateAdded).ToShortDateString() : string.Empty)<br />
+                        @(item.DateRemoved.HasValue == true ? Convert.ToDateTime(item.DateRemoved).ToShortDateString() : string.Empty)
+                    </td>
+                    <td>
+                        @item.UserName<br />
+                        @item.UserEmail
+                    </td>
+                    <td>
+                        @(item.COI == true ? "Yes" : "No")
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr style="color: white; font-weight: bold; background-color: #808080; text-align: left; -moz-border-radius: 15px; border-radius: 15px;">
+            <td colspan="10" class="table-header">
+                &nbsp;
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+
+
+
+

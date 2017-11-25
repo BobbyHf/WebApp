@@ -1,0 +1,106 @@
+﻿@using BHIP.MVCHelpers
+@using MvcPaging
+
+
+
+@model BHIP.Model.CustomReportsViewModel
+<script type="text/javascript">
+    function ConfirmReportDelete() {
+        if (confirm("Do you want to delete this report?")) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
+    function ConfirmReportRun() {
+        if (confirm("Do you want to run this report?")) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
+</script>
+
+<div class="pager">
+    @*@Html.Pager(Model.CustomReportGridList.PageSize, Model.CustomReportGridList.PageNumber, Model.CustomReportGridList.TotalItemCount, new AjaxOptions { UpdateTargetId = "CustomReportGrid" }).Options(o => o.Action("AjaxPage").AddRouteValue("size", Model.PageSize))*@
+    @Html.Pager(Model.CustomReportGridList.PageSize, Model.CustomReportGridList.PageNumber, Model.CustomReportGridList.TotalItemCount, new AjaxOptions { UpdateTargetId = "CustomReportGrid" }).Options(o => o.Action("AjaxPage").AddRouteValue("id", Model.CustomReportID).AddRouteValue("size", Model.PageSize).AddRouteValue("sortOrder", ""))
+</div>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <td colspan="6" class="table-header">
+                @Html.ImageDialogLink("CustomReportAdd", "CustomReports", null, "Add Custom Report", "CustomReportGrid", Url.Action("RefreshReportGrid", "CustomReports"), Html.ResolveUrl("~/Content/images/add-button.png"), "Add Report", "600", "800", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                Add Custom Report
+            </td>
+        </tr>
+        <tr class="table-header">
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+            <th>
+                Run Report
+            </th>
+            <th>
+                Report Name
+            </th>
+            <th>
+                Date Added
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model.CustomReportGridList)
+            {
+
+                <tr>
+                    <td title="Edit Custom Report">
+                        @Html.ImageDialogLink("CustomReportEdit", "CustomReports", new { id = item.CustomReportID }, "Edit Custom Report", "CustomReportGrid", Url.Action("RefreshReportGrid", "CustomReports"), Html.ResolveUrl("~/Content/images/edit-button.png"), "Edit Custom Report", "600", "800", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                    </td>
+                    <td>
+                        <div title="Delete Custom Report">
+                            @{
+                                @Ajax.ActionLink(" ", "CustomReportDelete", new { id = item.CustomReportID }, new AjaxOptions() { UpdateTargetId = "CustomReportGrid", OnBegin = "return ConfirmReportDelete()", OnComplete = "" }, new { style = "background: url('" + Html.ResolveUrl("~/Content/images/delete-button.png") + "') no-repeat center right;display:block; height:32px; width:32px;margin-top:-2px;text-decoration:none;" })
+                            }
+                        </div>
+                    </td>
+                    <td>
+                        <div title="Run Custom Report">
+                            @{
+                                @Html.ActionLink(" ", "RunReport", "CustomReports", new { id = item.CustomReportID }, new { onClick = "return ConfirmReportRun()", style = "background: url('" + Html.ResolveUrl("~/Content/images/run-button.png") + "') no-repeat center right;display:block; height:32px; width:32px;margin-top:-2px;text-decoration:none;" })
+                             }
+                        </div>
+                    </td>
+                    <td>
+                        @item.ReportName
+                    </td>
+                    <td>
+                        @item.DateCreated
+                    </td>
+                </tr>                                }
+        }
+    </tbody>
+    <tfoot>
+        <tr style="color: white; font-weight: bold; background-color: #808080; text-align: left; -moz-border-radius: 15px; border-radius: 15px;">
+            <td colspan="6" class="table-header">
+                @Html.ImageDialogLink("CustomReportAdd", "CustomReports", null, "Add Custom Report", "CustomReportGrid", Url.Action("RefreshReportGrid", "CustomReports"), Html.ResolveUrl("~/Content/images/add-button.png"), "Add Report", "600", "800", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                Add Custom Report
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<div class="pager">
+    @Html.Pager(Model.CustomReportGridList.PageSize, Model.CustomReportGridList.PageNumber, Model.CustomReportGridList.TotalItemCount, new AjaxOptions { UpdateTargetId = "CustomReportGrid" }).Options(o => o.Action("AjaxPage").AddRouteValue("id", Model.CustomReportID).AddRouteValue("size", Model.PageSize).AddRouteValue("sortOrder", ""))
+
+
+    @*@Html.Pager(Model.CustomReportGridList.PageSize, Model.CustomReportGridList.PageNumber, Model.CustomReportGridList.TotalItemCount, new AjaxOptions { UpdateTargetId = "CustomReportGrid" }).Options(o => o.Action("AjaxPage").AddRouteValue("size", Model.PageSize))*@
+</div>

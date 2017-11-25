@@ -1,0 +1,96 @@
+﻿@model BHIP.Model.ContactViewModel
+@{
+    ViewBag.Title = "ContactUs";
+}
+
+<script src="@Url.Content("~/Scripts/date.format.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/bootstrap.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery-migrate-1.2.1.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.maskedinput.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.mask.js")" type="text/javascript"></script>
+<link type="text/css" href="@Url.Content("~/Content/jquery-ui.css")" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        $("#Phone").mask("(999) 999-9999");
+    });
+</script>
+
+<!--    START HEADER TITLE AND BANNER   -->
+    <div class="bubble">
+        <div class="rectangle">
+            <h2>CONTACT US</h2>
+        </div>
+        <div class="triangle-l"></div>
+        <div class="triangle-r"></div>
+
+        <div class="main">
+            <div style="text-align: left; width: 100%; padding: 40px 50px 40px 50px;">
+
+                <p>
+                    Mailing address:<br />
+                    333 East Osborn Road, Suite 300<br />
+                    Phoenix, Arizona 85012<br /><br /><br />
+                    <span style="width: 150px; display: inline-block;">Phone:</span>(602) 257-9119<br />
+                    <span style="width: 150px; display: inline-block;">Fax:</span>(602) 257-5117<br />
+                    <span style="width: 150px; display: inline-block;">Email:</span><a href="mailto:AdminBHIP@BHIPAZ.org">AdminBHIP@BHIPAZ.org</a><br />
+
+</p><br /><br />
+                <div>
+                    <p class="paragraph-head" style=" display: inline-block;">Email form: Please complete all fields</p>
+                </div>
+
+@using (Html.BeginForm("ContactUs", "Home", System.Web.Mvc.FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
+        {
+            <div class="form-group">
+    @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control inputfield inputwidth-500" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+</div>
+            <div class="form-group">
+    @Html.LabelFor(m => m.Company, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Company, new { @class = "form-control inputfield inputwidth-500" })
+        @Html.ValidationMessageFor(model => model.Company)
+    </div>
+</div>
+            <div class="form-group">
+    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control inputfield inputwidth-500" })
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+</div>
+            <div class="form-group">
+    @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control inputfield inputwidth-500" })
+        @Html.ValidationMessageFor(model => model.Phone)
+    </div>
+</div>
+            <div class="form-group">
+    @Html.LabelFor(m => m.Subject, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Subject, new { @class = "form-control inputfield inputwidth-500" })
+        @Html.ValidationMessageFor(model => model.Subject)
+    </div>
+</div>
+            <div class="form-group">
+    @Html.LabelFor(m => m.Comment, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Comment, new { @class = "form-control inputfield inputwidth-500" })
+        @Html.ValidationMessageFor(model => model.Comment)
+    </div>
+</div>
+    <button type="submit">Submit</button>
+
+        }
+</div>
+</div>
+</div>
+
+
+
+
+

@@ -1,0 +1,140 @@
+﻿@using BHIP.MVCHelpers
+@*@model BHIP.Model.MemberCoverageViewModel*@
+@model IEnumerable<BHIP.Model.VehicleScheduleViewModel>
+<script>
+    $(document).ready(function () {
+
+        $("a[name='DisableIt']").click(function (e) {
+            e.preventDefault();
+            return false;
+        })
+    });
+
+        function ConfirmVehicleDelete() {
+            if (confirm("Do you want to delete this automobile record?")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+</script>
+@{
+    int memberCoverId = 0;
+    int memberId = 0;
+    string sortOrderYear = string.Empty;
+    string sortOrderMakeModel = string.Empty;
+    string sortOrderVINOwnLease = string.Empty;
+
+    if (Model != null)
+    {
+        if (Model.Count() > 0)
+        {
+            memberCoverId = Model.FirstOrDefault().MemberCoverageID;
+            memberId = Model.FirstOrDefault().MemberID;
+            sortOrderYear = Model.FirstOrDefault().SortOrderYear;
+            sortOrderMakeModel = Model.FirstOrDefault().SortOrderMakeModel;
+            sortOrderVINOwnLease = Model.FirstOrDefault().SortOrderVINOwnLease;
+        }
+        else
+        {
+            memberCoverId = Convert.ToInt32(ViewData["MemberCoverageID"]);
+        }
+    }
+}
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table table-striped table-bordered">
+    <thead>
+        <tr style="color: white; font-weight: bold; background-color: #808080; text-align: left; -moz-border-radius: 15px; border-radius: 15px;">
+            <td colspan="9" class="table-header">
+                @*@if (Model.VehicleList.Count() > 0)
+                    {*@
+                @Html.ImageDialogLink("VehicleAdd", "MemberCov", new { id = memberCoverId }, "Add Automobile", "VehicleScheduleHoldGrid", Url.Action("RefreshVehicleHold/" + memberCoverId), Html.ResolveUrl("~/Content/images/add-button.png"), "Add Automobile", "600", "800", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                @*}
+                    else
+                    {
+                        @Html.ImageDialogLink("VehicleAdd", "MemberCov", new { id = Model.MemberCoverageID }, "Add Automobile", "VehicleScheduleHoldGrid", Url.Action("RefreshVehicleHold/" + Model.MemberCoverageID), Html.ResolveUrl("~/Content/images/add-button.png"), "Add Automobile", "600", "800", new { style = "text-decoration:none;", @name = "DisableIt" }, new { style = "text-decoration:none; border-style: none;" })
+                    }*@
+                Add New Automobile
+            </td>
+        </tr>
+        <tr class="table-header">
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+            <th>
+                @Ajax.ActionLink("Year", "AjaxPage", "MemberCov", new { id = memberId, column = "year", sortOrder = sortOrderYear }, new AjaxOptions() { UpdateTargetId = "VehicleScheduleGrid", InsertionMode = InsertionMode.Replace }, new { @style = "color: black;" })
+            </th>
+            <th>
+                @Ajax.ActionLink("Make/Model", "AjaxPage", "MemberCov", new { id = memberId, column = "makeModel", sortOrder = sortOrderMakeModel }, new AjaxOptions() { UpdateTargetId = "VehicleScheduleGrid", InsertionMode = InsertionMode.Replace }, new { @style = "color: black;" })
+            </th>
+            <th>
+                City, State Zip
+            </th>
+            <th>
+                @Ajax.ActionLink("VIN Own Lease", "AjaxPage", "MemberCov", new { id = memberId, column = "vinOwnLease", sortOrder = sortOrderVINOwnLease }, new AjaxOptions() { UpdateTargetId = "VehicleScheduleGrid", InsertionMode = InsertionMode.Replace }, new { @style = "color: black;" })
+            </th>
+            <th>Notes</th>
+            <th>Date Added<br />Date Deleted</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.ImageDialogLink("VehicleEdit", "MemberCov", new { id = item.VehicleScheduleID }, "Edit Automobile", "VehicleScheduleHoldGrid", Url.Action("RefreshVehicleHold/" + item.MemberCoverageID), Html.ResolveUrl("~/Content/images/edit-button.png"), "Edit Property", "600", "800", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                    </td>
+                    <td>
+                        <div title="Delete Premise">
+                            @Html.ImageDialogLink("VehicleDelete", "MemberCov", new { id = item.VehicleScheduleID }, "Delete Vehicle", "VehicleScheduleHoldGrid", Url.Action("RefreshVehicleHold/" + item.MemberCoverageID), Html.ResolveUrl("~/Content/images/delete-button.png"), "Delete Vehicle", "300", "450", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                        </div>
+                    </td>
+                    <td>
+                        @item.Year
+                    </td>
+                    <td>
+                        @item.MakeModel
+                    </td>
+                    <td>
+                        @item.City, @item.StateName @item.Zipcode
+                    </td>
+                    <td>
+                        @item.VIN<br />
+                        @item.OwnLeaseDescription
+                    </td>
+                    <td>
+                        @item.Notes
+                    </td>
+                    <td>
+                        @(item.DateAdded.HasValue == true ? Convert.ToDateTime(item.DateAdded).ToShortDateString() : string.Empty)<br />
+                        @(item.DateDeleted.HasValue == true ? Convert.ToDateTime(item.DateDeleted).ToShortDateString() : string.Empty)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr style="color: white; font-weight: bold; background-color: #808080; text-align: left; -moz-border-radius: 15px; border-radius: 15px;">
+            <td colspan="9" class="table-header">
+                @*@if (Model.VehicleList.Count() > 0)
+                    {*@
+                @Html.ImageDialogLink("VehicleAdd", "MemberCov", new { id = memberCoverId }, "Add Automobile", "VehicleScheduleHoldGrid", Url.Action("RefreshVehicleHold/" + memberCoverId), Html.ResolveUrl("~/Content/images/add-button.png"), "Add Automobile", "600", "800", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                @*}
+                    else
+                    {
+                        @Html.ImageDialogLink("VehicleAdd", "MemberCov", new { id = Model.MemberCoverageID }, "Add Automobile", "VehicleScheduleHoldGrid", Url.Action("RefreshVehicleHold/" + Model.MemberCoverageID), Html.ResolveUrl("~/Content/images/add-button.png"), "Add Automobile", "600", "800", new { style = "text-decoration:none;", @disabled = "true" }, new { style = "text-decoration:none; border-style: none;", @disabled = "true" })
+                    }*@
+                Add New Automobile
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+

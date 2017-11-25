@@ -1,0 +1,84 @@
+﻿@using BHIP.MVCHelpers
+@model IEnumerable<BHIP.Model.DocumentViewModel>
+
+<script type="text/javascript">
+   function ConfirmDocumentDelete() {
+        if (confirm("Do you want to delete this document?"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+   }
+</script>
+@{
+    int renewalId = 0;
+
+    if (Model.Count() > 0)
+    {
+        renewalId = Model.DefaultIfEmpty().First().RenewalId;
+    }
+    else
+    {
+        renewalId = Convert.ToInt32(ViewData["RenewalID"]);
+    }
+
+}
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <td colspan="11" class="table-header">
+                @Html.ImageDialogLink("AddDocument", "Renewal", new { renewalId = renewalId }, "Add Document", "Document", Url.Action("RefreshAddDocument/" + renewalId), Html.ResolveUrl("~/Content/images/edit-button.png"), "Add Document", "400", "600", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                Add New Document
+                &nbsp;&nbsp;&nbsp;
+                @Html.ImageDialogLink("DocumentType", "Renewal", new { renewalId = renewalId }, "Create Document Type", "", "", Html.ResolveUrl("~/Content/images/edit-button.png"), "Create Document Type", "400", "500", new { style = "text-decoration:none; visibility: hidden;" }, new { style = "text-decoration:none; border-style: none; visibility: hidden;" })
+                <span style="visibility: hidden;">Create Document Type</span>
+            </td>
+        </tr>
+        <tr class="table-header">
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>
+                Load Date
+            </th>
+            <th>
+                Document Type
+            </th>
+            <th>
+                Document Link
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ImageDialogLink("EditDocument", "Renewal", new { id = item.DocumentId, renewalId = item.RenewalId }, "Edit Document", "Document", Url.Action("RefreshAddDocument/" + item.RenewalId), Html.ResolveUrl("~/Content/images/edit-button.png"), "Edit Document", "400", "600", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                </td>
+                <td>
+                    <div title="Delete">
+                        @Ajax.ActionLink(" ", "DeleteDocument", new { id = item.DocumentId, rid = item.RenewalId }, new AjaxOptions() { UpdateTargetId = "Document", OnBegin = "return ConfirmDocumentDelete()", OnComplete = "" }, new { style = "background: url('" + Html.ResolveUrl("~/Content/images/delete-button.png") + "') no-repeat center right;display:block; height:32px; width:32px;margin-top:-2px;text-decoration:none;" })
+                    </div>
+                </td>
+                <td>
+                    <div title="Load Date">
+                        @(Convert.ToDateTime(item.LoadDate).ToShortDateString())
+                    </div>
+                </td>
+                <td>
+                    <div title="Document Type">
+                        @item.DocumentType
+                    </div>
+                </td>
+                 <td>
+                    <a href="/Renewal/GetDocument/?docId=@item.DocumentId">@item.FileName</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

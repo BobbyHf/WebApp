@@ -1,0 +1,117 @@
+﻿@model BHIP.Model.MemberCoverageViewModel
+<script>
+
+    $(document).ready(function () {
+        $('#Premiums_Property').val(@Model.Premiums.Auto);
+        $('#Premiums_Property').masked('###,###,###,##0.00', { reverse: true, maxlength: false });
+        $('#Premiums_Auto').val(@Model.Premiums.Auto);
+        $('#Premiums_Auto').masked('###,###,###,##0.00', { reverse: true, maxlength: false });
+        $('#Premiums_Crime').val(@Model.Premiums.Crime);
+        $('#Premiums_Crime').masked('###,###,###,##0.00', { reverse: true, maxlength: false });
+        $('#Premiums_Cyber').val(@Model.Premiums.Cyber);
+        $('#Premiums_Cyber').masked('###,###,###,##0.00', { reverse: true, maxlength: false });
+        $('#Premiums_D_O').val(@Model.Premiums.D_O);
+        $('#Premiums_D_O').masked('###,###,###,##0.00', { reverse: true, maxlength: false });
+        $('#Premiums_EmployeedLawyers').val(@Model.Premiums.EmployeedLawyers);
+        $('#Premiums_EmployeedLawyers').masked('###,###,###,##0.00', { reverse: true, maxlength: false });
+        $('#Premiums_Fiduciary').val(@Model.Premiums.Fiduciary);
+        $('#Premiums_Fiduciary').masked('###,###,###,##0.00', { reverse: true, maxlength: false });
+        $('#Premiums_Kidnap').val(@Model.Premiums.Kidnap);
+        $('#Premiums_Kidnap').masked('###,###,###,##0.00', { reverse: true, maxlength: false });
+        $('#Premiums_PL_GL').val(@Model.Premiums.PL_GL);
+        $('#Premiums_PL_GL').masked('###,###,###,##0.00', { reverse: true, maxlength: false });
+        $('#Premiums_Pollution').val(@Model.Premiums.Pollution);
+        $('#Premiums_Pollution').masked('###,###,###,##0.00', { reverse: true, maxlength: false });
+        $('#Premiums_PrimaryCare').val(@Model.Premiums.PrimaryCare);
+        $('#Premiums_PrimaryCare').masked('###,###,###,##0.00', { reverse: true, maxlength: false });
+        $('#Premiums_Umbrella').val(@Model.Premiums.Umbrella);
+        $('#Premiums_Umbrella').masked('###,###,###,##0.00', { reverse: true, maxlength: false });
+    });
+
+</script>
+<div class="form-group">
+    @Html.LabelFor(m => m.Premiums.Property, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Premiums.Property, new { @class = "form-control inputfield inputwidth-500" })
+        @Html.ValidationMessageFor(m => m.Premiums.Property)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Premiums.Auto, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Premiums.Auto, new { @class = "form-control inputfield inputwidth-500" })
+        @Html.ValidationMessageFor(m => m.Premiums.Auto)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Premiums.D_O, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Premiums.D_O, new { @class = "form-control inputfield inputwidth-500" })
+        @Html.ValidationMessageFor(m => m.Premiums.D_O)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Premiums.Crime, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Premiums.Crime, new { @class = "form-control inputfield inputwidth-500"  })
+        @Html.ValidationMessageFor(m => m.Premiums.Crime)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Premiums.Fiduciary, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Premiums.Fiduciary, new { @class = "form-control inputfield inputwidth-500" })
+        @Html.ValidationMessageFor(m => m.Premiums.Fiduciary)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Premiums.EmployeedLawyers, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Premiums.EmployeedLawyers, new { @class = "form-control inputfield inputwidth-500" })
+        @Html.ValidationMessageFor(m => m.Premiums.EmployeedLawyers)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Premiums.PL_GL, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Premiums.PL_GL, new { @class = "form-control inputfield inputwidth-500" })
+        @Html.ValidationMessageFor(m => m.Premiums.PL_GL)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Premiums.Umbrella, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Premiums.Umbrella, new { @class = "form-control inputfield inputwidth-500" })
+        @Html.ValidationMessageFor(m => m.Premiums.Umbrella)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Premiums.PrimaryCare, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Premiums.PrimaryCare, new { @class = "form-control inputfield inputwidth-500" })
+        @Html.ValidationMessageFor(m => m.Premiums.PrimaryCare)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Premiums.Pollution, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Premiums.Pollution, new { @class = "form-control inputfield inputwidth-500" })
+        @Html.ValidationMessageFor(m => m.Premiums.Pollution)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Premiums.Kidnap, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Premiums.Kidnap, new { @class = "form-control inputfield inputwidth-500" })
+        @Html.ValidationMessageFor(m => m.Premiums.Kidnap)
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.Premiums.Cyber, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Premiums.Cyber, new { @class = "form-control inputfield inputwidth-500" })
+        @Html.ValidationMessageFor(m => m.Premiums.Cyber)
+    </div>
+</div>
+
+

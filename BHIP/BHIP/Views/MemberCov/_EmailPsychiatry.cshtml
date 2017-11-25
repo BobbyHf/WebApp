@@ -1,0 +1,49 @@
+﻿
+@model BHIP.Model.EmailPsychiatry
+
+@if (Model.PsychiatryAddList.Count > 0)
+{
+    @Html.Raw("Please see the following new Behavioral Health Provider(s) for " + Model.MemberName + ":%0D%0A")
+    foreach (BHIP.Model.SendingPsychiatry psychiatryAdd in Model.PsychiatryAddList)
+    {
+        @Html.Raw("Provider: " + psychiatryAdd.FirstName + " " + psychiatryAdd.LastName + ", " + psychiatryAdd.Title + "%0D%0A")
+        @Html.Raw("Date of Hire: " + psychiatryAdd.DateOfHire + "%0D%0A")
+        @Html.Raw("Board Certified: " + psychiatryAdd.BoardCertified + "%0D%0A")
+        @Html.Raw("Board Eligible: " + psychiatryAdd.BoardEligible + "%0D%0A")
+        @Html.Raw("Hours per week: " + psychiatryAdd.HoursPerWeek + "%0D%0A")
+        @Html.Raw("Contracted or Employed: " + psychiatryAdd.EmploymentType + "%0D%0A")
+        @Html.Raw("Carries own malpractice: " + psychiatryAdd.Malpractice + "%0D%0A")
+        @Html.Raw("%0D%0A")
+    }
+    @Html.Raw("%0D%0A%0D%0A")
+}
+
+@if (Model.PsychiatryDeleteList.Count > 0)
+{
+    @Html.Raw("Please remove the following Behavioral Health Provider(s) for " + Model.MemberName + ":%0D%0A")
+    foreach (BHIP.Model.SendingPsychiatry psychiatryDelete in Model.PsychiatryDeleteList)
+    {
+        @Html.Raw("Provider: " + psychiatryDelete.FirstName + " " + psychiatryDelete.LastName + ", " + psychiatryDelete.Title + "%0D%0A")
+        @Html.Raw("Date of Hire: " + psychiatryDelete.DateOfHire + "%0D%0A")
+        @Html.Raw("Date Deleted: " + psychiatryDelete.DateRemoved + "%0D%0A")
+        @Html.Raw("%0D%0A")
+    }
+    @Html.Raw("%0D%0A%0D%0A")
+}
+
+@if (Model.PsychiatryCOIList.Count > 0)
+{
+    @Html.Raw("A certificate of insurance has been requested for the following:%0D%0A")
+    foreach (BHIP.Model.SendingPsychiatry psychiatryCOI in Model.PsychiatryCOIList)
+    {
+        @Html.Raw("Provider: " + psychiatryCOI.FirstName + " " + psychiatryCOI.LastName + ", " + psychiatryCOI.Title + "%0D%0A")
+        @Html.Raw("Date of Hire: " + psychiatryCOI.DateOfHire + "%0D%0A")
+        @Html.Raw("Board Certified: " + psychiatryCOI.BoardCertified + "%0D%0A")
+        @Html.Raw("Board Eligible: " + psychiatryCOI.BoardEligible + "%0D%0A")
+        @Html.Raw("Hours per week: " + psychiatryCOI.HoursPerWeek + "%0D%0A")
+        @Html.Raw("Contracted or Employed: " + psychiatryCOI.EmploymentType + "%0D%0A")
+        @Html.Raw("Carries own malpractice: " + psychiatryCOI.Malpractice + "%0D%0A")
+        @Html.Raw("%0D%0A")
+    }
+    @Html.Raw("%0D%0A%0D%0A")
+}

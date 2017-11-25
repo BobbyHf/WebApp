@@ -1,0 +1,76 @@
+﻿@using BHIP.MVCHelpers
+@using MvcPaging
+@model BHIP.Model.CustomReportTypeViewModel
+
+
+<script type="text/javascript">
+    function ConfirmReportTypeDelete() {
+        if (confirm("Do you want to delete this report type?")) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+</script>
+
+<div class="pager">
+    @Html.Pager(Model.CustomReportTypeGridList.PageSize, Model.CustomReportTypeGridList.PageNumber, Model.CustomReportTypeGridList.TotalItemCount, new AjaxOptions { UpdateTargetId = "CustomReportGrid" }).Options(o => o.Action("AjaxPage").AddRouteValue("size", Model.PageSize))
+</div>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <td colspan="6" class="table-header">
+                @Html.ImageDialogLink("CustomReportTypeAdd", "CustomReportType", null, "Add Custom Report Type", "CustomReportGrid", Url.Action("RefreshCustomReportTypeGrid", "CustomReportType"), Html.ResolveUrl("~/Content/images/add-button.png"), "Add Custom Report Type", "600", "800", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                Add Custom Report Type
+            </td>
+        </tr>
+        <tr class="table-header">
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model.CustomReportTypeGridList)
+            {
+
+                <tr>
+                    <td title="Edit Custom Report">
+                        @Html.ImageDialogLink("CustomReportTypeEdit", "CustomReportType", new { id = item.CustomReportTypeID }, "Edit Custom Report Type", "CustomReportGrid", Url.Action("RefreshCustomReportTypeGrid", "CustomReportType"), Html.ResolveUrl("~/Content/images/edit-button.png"), "Edit Custom Report", "600", "800", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                    </td>
+                    <td>
+                        <div title="Delete Custom Report">
+                            @{
+                                @Ajax.ActionLink(" ", "CustomReportTypeDelete", new { id = item.CustomReportTypeID }, new AjaxOptions() { UpdateTargetId = "CustomReportGrid", OnBegin = "return ConfirmReportTypeDelete()", OnComplete = "" }, new { style = "background: url('" + Html.ResolveUrl("~/Content/images/delete-button.png") + "') no-repeat center right;display:block; height:32px; width:32px;margin-top:-2px;text-decoration:none;" })
+                            }
+                        </div>
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                </tr>                                }
+        }
+    </tbody>
+    <tfoot>
+        <tr style="color: white; font-weight: bold; background-color: #808080; text-align: left; -moz-border-radius: 15px; border-radius: 15px;">
+            <td colspan="6" class="table-header">
+                @Html.ImageDialogLink("CustomReportTypeAdd", "CustomReportType", null, "Add Custom Report Type", "CustomReportGrid", Url.Action("RefreshCustomReportTypeGrid", "CustomReportType"), Html.ResolveUrl("~/Content/images/add-button.png"), "Add Report", "600", "800", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                Add Custom Report Type
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<div class="pager">
+    @Html.Pager(Model.CustomReportTypeGridList.PageSize, Model.CustomReportTypeGridList.PageNumber, Model.CustomReportTypeGridList.TotalItemCount, new AjaxOptions { UpdateTargetId = "CustomReportGrid" }).Options(o => o.Action("AjaxPage").AddRouteValue("size", Model.PageSize))
+</div>
+
+

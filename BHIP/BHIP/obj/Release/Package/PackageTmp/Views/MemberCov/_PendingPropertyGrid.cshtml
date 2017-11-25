@@ -1,0 +1,114 @@
+﻿@using BHIP.MVCHelpers
+@model IEnumerable<BHIP.Model.PropertyScheduleHoldViewModel>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <td colspan="11" class="table-header">
+                Property - Pending Changes
+            </td>
+        </tr>
+        <tr class="table-header">
+            <th>
+                Select
+            </th>
+            @*<th>
+                Loc #
+            </th>*@
+            <th>
+                Location
+            </th>
+            <th>
+                Type of<br />
+                Const<br />
+                Fire System
+            </th>
+            <th>
+                Square Ftg<br />
+                $/Sqft<br />
+                Own/Lease
+            </th>
+            <th>
+                Bldg<br />
+                Contents
+            </th>
+            <th>
+                Const<br />
+                Remodel
+            </th>
+            <th>
+                Added<br />
+                Removed
+            </th>
+            <th>Requested By</th>
+            <th>COI</th>
+            <th>
+                Status
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        <input type="checkbox" name="chkSelect" schedule_id="@item.PropertyScheduleHoldID" />
+                    </td>
+                    @*<td>
+                        @item.LocationNumber
+                    </td>*@
+                    <td>
+                        @item.LocationName<br />
+                        @item.LocationAddress<br />
+                        @item.City, @item.StateName @item.Zip
+                    </td>
+                    <td>
+                        @item.ConstructionName<br />
+                        @item.FireName<br />
+                    </td>
+                    <td>
+                        @(string.Format("{0:N0}", item.SquareFoot))<br />
+                        @item.OwnLeaseName
+                    </td>
+                    <td>
+                        @(string.Format("{0:C}", item.BuildingValue))<br />
+                        @(string.Format("{0:C}", item.ContentValue))<br />
+                    </td>
+                    <td>
+                        @(item.ConstructionDate.HasValue == true ? Convert.ToDateTime(item.ConstructionDate).ToShortDateString() : string.Empty)<br />
+                        @(item.RemodelDate.HasValue == true ? Convert.ToDateTime(item.RemodelDate).ToShortDateString() : string.Empty)<br />
+                    </td>
+                    <td>
+                        @(item.DateAdded.HasValue == true ? Convert.ToDateTime(item.DateAdded).ToShortDateString() : string.Empty)<br />
+                        @(item.DateRemoved.HasValue == true ? Convert.ToDateTime(item.DateRemoved).ToShortDateString() : string.Empty)
+                    </td>
+                    <td>
+                        @item.UserName<br />
+                        @item.UserEmail
+                    </td>
+                    <td>
+                        @(item.COI == true ? "Yes" : "No")
+                    </td>
+                    <td>
+                        @item.StatusName
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr style="color: white; font-weight: bold; background-color: #808080; text-align: left; -moz-border-radius: 15px; border-radius: 15px;">
+            <td colspan="11" class="table-header">
+                &nbsp;
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+
+
+
+
+

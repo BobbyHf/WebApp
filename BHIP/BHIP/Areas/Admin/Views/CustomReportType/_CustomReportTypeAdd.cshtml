@@ -1,0 +1,35 @@
+﻿@model BHIP.Model.CustomReportTypeViewModel
+
+<h2>Create Custom Report Type</h2>
+
+
+@using (Html.BeginForm("AddCustomReportType", "CustomReportType", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Roles", new { @class = "control-label col-md-2" })
+            <span class=" col-md-10">
+                @foreach (var item in Model.RolesList)
+                {
+                    <input type="checkbox" name="SelectedRoles" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+                    @Html.Label(item.Text, new { @class = "control-label" })<br />
+                }
+            </span>
+        </div>
+    </div>
+}
+
+
+
+

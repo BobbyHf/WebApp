@@ -1,0 +1,166 @@
+﻿@model BHIP.Model.CustomReportsViewModel
+
+
+<script src="@Url.Content("~/Scripts/bootstrap.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery-migrate-1.2.1.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.maskedinput.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.mask.js")" type="text/javascript"></script>
+<style>
+    .ui-dialog {
+        z-index: 1000 !important;
+    }
+</style>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        /* jquery.mask.min.js */
+        $('.intcomma').masked('###,###,###,##0', { reverse: true, maxlength: false });
+        $('.intnocomma').masked('###########0', { reverse: true, maxlength: false });
+        $('.decimalcomma').masked('###,###,###,##0.00', { reverse: true, maxlength: false });
+        $('.yearmask').masked('###0', { reverse: true, maxlength: 4 });
+        $('.datemask').mask("99/99/9999");
+
+        $("#btnSubmitx").click(function () {
+            var isInvalid = false;
+            $("#divstatus").html("");
+
+
+                $('.rptControls').each(function () {
+                    if ($(this).val().length == 0) {
+                        isInvalid = true;
+                    }
+                });
+
+
+
+                var sending = '';
+
+
+                $('.rptControls').each(function () {
+                    if (sending.length == 0) {
+                        sending = $(this).attr("id") + '^' + $(this).val();
+                    }
+                    else {
+                        sending = sending + "~" + $(this).attr("id") + '^' + $(this).val();
+                    }
+                });
+
+                //alert('/viewer.aspx?rptname=' + $("#ReportName").val() + '&valuetopass=' + sending);
+                if (!isInvalid) {
+
+                    var reportids = ["104", "1111"];
+                    var check = reportids.indexOf($("#drpReports").val());
+                    //alert(check);
+                    if (check > -1) {
+                        var form = $("#myForm");
+                        $.ajax({
+                            url: '/viewer2.aspx?rptname=' + $("#ReportName").val() + '&values=' + sending,
+                            data: form.serialize(),
+                            type: 'POST',
+                            complete: function () {
+                                //$.unblockUI();
+
+                            },
+                            success: function (data) {
+                                //alert(data);
+                                if (data == "OK") { $("#divstatus").html("<span style='color:green;'>File saved.<span>"); } else { $("#divstatus").html("<span style='color:red;'>Error Occured, File not saved.<span>"); }
+                            },
+                            error: function () {
+                                $("#divstatus").html("<span style='color:red;'>Error Occured, File not saved.<span>");
+                            }
+                        });
+                    }
+                    else {
+                        window.open('/viewer.aspx?rptname=' + $("#ReportName").val() + '&values=' + sending, '_blank');
+                    }
+
+                }
+                else {
+                    AlertBox('Please fill in the required fields before printing.', function () { }, 'Select Report');
+                }
+            return false;
+        });
+
+        function AlertBox(dialogText, okFunc, dialogTitle) {
+            $('<div style="padding: 10px; max-width: 500px; word-wrap: break-word; z-index: 5000;" data-backdrop="true">' + dialogText + '</div>').dialog({
+                draggable: false,
+                modal: true,
+                resizable: false,
+                width: 'auto',
+                position: { my: "top", at: "center", of: window },
+                title: dialogTitle || 'Confirm',
+                minHeight: 75,
+                buttons: {
+                    OK: function () {
+                        if (typeof (okFunc) == 'function') {
+                            setTimeout(okFunc, 50);
+                        }
+                        $(this).dialog('destroy');
+                    },
+                }
+            });
+        }
+    });
+
+    function DrpSQLOnChange(ctrl)
+    {
+        var index = ctrl.attributes['index'].value;
+        $("[id='ParamValue[" + index + "]']").val(ctrl.value);
+    }
+</script>
+
+<div style="width: 100%; padding: 20px;">
+    @using (Html.BeginForm("ExecuteReport", "CustomReports", FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
+    {
+        int i = 0;
+        if (Model.ParamList != null)
+        {
+            <div>
+                <h2>@Model.ReportName</h2><br /><br />
+                @Html.HiddenFor(x => x.CustomReportID)
+            </div>
+            foreach (var item in Model.ParamList)
+            {
+                <div>
+                    <span style="width: 25%;">@Html.Label(item.ParamTitle)</span>: &nbsp;
+                    @if (item.PropType == "Year")
+                    {
+                        <input type="text" id="ParamValue[@i]" name="ParamValue[@i]" value="" style="width: @Html.Raw(item.ParamWidth+"px;") font-size: 14px; margin-bottom: 15px;" class="rptControls yearmask" />
+                        <input type="hidden" id="ParamType[@i]" name="ParamType[@i]" value="@item.PropType" />
+                        <input type="hidden" id="ParamName[@i]" name="ParamName[@i]" value="@item.ParamName" />
+                    }
+                    else if (item.PropType == "Integer")
+                    {
+                        @Html.TextBox(item.ParamName, null, new { @style = "width: " + item.ParamWidth + "px; font-size: 14px; margin-bottom: 15px;", @class = "rptControls intnocomma" })
+                        <input type="text" id="ParamValue[@i]" name="ParamValue[@i]" value="" style="width: @Html.Raw(item.ParamWidth+"px;") font-size: 14px; margin-bottom: 15px;" class="rptControls intcomma" />
+                        <input type="hidden" id="ParamType[@i]" name="ParamType[@i]" value="@item.PropType" />
+                        <input type="hidden" id="ParamName[@i]" name="ParamName[@i]" value="@item.ParamName" />
+                    }
+                    else if (item.PropType == "Date")
+                    {
+                        <input type="text" id="ParamValue[@i]" name="ParamValue[@i]" value="" style="width: @Html.Raw(item.ParamWidth+"px;") font-size: 14px; margin-bottom: 15px;" class="rptControls datemask" required="required" />
+                        <input type="hidden" id="ParamType[@i]" name="ParamType[@i]" value="@item.PropType" />
+                        <input type="hidden" id="ParamName[@i]" name="ParamName[@i]" value="@item.ParamName" />
+                    }
+                    else if (item.PropType == "DropDown")
+                    {
+                        @Html.DropDownList(item.ParamName, Model.GetData(item.DropSQL).AsEnumerable(), "--Select--", new { @style = "font-size: 14px; margin-bottom: 15px;", @class = "rptControls", @index = string.Format("{0}", i), @onchange = "DrpSQLOnChange(this)" })
+                        <input type="hidden" id="ParamValue[@i]" name="ParamValue[@i]" value="1" />
+                        <input type="hidden" id="ParamType[@i]" name="ParamType[@i]" value="@item.PropType" />
+                        <input type="hidden" id="ParamName[@i]" name="ParamName[@i]" value="@item.ParamName" />
+                    }
+                    else
+                    {
+                        <input type="text" id="ParamValue[@i]" name="ParamValue[@i]" value="" style="width: @Html.Raw(item.ParamWidth+"px;") font-size: 14px; margin-bottom: 15px;" class="rptControls" />
+                        <input type="hidden" id="ParamType[@i]" name="ParamType[@i]" value="@item.PropType" />
+                        <input type="hidden" id="ParamName[@i]" name="ParamName[@i]" value="@item.ParamName" />
+                    }
+                </div>
+                i++;
+            }
+
+            <button id="btnSubmit" type="submit" value="button" style="margin-top: 15px;">Submit</button> <div id="divstatus" style="display: inline;"></div>
+
+        }
+    }
+</div>

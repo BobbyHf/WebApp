@@ -1,0 +1,63 @@
+﻿@model BHIP.Model.EmailProperty
+
+@if (Model.PropertyAddList.Count > 0)
+{
+    @Html.Raw("Please see the following new property(s) for " + Model.MemberName + ":%0D%0A")
+    foreach (BHIP.Model.SendingProperty propertyAdd in Model.PropertyAddList)
+    {
+        @Html.Raw("Property Name: " + propertyAdd.PropertyName + "%0D%0A")
+        @Html.Raw("Address: " + propertyAdd.Address + ", " + propertyAdd.City + ", " + propertyAdd.State + " " + propertyAdd.Zip + "%0D%0A")
+        @Html.Raw("Type of Construction: " + propertyAdd.TypeOfConstruction + "%0D%0A")
+        @Html.Raw("Cost per square foot: " + propertyAdd.Cost + "%0D%0A")
+        @Html.Raw("Square footage: " + propertyAdd.SquareFootage + "%0D%0A")
+        @Html.Raw("Own/Lease: " + propertyAdd.OwnLease + "%0D%0A")
+        @Html.Raw("Fire/Burglar System: " + propertyAdd.FireBurglar + "%0D%0A")
+        @Html.Raw("Date of construction/Remodel: " + propertyAdd.DateContruction + "%0D%0A")
+        @Html.Raw("Date added: " + propertyAdd.DateAdded + "%0D%0A")
+        @Html.Raw("Building Value: " + propertyAdd.BuildingValue + "%0D%0A")
+        @Html.Raw("Content Value: " + propertyAdd.ContentValue + "%0D%0A")
+        @Html.Raw("%0D%0A")
+    }
+    @Html.Raw("%0D%0A%0D%0A")
+}
+
+@if (Model.PropertyDeleteList.Count > 0)
+{
+    @Html.Raw("Please remove the following property(s) for " + Model.MemberName + ":%0D%0A")
+    foreach (BHIP.Model.SendingProperty propertyDelete in Model.PropertyDeleteList)
+    {
+        @Html.Raw("Property Name: " + propertyDelete.PropertyName + "%0D%0A")
+        @Html.Raw("Address: " + propertyDelete.Address + ", " + propertyDelete.City + ", " + propertyDelete.State + " " + propertyDelete.Zip + "%0D%0A")
+        @Html.Raw("Type of Construction: " + propertyDelete.TypeOfConstruction + "%0D%0A")
+        @Html.Raw("Cost per square foot: " + propertyDelete.Cost + "%0D%0A")
+        @Html.Raw("Square footage: " + propertyDelete.SquareFootage + "%0D%0A")
+        @Html.Raw("Own/Lease: " + propertyDelete.OwnLease + "%0D%0A")
+        @Html.Raw("Fire/Burglar System: " + propertyDelete.FireBurglar + "%0D%0A")
+        @Html.Raw("Date of construction/Remodel: " + propertyDelete.DateContruction + "%0D%0A")
+        @Html.Raw("Date added: " + propertyDelete.DateAdded + "%0D%0A")
+        @Html.Raw("Building Value: " + propertyDelete.BuildingValue + "%0D%0A")
+        @Html.Raw("Content Value: " + propertyDelete.ContentValue + "%0D%0A")
+        @Html.Raw("Date Deleted: " + propertyDelete.DateRemoved + "%0D%0A")
+        @Html.Raw("%0D%0A")
+    }
+    @Html.Raw("%0D%0A%0D%0A")
+}
+
+@if (Model.PropertyCOIList.Count > 0)
+{
+    @Html.Raw("A certificate of insurance has been requested for the following:%0D%0A")
+    foreach (BHIP.Model.SendingProperty propertyCOI in Model.PropertyCOIList)
+    {
+        @Html.Raw("Property Name: " + propertyCOI.PropertyName + "%0D%0A")
+        @Html.Raw("Address: " + propertyCOI.Address + ", " + propertyCOI.City + ", " + propertyCOI.State + " " + propertyCOI.Zip + "%0D%0A")
+        @Html.Raw("Type of Construction: " + propertyCOI.TypeOfConstruction + "%0D%0A")
+        @Html.Raw("Cost per square foot: " + propertyCOI.Cost + "%0D%0A")
+        @Html.Raw("Square footage: " + propertyCOI.SquareFootage + "%0D%0A")
+        @Html.Raw("Own/Lease: " + propertyCOI.OwnLease + "%0D%0A")
+        @Html.Raw("Fire/Burglar System: " + propertyCOI.FireBurglar + "%0D%0A")
+        @Html.Raw("Date of construction/Remodel: " + propertyCOI.DateContruction + "%0D%0A")
+        @Html.Raw("Date added: " + propertyCOI.DateAdded + "%0D%0A")
+        @Html.Raw("%0D%0A")
+    }
+    @Html.Raw("%0D%0A%0D%0A")
+}

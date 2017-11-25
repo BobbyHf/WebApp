@@ -1,0 +1,45 @@
+﻿@model BHIP.Model.LicenseViewModel
+
+@{
+    ViewBag.Title = "Edit License";
+}
+<script>
+    $(document).ready(function () {
+        $('#ExpirationDate').mask("99/99/9999")
+    });
+
+</script>
+@using (Html.BeginForm("LicenseEdit", "Renewal", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.LicenseID)
+    <div class="form-group">
+        @Html.LabelFor(model => model.License, new { @class = "col-md-4" })
+        <div>
+            @Html.TextBoxFor(model => model.License, new { @class = "form-control inputfield inputwidth-150" })
+            @Html.ValidationMessageFor(model => model.License)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.StateAgency, new { @class = "col-md-4" })
+        <div>
+            @Html.TextBoxFor(model => model.StateAgency, new { @class = "form-control inputfield inputwidth-150" })
+            @Html.ValidationMessageFor(model => model.StateAgency)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.LicenseType, new { @class = "col-md-4" })
+        <div>
+            @Html.TextBoxFor(model => model.LicenseType, new { @class = "form-control inputfield inputwidth-150" })
+            @Html.ValidationMessageFor(model => model.LicenseType)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ExpirationDate, new { @class = "col-md-4" })
+        <div>
+            @Html.TextBoxFor(model => model.ExpirationDate, new { @class = "form-control inputfield inputwidth-150", @Value = (Model.ExpirationDate == null ? string.Empty : Model.ExpirationDate.Value.ToString("MM/dd/yyyy")) })
+            @Html.ValidationMessageFor(model => model.ExpirationDate)
+        </div>
+    </div>
+
+}

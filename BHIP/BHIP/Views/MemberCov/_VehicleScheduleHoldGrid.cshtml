@@ -1,0 +1,106 @@
+﻿@using BHIP.MVCHelpers
+@model IEnumerable<BHIP.Model.VehicleScheduleHoldViewModel>
+<script>
+    $(document).ready(function () {
+
+    });
+
+        function ConfirmVehicleHoldDelete(objThis) {
+            if (confirm("Do you want to delete this automobile hold record?")) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+</script>
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <td colspan="10" class="table-header">
+                Automobile - Pending Changes
+            </td>
+        </tr>
+        <tr class="table-header">
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+            <th>
+                Year
+            </th>
+            <th>
+                Make/Model
+            </th>
+            <th>
+                City, State Zip
+            </th>
+            <th>VIN<br />Own/Lease</th>
+            <th>Notes</th>
+            <th>Date Added<br />Date Deleted</th>
+            <th>Requested By</th>
+            <th>COI</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.ImageDialogLink("EditVehicleHold", "MemberCov", new { id = item.VehicleScheduleHoldID }, "Edit Automobile", "VehicleScheduleHoldGrid", Url.Action("RefreshVehicleHold/" + item.MemberCoverageID), Html.ResolveUrl("~/Content/images/edit-button.png"), "Edit Property", "600", "800", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                    </td>
+                    <td>
+                        <div title="Delete Premise">
+                            @Ajax.ActionLink(" ", "DeleteVehicleHold", new { id = item.VehicleScheduleHoldID, covId = item.MemberCoverageID }, new AjaxOptions() { UpdateTargetId = "VehicleScheduleHoldGrid", OnBegin = "return ConfirmVehicleHoldDelete();" }, new { style = "background: url('" + Html.ResolveUrl("~/Content/images/delete-button.png") + "') no-repeat center right;display:block; height:32px; width:32px;margin-top:-2px;text-decoration:none;" })
+
+                        </div>
+                    </td>
+                    <td>
+                        @item.Year
+                    </td>
+                    <td>
+                        @item.MakeModel
+                    </td>
+                    <td>
+                        @item.City, @item.StateName @item.Zipcode
+                    </td>
+                    <td>
+                        @item.VIN<br />
+                        @item.OwnLeaseDescription
+                    </td>
+                    <td>
+                        @item.Notes
+                    </td>
+                    <td>
+                        @(item.DateAdded.HasValue == true ? Convert.ToDateTime(item.DateAdded).ToShortDateString() : string.Empty)<br />
+                        @(item.DateDeleted.HasValue == true ? Convert.ToDateTime(item.DateDeleted).ToShortDateString() : string.Empty)
+                    </td>
+                    <td>
+                        @item.UserName<br />
+                        @item.UserEmail
+                    </td>
+                    <td>
+                        @(item.COI == true ? "Yes" : "No")
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+    <tfoot>
+        <tr style="color: white; font-weight: bold; background-color: #808080; text-align: left; -moz-border-radius: 15px; border-radius: 15px;">
+            <td colspan="10" class="table-header">
+                &nbsp;
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+
+

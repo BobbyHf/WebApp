@@ -1,0 +1,49 @@
+﻿@model BHIP.Model.EmailVehicles
+
+@if (Model.VehicleAddList.Count > 0)
+{
+    @Html.Raw("Please see the following new automobile(s) for " + Model.MemberName + ":%0D%0A")
+    foreach (BHIP.Model.SendingVehicleInfo vehicleAdd in Model.VehicleAddList)
+    {
+        @Html.Raw("Year: " + vehicleAdd.Year + "%0D%0A")
+        @Html.Raw("Make and Model: " + vehicleAdd.MakeModel + "%0D%0A")
+        @Html.Raw("VIN: " + vehicleAdd.VIN + "%0D%0A")
+        @Html.Raw("Date added: " + vehicleAdd.DateAdded + "%0D%0A")
+        @Html.Raw("Location: " + vehicleAdd.City + ", " + vehicleAdd.State + " " + vehicleAdd.Zip + "%0D%0A")
+        @Html.Raw("Own or Lease: " + vehicleAdd.OwnLease + "%0D%0A")
+        @Html.Raw("%0D%0A")
+    }
+    @Html.Raw("%0D%0A%0D%0A")
+}
+
+@if (Model.VehicleDeleteList.Count > 0)
+{
+@Html.Raw("Please remove the following automobile(s) for " + Model.MemberName + ":%0D%0A")
+    foreach (BHIP.Model.SendingVehicleInfo vehicleDelete in Model.VehicleDeleteList)
+    {
+        @Html.Raw("Year: " + vehicleDelete.Year + "%0D%0A")
+        @Html.Raw("Make and Model: " + vehicleDelete.MakeModel + "%0D%0A")
+        @Html.Raw("VIN: " + vehicleDelete.VIN + "%0D%0A")
+        @Html.Raw("Date added: " + vehicleDelete.DateAdded + "%0D%0A")
+        @Html.Raw("Date removed: " + vehicleDelete.DateRemoved + "%0D%0A")
+        @Html.Raw("Location: " + vehicleDelete.City + ", " + vehicleDelete.State + " " + vehicleDelete.Zip + "%0D%0A")
+        @Html.Raw("Date removed: " + vehicleDelete.DateRemoved + "%0D%0A")
+        @Html.Raw("%0D%0A")
+    }
+    @Html.Raw("%0D%0A%0D%0A")
+}
+
+@if (Model.VehicleCOIList.Count > 0)
+{
+    @Html.Raw("A certificate of insurance has been requested for the following " + Model.MemberName + ":%0D%0A")
+    foreach (BHIP.Model.SendingVehicleInfo vehicleCOI in Model.VehicleCOIList)
+    {
+        @Html.Raw("Year: " + vehicleCOI.Year + "%0D%0A")
+        @Html.Raw("Make and Model: " + vehicleCOI.MakeModel + "%0D%0A")
+        @Html.Raw("VIN: " + vehicleCOI.VIN + "%0D%0A")
+        @Html.Raw("Date added: " + vehicleCOI.DateAdded + "%0D%0A")
+        @Html.Raw("Location: " + vehicleCOI.City + ", " + vehicleCOI.State + " " + vehicleCOI.Zip + "%0D%0A")
+        @Html.Raw("%0D%0A")
+    }
+    @Html.Raw("%0D%0A%0D%0A")
+}

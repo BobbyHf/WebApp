@@ -1,0 +1,33 @@
+﻿@model BHIP.Model.PropertyDeleteViewModel
+@using BHIP.Model.Helper
+<script>
+    $(document).ready(function () {
+        $('.PropertyDateRemoved').mask("99/99/9999")
+    });
+
+</script>
+
+
+<div class="main">
+    <div style="background-color: white;">Enter the date when it should be deleted:</div>
+    <div style="text-align: left; width: 100%;">
+        @{Html.EnableClientValidation();}
+        @{Html.EnableUnobtrusiveJavaScript();}
+        @using (Html.BeginForm("DeleteProperty", "MemberCov", System.Web.Mvc.FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
+        {
+            @Html.HiddenFor(m => m.MemberCoverageID)
+            @Html.HiddenFor(m => m.PropertyScheduleID)
+            <div class="form-group">
+                @Html.LabelFor(m => m.DateRemoved, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.DateRemoved, new { @class = "form-control inputfield PropertyDateRemoved inputwidth-150", @Value = (Model.DateRemoved == null ? string.Empty : Model.DateRemoved.Value.ToString("MM/dd/yyyy")) })
+                    @Html.ValidationMessageFor(m => m.DateRemoved)
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+

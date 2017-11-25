@@ -1,0 +1,101 @@
+﻿@model BHIP.Model.VehicleScheduleViewModel
+@using BHIP.Model.Helper
+<script>
+    $(document).ready(function () {
+        $('#DateDeleted').mask("99/99/9999")
+        $('#DateAdded').mask("99/99/9999")
+        $('#Year').mask("9999")
+    });
+
+</script>
+
+<div class="main">
+    <div style="text-align: left; width: 100%;">
+        @{Html.EnableClientValidation();}
+        @{Html.EnableUnobtrusiveJavaScript();}
+        @using (Html.BeginForm("EditVehicle", "MemberCov", System.Web.Mvc.FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
+        {
+            @Html.HiddenFor(m => m.VehicleScheduleID)
+    @Html.HiddenFor(m => m.MemberCoverageID)
+            <div class="form-group">
+                @Html.LabelFor(m => m.Year, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Year, new { @class = "form-control inputfield inputwidth-150" })
+                    @Html.ValidationMessageFor(model => model.Year)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.MakeModel, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.MakeModel, new { @class = "form-control inputfield inputwidth-500" })
+                    @Html.ValidationMessageFor(model => model.MakeModel)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.City, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.City, new { @class = "form-control inputfield inputwidth-500" })
+                    @Html.ValidationMessageFor(model => model.City)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.StateID, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.StateID, MemberInformation.GetStateList(Model.StateID), "--Select--", new { @class = "form-control inputfield inputwidth-150" })
+                    @Html.ValidationMessageFor(model => model.StateID)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Zipcode, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Zipcode, new { @class = "form-control inputfield inputwidth-150" })
+                    @Html.ValidationMessageFor(model => model.Zipcode)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.VIN, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.VIN, new { @class = "form-control inputfield inputwidth-500" })
+                    @Html.ValidationMessageFor(model => model.VIN)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.OwnLeaseID, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.OwnLeaseID, MemberInformation.GetOwnLease(Model.OwnLeaseID), "--Select--", new { @class = "form-control inputfield inputwidth-150" })
+                    @Html.ValidationMessageFor(model => model.OwnLeaseID)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.DateAdded, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.DateAdded, new { @class = "form-control inputfield inputwidth-150", @Value = (Model.DateAdded == null ? string.Empty : Model.DateAdded.Value.ToString("MM/dd/yyyy")) })
+                    @Html.ValidationMessageFor(model => model.DateAdded)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.DateDeleted, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.DateDeleted, new { @class = "form-control inputfield inputwidth-150", @Value = (Model.DateDeleted == null ? string.Empty : Model.DateDeleted.Value.ToString("MM/dd/yyyy")) })
+                    @Html.ValidationMessageFor(model => model.DateDeleted)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Notes, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Notes, new { @class = "form-control inputfield inputwidth-500" })
+                    @Html.ValidationMessageFor(model => model.Notes)
+                </div>
+            </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.COI, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(m => m.COI, new { @class = "" })
+            </div>
+        </div>
+
+        }
+    </div>
+</div>
+
+

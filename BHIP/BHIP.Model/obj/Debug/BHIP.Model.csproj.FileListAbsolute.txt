@@ -1,0 +1,192 @@
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\BHIP.Model.dll.config
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\BHIP.Model.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\BHIP.Model.pdb
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\EntityFramework.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\EntityFramework.SqlServer.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Microsoft.Owin.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\MvcPaging.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Newtonsoft.Json.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Owin.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\System.Web.Helpers.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\System.Web.Mvc.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\System.Web.WebPages.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\System.Web.WebPages.Razor.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\System.Web.Razor.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\EntityFramework.xml
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\EntityFramework.SqlServer.xml
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Microsoft.Owin.xml
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.xml
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\MvcPaging.pdb
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\Newtonsoft.Json.xml
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\System.Web.Helpers.xml
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\System.Web.Mvc.xml
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\System.Web.WebPages.xml
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\System.Web.WebPages.Razor.xml
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\bin\System.Web.Razor.xml
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\obj\Debug\BHIP.Model.csprojResolveAssemblyReference.cache
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\obj\Debug\BHIP.Model.dll
+C:\Users\Manideep Manchana\Source\Workspaces\BHIP\BHIP\BHIP.Model\obj\Debug\BHIP.Model.pdb
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\BHIP.Model.dll.config
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\BHIP.Model.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\BHIP.Model.pdb
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\EntityFramework.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\EntityFramework.SqlServer.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Core.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Microsoft.Owin.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.Cookies.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.OAuth.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Microsoft.Web.Infrastructure.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\MvcPaging.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Newtonsoft.Json.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Owin.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\System.Web.Helpers.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\System.Web.Mvc.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\System.Web.WebPages.Deployment.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\System.Web.WebPages.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\System.Web.WebPages.Razor.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\System.Web.Razor.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\EntityFramework.xml
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\EntityFramework.SqlServer.xml
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Core.xml
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Microsoft.Owin.xml
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.xml
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.Cookies.xml
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.OAuth.xml
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\MvcPaging.pdb
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\Newtonsoft.Json.xml
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\System.Web.Helpers.xml
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\System.Web.Mvc.xml
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\System.Web.WebPages.xml
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\System.Web.WebPages.Deployment.xml
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\System.Web.WebPages.Razor.xml
+C:\TEMP\BHIP\BHIP\BHIP.Model\bin\System.Web.Razor.xml
+C:\TEMP\BHIP\BHIP\BHIP.Model\obj\Debug\BHIP.Model.csprojResolveAssemblyReference.cache
+C:\TEMP\BHIP\BHIP\BHIP.Model\obj\Debug\BHIP.Model.dll
+C:\TEMP\BHIP\BHIP\BHIP.Model\obj\Debug\BHIP.Model.pdb
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\BHIP.Model.dll.config
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\BHIP.Model.dll
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\BHIP.Model.pdb
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\EntityFramework.dll
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\EntityFramework.SqlServer.dll
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Owin.dll
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.dll
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\MvcPaging.dll
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Newtonsoft.Json.dll
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Owin.dll
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\System.Web.Razor.dll
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\EntityFramework.xml
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\EntityFramework.SqlServer.xml
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Owin.xml
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.xml
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\MvcPaging.pdb
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\MvcPaging.dll.config
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\Newtonsoft.Json.xml
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\System.Web.Helpers.xml
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\System.Web.Mvc.xml
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\System.Web.WebPages.xml
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\System.Web.WebPages.Deployment.xml
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\System.Web.WebPages.Razor.xml
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\bin\System.Web.Razor.xml
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\obj\Debug\BHIP.Model.csprojResolveAssemblyReference.cache
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\obj\Debug\BHIP.Model.dll
+C:\Users\erick.zarza\Source\AshtonTiffany\BHIP\BHIP_mani\BHIP\BHIP.Model\obj\Debug\BHIP.Model.pdb
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\BHIP.Model.dll.config
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\BHIP.Model.dll
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\BHIP.Model.pdb
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\EntityFramework.dll
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\EntityFramework.SqlServer.dll
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Owin.dll
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.dll
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\MvcPaging.dll
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Newtonsoft.Json.dll
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Owin.dll
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\System.Web.Razor.dll
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\EntityFramework.xml
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\EntityFramework.SqlServer.xml
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Owin.xml
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.xml
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\MvcPaging.pdb
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\Newtonsoft.Json.xml
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\bin\System.Web.Razor.xml
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\obj\Debug\BHIP.Model.csprojResolveAssemblyReference.cache
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\obj\Debug\BHIP.Model.dll
+C:\Users\ezarza\Downloads\BHIP\BHIP_mani2\BHIP_mani\BHIP\BHIP.Model\obj\Debug\BHIP.Model.pdb
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\BHIP.Model.dll.config
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\BHIP.Model.dll
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\BHIP.Model.pdb
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\EntityFramework.dll
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\EntityFramework.SqlServer.dll
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Microsoft.Owin.dll
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.dll
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\MvcPaging.dll
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Newtonsoft.Json.dll
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Owin.dll
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\System.Web.Razor.dll
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\EntityFramework.xml
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\EntityFramework.SqlServer.xml
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Microsoft.Owin.xml
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.xml
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\MvcPaging.pdb
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\MvcPaging.dll.config
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\Newtonsoft.Json.xml
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\System.Web.Helpers.xml
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\System.Web.Mvc.xml
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\System.Web.WebPages.xml
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\System.Web.WebPages.Razor.xml
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\bin\System.Web.Razor.xml
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\obj\Debug\BHIP.Model.csprojResolveAssemblyReference.cache
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\obj\Debug\BHIP.Model.dll
+C:\Users\Victor\Documents\Proyectos eric\BHIP\BHIP.Model\obj\Debug\BHIP.Model.pdb

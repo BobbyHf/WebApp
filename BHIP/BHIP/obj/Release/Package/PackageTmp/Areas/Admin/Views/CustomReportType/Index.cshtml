@@ -1,0 +1,25 @@
+﻿@using BHIP.MVCHelpers
+@using MvcPaging
+@using BHIP.Model
+@model CustomReportTypeViewModel
+@{
+    ViewBag.Title = "Cutom Report Type";
+}
+<script src="@Url.Content("~/Scripts/date.format.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/bootstrap.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery-migrate-1.2.1.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.maskedinput.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.handsontable.full.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/numeral.de-de.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.handsontable.removeRow.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/DialogForm.js")" type="text/javascript"></script>
+
+<link type="text/css" href="@Url.Content("~/Content/jquery-ui.css")" rel="stylesheet" />
+
+
+
+<h2>Admin Custom Report Types</h2>
+
+<div id="CustomReportGrid">
+    @Html.Partial("_Grid", Model)
+</div>

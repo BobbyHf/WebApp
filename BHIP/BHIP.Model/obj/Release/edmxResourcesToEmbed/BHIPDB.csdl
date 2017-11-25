@@ -1,0 +1,1105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BHIPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="MenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ParentID" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LeftNode" Type="Int32" Nullable="false" />
+    <Property Name="RightNode" Type="Int32" Nullable="false" />
+    <Property Name="Link" Type="String" MaxLength="260" FixedLength="false" Unicode="false" />
+    <Property Name="Level" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MenuRole">
+    <Key>
+      <PropertyRef Name="MenuId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="MenuId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="BHIPEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Menus" EntityType="Self.Menu" />
+    <EntitySet Name="MenuRoles" EntityType="Self.MenuRole" />
+    <EntitySet Name="ContactSchedules" EntityType="BHIPModel.ContactSchedule" />
+    <EntitySet Name="EntityTypes" EntityType="BHIPModel.EntityType" />
+    <EntitySet Name="States" EntityType="BHIPModel.State" />
+    <EntitySet Name="DriverInfoSchedules" EntityType="BHIPModel.DriverInfoSchedule" />
+    <EntitySet Name="PolicyYears" EntityType="BHIPModel.PolicyYear" />
+    <EntitySet Name="Premiums" EntityType="BHIPModel.Premium" />
+    <EntitySet Name="VehicleSchedules" EntityType="BHIPModel.VehicleSchedule" />
+    <EntitySet Name="MemberStatus" EntityType="BHIPModel.MemberStatu" />
+    <EntitySet Name="OwnLeases" EntityType="BHIPModel.OwnLease" />
+    <EntitySet Name="ConstructionTypes" EntityType="BHIPModel.ConstructionType" />
+    <EntitySet Name="FireBurglars" EntityType="BHIPModel.FireBurglar" />
+    <EntitySet Name="BoardCertifieds" EntityType="BHIPModel.BoardCertified" />
+    <EntitySet Name="BoardEligibles" EntityType="BHIPModel.BoardEligible" />
+    <EntitySet Name="EmploymentTypes" EntityType="BHIPModel.EmploymentType" />
+    <EntitySet Name="Malpractices" EntityType="BHIPModel.Malpractice" />
+    <EntitySet Name="SpecialtyTypes" EntityType="BHIPModel.SpecialtyType" />
+    <EntitySet Name="PrimaryCareSchedules" EntityType="BHIPModel.PrimaryCareSchedule" />
+    <EntitySet Name="Members" EntityType="BHIPModel.Member" />
+    <EntitySet Name="ReportParams" EntityType="BHIPModel.ReportParam" />
+    <EntitySet Name="ReportParamTypes" EntityType="BHIPModel.ReportParamType" />
+    <EntitySet Name="ReportRoles" EntityType="BHIPModel.ReportRole" />
+    <EntitySet Name="ReportTrusts" EntityType="BHIPModel.ReportTrust" />
+    <EntitySet Name="ReportTypes" EntityType="BHIPModel.ReportType" />
+    <EntitySet Name="AspNetRoles" EntityType="BHIPModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="BHIPModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="BHIPModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="BHIPModel.AspNetUser" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="BHIPModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="BHIPModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="BHIPModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <EntitySet Name="ScheduleStatus" EntityType="BHIPModel.ScheduleStatu" />
+    <EntitySet Name="PrimaryCareScheduleHolds" EntityType="BHIPModel.PrimaryCareScheduleHold" />
+    <EntitySet Name="VehicleScheduleHolds" EntityType="BHIPModel.VehicleScheduleHold" />
+    <EntitySet Name="ContactScheduleHolds" EntityType="BHIPModel.ContactScheduleHold" />
+    <EntitySet Name="DriverInfoScheduleHolds" EntityType="BHIPModel.DriverInfoScheduleHold" />
+    <EntitySet Name="MemberCoverages" EntityType="BHIPModel.MemberCoverage" />
+    <EntitySet Name="PropertySchedules" EntityType="BHIPModel.PropertySchedule" />
+    <EntitySet Name="PropertyScheduleHolds" EntityType="BHIPModel.PropertyScheduleHold" />
+    <EntitySet Name="QuestionAnswers" EntityType="BHIPModel.QuestionAnswer" />
+    <EntitySet Name="QuestionSections" EntityType="BHIPModel.QuestionSection" />
+    <EntitySet Name="Questions" EntityType="BHIPModel.Question" />
+    <EntitySet Name="LicenseSchedules" EntityType="BHIPModel.LicenseSchedule" />
+    <EntitySet Name="DocumentTypes" EntityType="BHIPModel.DocumentType" />
+    <EntitySet Name="HandleFunds" EntityType="BHIPModel.HandleFund" />
+    <EntitySet Name="InspectionBodies" EntityType="BHIPModel.InspectionBody" />
+    <EntitySet Name="AgencyPlanSchedules" EntityType="BHIPModel.AgencyPlanSchedule" />
+    <EntitySet Name="Documents" EntityType="BHIPModel.Document" />
+    <EntitySet Name="Renewals" EntityType="BHIPModel.Renewal" />
+    <EntitySet Name="PsychiatrySchedules" EntityType="BHIPModel.PsychiatrySchedule" />
+    <EntitySet Name="PsychiatryScheduleHolds" EntityType="BHIPModel.PsychiatryScheduleHold" />
+    <EntitySet Name="OtherSchedules" EntityType="BHIPModel.OtherSchedule" />
+    <EntitySet Name="OtherScheduleHolds" EntityType="BHIPModel.OtherScheduleHold" />
+    <EntitySet Name="PremiumHolds" EntityType="BHIPModel.PremiumHold" />
+    <EntitySet Name="t_Users" EntityType="BHIPModel.t_Users" />
+    <EntitySet Name="CustomParams" EntityType="BHIPModel.CustomParam" />
+    <EntitySet Name="CustomParamTypes" EntityType="BHIPModel.CustomParamType" />
+    <EntitySet Name="CustomReports" EntityType="BHIPModel.CustomReport" />
+    <EntitySet Name="CustomReportTypes" EntityType="BHIPModel.CustomReportType" />
+    <EntitySet Name="CustomRoles" EntityType="BHIPModel.CustomRole" />
+    <EntitySet Name="JobFunctions" EntityType="BHIPModel.JobFunction" />
+  </EntityContainer>
+  <EntityType Name="ContactSchedule">
+    <Key>
+      <PropertyRef Name="ContactScheduleID" />
+    </Key>
+    <Property Name="ContactScheduleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberCoverageID" Type="Int32" Nullable="false" />
+    <Property Name="ContactFirstName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContactLastName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContactTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContactEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPhoneExt" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="EntityType">
+    <Key>
+      <PropertyRef Name="EntityTypeID" />
+    </Key>
+    <Property Name="EntityTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Abbr" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DriverInfoSchedule">
+    <Key>
+      <PropertyRef Name="DriverInfoScheduleID" />
+    </Key>
+    <Property Name="DriverInfoScheduleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberCoverageID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="StateID" Type="Int32" />
+    <Property Name="LicenseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateAdded" Type="DateTime" Precision="0" />
+    <Property Name="DateRemoved" Type="DateTime" Precision="0" />
+    <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PolicyYear">
+    <Key>
+      <PropertyRef Name="PolicyYearId" />
+    </Key>
+    <Property Name="PolicyYearId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Premium">
+    <Key>
+      <PropertyRef Name="PremiumID" />
+    </Key>
+    <Property Name="PremiumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberCoverageID" Type="Int32" Nullable="false" />
+    <Property Name="PolicyYearID" Type="Int32" Nullable="false" />
+    <Property Name="Property" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Auto" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="D_O" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Crime" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Fiduciary" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="EmployedLawyers" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="PL_GL" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Umbrella" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="PrimaryCare" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Pollution" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Kidnap" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Cyber" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="VehicleSchedule">
+    <Key>
+      <PropertyRef Name="VehicleScheduleID" />
+    </Key>
+    <Property Name="VehicleScheduleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberCoverageID" Type="Int32" Nullable="false" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="MakeModel" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="StateID" Type="Int32" />
+    <Property Name="Zipcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="VIN" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="OwnLeaseID" Type="Int32" />
+    <Property Name="DateAdded" Type="DateTime" Precision="0" />
+    <Property Name="DateDeleted" Type="DateTime" Precision="0" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="VehicleValue" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="MemberStatu">
+    <Key>
+      <PropertyRef Name="StatusID" />
+    </Key>
+    <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OwnLease">
+    <Key>
+      <PropertyRef Name="OwnLeaseID" />
+    </Key>
+    <Property Name="OwnLeaseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConstructionType">
+    <Key>
+      <PropertyRef Name="ConstTypeID" />
+    </Key>
+    <Property Name="ConstTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FireBurglar">
+    <Key>
+      <PropertyRef Name="FireBurglarID" />
+    </Key>
+    <Property Name="FireBurglarID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BoardCertified">
+    <Key>
+      <PropertyRef Name="BoardCertifiedID" />
+    </Key>
+    <Property Name="BoardCertifiedID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BoardEligible">
+    <Key>
+      <PropertyRef Name="BoardEligibleID" />
+    </Key>
+    <Property Name="BoardEligibleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmploymentType">
+    <Key>
+      <PropertyRef Name="EmploymentTypeID" />
+    </Key>
+    <Property Name="EmploymentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Malpractice">
+    <Key>
+      <PropertyRef Name="MalpracticeID" />
+    </Key>
+    <Property Name="MalpracticeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SpecialtyType">
+    <Key>
+      <PropertyRef Name="SpecialtyTypeID" />
+    </Key>
+    <Property Name="SpecialtyTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PrimaryCareSchedule">
+    <Key>
+      <PropertyRef Name="PrimaryCareScheduleID" />
+    </Key>
+    <Property Name="PrimaryCareScheduleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberCoverageID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialtyID" Type="Int32" />
+    <Property Name="RetroDate" Type="DateTime" Precision="0" />
+    <Property Name="BoardCertifiedID" Type="Int32" />
+    <Property Name="BoardEligibleID" Type="Int32" />
+    <Property Name="HoursWorked" Type="Int32" />
+    <Property Name="ContractorEmployeeID" Type="Int32" />
+    <Property Name="OwnMalPracticeID" Type="Int32" />
+    <Property Name="DateAdded" Type="DateTime" Precision="0" />
+    <Property Name="DateRemoved" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="MemberId" />
+    </Key>
+    <Property Name="MemberId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="NameAbbr" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneExtension" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="WebSite" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="EntityTypeID" Type="Int32" />
+    <Property Name="JoinDate" Type="DateTime" Precision="0" />
+    <Property Name="TerminatedDate" Type="DateTime" Precision="0" />
+    <Property Name="StatusId" Type="Int32" />
+    <Property Name="AutoCard" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ReportParam">
+    <Key>
+      <PropertyRef Name="ReportParamID" />
+    </Key>
+    <Property Name="ReportParamID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReportID" Type="Int32" Nullable="false" />
+    <Property Name="ReportParamTypeID" Type="Int32" Nullable="false" />
+    <Property Name="ParamName" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+    <Property Name="ParamTitle" Type="String" Nullable="false" MaxLength="125" FixedLength="false" Unicode="false" />
+    <Property Name="ParamWidth" Type="Int32" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <Property Name="DropSQL" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ReportParamType">
+    <Key>
+      <PropertyRef Name="ReportParamTypeID" />
+    </Key>
+    <Property Name="ReportParamTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="125" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ReportRole">
+    <Key>
+      <PropertyRef Name="ReportId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="ReportId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ReportTrust">
+    <Key>
+      <PropertyRef Name="ReportID" />
+    </Key>
+    <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReportTypeID" Type="Int32" />
+    <Property Name="ReportName" Type="String" MaxLength="125" FixedLength="false" Unicode="false" />
+    <Property Name="ReportTitle" Type="String" MaxLength="125" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ReportType">
+    <Key>
+      <PropertyRef Name="ReportTypeID" />
+    </Key>
+    <Property Name="ReportTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TypeName" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="BHIPModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="BHIPModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="BHIPModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="MemberID" Type="Int32" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="BHIPModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="BHIPModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="AspNetRoles" Relationship="BHIPModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="BHIPModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="BHIPModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="BHIPModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="BHIPModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="BHIPModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="BHIPModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityType Name="ScheduleStatu">
+    <Key>
+      <PropertyRef Name="ScheduleStatusID" />
+    </Key>
+    <Property Name="ScheduleStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PrimaryCareScheduleHold">
+    <Key>
+      <PropertyRef Name="PrimaryCareScheduleHoldID" />
+    </Key>
+    <Property Name="PrimaryCareScheduleHoldID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PrimaryCareScheduleID" Type="Int32" Nullable="false" />
+    <Property Name="MemberCoverageID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialtyID" Type="Int32" />
+    <Property Name="RetroDate" Type="DateTime" Precision="0" />
+    <Property Name="BoardCertifiedID" Type="Int32" />
+    <Property Name="BoardEligibleID" Type="Int32" />
+    <Property Name="HoursWorked" Type="Int32" />
+    <Property Name="ContractorEmployeeID" Type="Int32" />
+    <Property Name="OwnMalPracticeID" Type="Int32" />
+    <Property Name="DateAdded" Type="DateTime" Precision="0" />
+    <Property Name="DateRemoved" Type="DateTime" Precision="0" />
+    <Property Name="EditType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="COI" Type="Boolean" Nullable="false" />
+    <Property Name="ScheduleStatusID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VehicleScheduleHold">
+    <Key>
+      <PropertyRef Name="VehicleScheduleHoldID" />
+    </Key>
+    <Property Name="VehicleScheduleHoldID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VehicleScheduleID" Type="Int32" Nullable="false" />
+    <Property Name="MemberCoverageID" Type="Int32" Nullable="false" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="MakeModel" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="StateID" Type="Int32" />
+    <Property Name="Zipcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="VIN" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="OwnLeaseID" Type="Int32" />
+    <Property Name="DateAdded" Type="DateTime" Precision="0" />
+    <Property Name="DateDeleted" Type="DateTime" Precision="0" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EditType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="VehicleValue" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="COI" Type="Boolean" Nullable="false" />
+    <Property Name="ScheduleStatusID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ContactScheduleHold">
+    <Key>
+      <PropertyRef Name="ContactScheduleHoldID" />
+    </Key>
+    <Property Name="ContactScheduleHoldID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContactScheduleID" Type="Int32" Nullable="false" />
+    <Property Name="MemberCoverageID" Type="Int32" Nullable="false" />
+    <Property Name="ContactFirstName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContactLastName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContactTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContactEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPhoneExt" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="EditType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ScheduleStatusID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DriverInfoScheduleHold">
+    <Key>
+      <PropertyRef Name="DriverInfoScheduleHoldID" />
+    </Key>
+    <Property Name="DriverInfoScheduleHoldID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DriverInfoScheduleID" Type="Int32" Nullable="false" />
+    <Property Name="MemberCoverageID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="StateID" Type="Int32" />
+    <Property Name="LicenseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateAdded" Type="DateTime" Precision="0" />
+    <Property Name="DateRemoved" Type="DateTime" Precision="0" />
+    <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EditType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="ScheduleStatusID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="MemberCoverage">
+    <Key>
+      <PropertyRef Name="MemberCoverageID" />
+    </Key>
+    <Property Name="MemberCoverageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="MemberId" Type="Int32" Nullable="false" />
+    <Property Name="MemberPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="MemberPhoneExt" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="MemberWebsite" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="FederalID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="EntityTypeID" Type="Int32" />
+    <Property Name="JoinedBHIP" Type="DateTime" Precision="0" />
+    <Property Name="TerminatedBHIP" Type="DateTime" Precision="0" />
+    <Property Name="CurrentStatusID" Type="Int32" />
+    <Property Name="PrimaryAddress1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PrimaryAddress2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PrimaryCity" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="PrimaryZip" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="PrimaryStateID" Type="Int32" />
+    <Property Name="MailAddress1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="MailAddress2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="MailCity" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="MailStateID" Type="Int32" />
+    <Property Name="MailZip" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPrefix" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ContactFirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContactLastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContactTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPhoneExt" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ContactEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsBoardMember" Type="Boolean" />
+    <Property Name="AuthorizePrefix" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorizeFirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorizeLastName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorizeTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorizeAddress1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorizeAddress2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorizeCity" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorizeStateID" Type="Int32" />
+    <Property Name="AuthorizeZip" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorizePhone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorizePhoneExt" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorizeEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="MemberNameAbbr" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="OperationsStartDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="PropertySchedule">
+    <Key>
+      <PropertyRef Name="PropertyScheduleID" />
+    </Key>
+    <Property Name="PropertyScheduleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberCoverageID" Type="Int32" Nullable="false" />
+    <Property Name="LocationNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LocationName" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="LocationAddress" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="StateID" Type="Int32" />
+    <Property Name="Zip" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="ConstructionTypeID" Type="Int32" />
+    <Property Name="BuildingValue" Type="Int32" />
+    <Property Name="ContentValue" Type="Int32" />
+    <Property Name="SquareFoot" Type="Int32" />
+    <Property Name="BI_EE" Type="Int32" />
+    <Property Name="OwnLeaseID" Type="Int32" />
+    <Property Name="FireBurglerID" Type="Int32" />
+    <Property Name="ConstructionDate" Type="DateTime" Precision="0" />
+    <Property Name="RemodelDate" Type="DateTime" Precision="0" />
+    <Property Name="DateAdded" Type="DateTime" Precision="0" />
+    <Property Name="DateRemoved" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="PropertyScheduleHold">
+    <Key>
+      <PropertyRef Name="PropertyScheduleHoldID" />
+    </Key>
+    <Property Name="PropertyScheduleHoldID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PropertyScheduleID" Type="Int32" Nullable="false" />
+    <Property Name="MemberCoverageID" Type="Int32" Nullable="false" />
+    <Property Name="LocationNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LocationName" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="LocationAddress" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="StateID" Type="Int32" />
+    <Property Name="Zip" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="ConstructionTypeID" Type="Int32" />
+    <Property Name="BuildingValue" Type="Int32" />
+    <Property Name="ContentValue" Type="Int32" />
+    <Property Name="SquareFoot" Type="Int32" />
+    <Property Name="BI_EE" Type="Int32" />
+    <Property Name="OwnLeaseID" Type="Int32" />
+    <Property Name="FireBurglerID" Type="Int32" />
+    <Property Name="ConstructionDate" Type="DateTime" Precision="0" />
+    <Property Name="RemodelDate" Type="DateTime" Precision="0" />
+    <Property Name="DateAdded" Type="DateTime" Precision="0" />
+    <Property Name="DateRemoved" Type="DateTime" Precision="0" />
+    <Property Name="EditType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="COI" Type="Boolean" Nullable="false" />
+    <Property Name="ScheduleStatusID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="QuestionAnswer">
+    <Key>
+      <PropertyRef Name="AnswerID" />
+    </Key>
+    <Property Name="AnswerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuestionID" Type="Int32" Nullable="false" />
+    <Property Name="MemberID" Type="Int32" Nullable="false" />
+    <Property Name="CurrentYear" Type="Int32" Nullable="false" />
+    <Property Name="Answer" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RenewalID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QuestionSection">
+    <Key>
+      <PropertyRef Name="QuestionSectionID" />
+    </Key>
+    <Property Name="QuestionSectionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SectionName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="SectionOrder" Type="Int32" />
+    <Property Name="SectionText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="HeaderText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FooterText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuestionSectionID" Type="Int32" Nullable="false" />
+    <Property Name="QuestionNumber" Type="Int32" />
+    <Property Name="QuestionOrder" Type="Int32" />
+    <Property Name="Question1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DropDown" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="QuestionType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsRequired" Type="Boolean" Nullable="false" />
+    <Property Name="Class" Type="String" MaxLength="125" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="LicenseSchedule">
+    <Key>
+      <PropertyRef Name="LicenseID" />
+    </Key>
+    <Property Name="LicenseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberID" Type="Int32" Nullable="false" />
+    <Property Name="License" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="StateAgency" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="LicenseType" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ExpirationDate" Type="DateTime" Precision="3" />
+    <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DocumentType">
+    <Key>
+      <PropertyRef Name="DocTypeId" />
+    </Key>
+    <Property Name="DocTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DocType" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HandleFund">
+    <Key>
+      <PropertyRef Name="HandleFundsID" />
+    </Key>
+    <Property Name="HandleFundsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RenewalID" Type="Int32" Nullable="false" />
+    <Property Name="JobFunction" Type="String" MaxLength="125" FixedLength="false" Unicode="false" />
+    <Property Name="NumOfEmployees" Type="Int32" />
+    <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InspectionBody">
+    <Key>
+      <PropertyRef Name="InspectBodyID" />
+    </Key>
+    <Property Name="InspectBodyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RenewalID" Type="Int32" Nullable="false" />
+    <Property Name="InspectName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="InspectType" Type="String" MaxLength="125" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateDeleted" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AgencyPlanSchedule">
+    <Key>
+      <PropertyRef Name="AgencyPlanID" />
+    </Key>
+    <Property Name="AgencyPlanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberID" Type="Int32" Nullable="false" />
+    <Property Name="PlanName" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="PlanType" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PlanAssetsCurrent" Type="Int32" />
+    <Property Name="PlanAssetsPrior" Type="Int32" />
+    <Property Name="NumberParticipants" Type="Int32" />
+    <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="DocumentId" />
+    </Key>
+    <Property Name="DocumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RenewalId" Type="Int64" Nullable="false" />
+    <Property Name="DocTypeId" Type="Int64" Nullable="false" />
+    <Property Name="LoadDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EffectiveDate" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="FileName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Extension" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="Document1" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="Media" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="Action" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Renewal">
+    <Key>
+      <PropertyRef Name="RenewalID" />
+    </Key>
+    <Property Name="RenewalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CurrentYear" Type="Int32" Nullable="false" />
+    <Property Name="MemberID" Type="Int32" />
+    <Property Name="MailingAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MailingCity" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="MailingZipcode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="MailingStateID" Type="Int32" />
+    <Property Name="PhysicalAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PhysicalCity" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="PhysicalStateID" Type="Int32" />
+    <Property Name="PhysicalZipcode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Website" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ContactPrefix" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="ContactFirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ContactLastName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ContactTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ContactPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="ContactEmail" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="AuthorizePrefix" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="AuthorizeFirstName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="AuthorizeLastName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="AuthorizeTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="AuthorizeAddress1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="AuthorizeCity" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="AuthorizeZip" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="AuthorizePhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="AuthorizeEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="AuthorizeStateID" Type="Int32" />
+    <Property Name="FederalID" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="OperationsStartDate" Type="DateTime" Precision="3" />
+    <Property Name="OperationsType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LicenseRegs" Type="Boolean" />
+    <Property Name="EthicViolations" Type="Boolean" />
+    <Property Name="EthicDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="InspectAgency" Type="Boolean" />
+    <Property Name="CharitableContribLast12" Type="Int32" />
+    <Property Name="CharitableContribNext12" Type="Int32" />
+    <Property Name="GovFundingLast12" Type="Int32" />
+    <Property Name="GovFundingNext12" Type="Int32" />
+    <Property Name="FeeServiceLast12" Type="Int32" />
+    <Property Name="FeeServiceNext12" Type="Int32" />
+    <Property Name="OtherDesc" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OtherLast12" Type="Int32" />
+    <Property Name="OtherNext12" Type="Int32" />
+    <Property Name="HoldMoney" Type="Int32" />
+    <Property Name="HoldChecks" Type="Int32" />
+    <Property Name="HoldSecurities" Type="Int32" />
+    <Property Name="HoldNone" Type="Boolean" />
+    <Property Name="MoneyOpen" Type="Int32" />
+    <Property Name="MoneyOvernight" Type="Int32" />
+    <Property Name="MoneyOff" Type="Int32" />
+    <Property Name="ChecksOpen" Type="Int32" />
+    <Property Name="ChecksOvernight" Type="Int32" />
+    <Property Name="ChecksOff" Type="Int32" />
+    <Property Name="PayrollOpen" Type="Int32" />
+    <Property Name="PayrollOvernight" Type="Int32" />
+    <Property Name="PayrollOff" Type="Int32" />
+    <Property Name="SafePremise" Type="Boolean" />
+    <Property Name="AlarmPremise" Type="Boolean" />
+    <Property Name="AgencyPlans" Type="Boolean" />
+    <Property Name="AgencyPlanDesc" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="NonunionFulltime" Type="Int32" />
+    <Property Name="NonunionParttime" Type="Int32" />
+    <Property Name="NonunionSeasonal" Type="Int32" />
+    <Property Name="NonunionTemporary" Type="Int32" />
+    <Property Name="NonunionIndependent" Type="Int32" />
+    <Property Name="UnionFulltime" Type="Int32" />
+    <Property Name="UnionParttime" Type="Int32" />
+    <Property Name="UnionSeasonal" Type="Int32" />
+    <Property Name="UnionTemporary" Type="Int32" />
+    <Property Name="UnionIndependent" Type="Int32" />
+    <Property Name="UnduplicatedSubstanceAbuseEstimated" Type="Int32" />
+    <Property Name="UnduplicatedSubstanceAbuseProjected" Type="Int32" />
+    <Property Name="UnduplicatedGeneralHealthEstimated" Type="Int32" />
+    <Property Name="UnduplicatedGeneralHealthProjected" Type="Int32" />
+    <Property Name="UnduplicatedMentallyEstimated" Type="Int32" />
+    <Property Name="UnduplicatedMentallyProjected" Type="Int32" />
+    <Property Name="UnduplicatedChildrenEstimated" Type="Int32" />
+    <Property Name="UnduplicatedChildrenProjected" Type="Int32" />
+    <Property Name="BillableSubstanceAbuseEstimated" Type="Int32" />
+    <Property Name="BillableSubstanceAbuseProjected" Type="Int32" />
+    <Property Name="BillableGeneralHealthEstimated" Type="Int32" />
+    <Property Name="BillableGeneralHealthProjected" Type="Int32" />
+    <Property Name="BillableMentalEstimated" Type="Int32" />
+    <Property Name="BillableMentalProjected" Type="Int32" />
+    <Property Name="BillableChildrenEstimated" Type="Int32" />
+    <Property Name="BillableChildrenProjected" Type="Int32" />
+    <Property Name="PopulationCaseManagementEstimated" Type="Int32" />
+    <Property Name="PopulationCaseManagementProjected" Type="Int32" />
+    <Property Name="PopulationPsychiatryEstimated" Type="Int32" />
+    <Property Name="PopulationPsychiatryProjected" Type="Int32" />
+    <Property Name="PopulationMethadoneEstimated" Type="Int32" />
+    <Property Name="PopulationMethadoneProjected" Type="Int32" />
+    <Property Name="PopulationLivingSkillsEstimated" Type="Int32" />
+    <Property Name="PopulationLivingSkillsProjected" Type="Int32" />
+    <Property Name="PopulationIndividualEstimated" Type="Int32" />
+    <Property Name="PopulationIndividualProjected" Type="Int32" />
+    <Property Name="PopulationFamilyEstimated" Type="Int32" />
+    <Property Name="PopulationFamilyProjected" Type="Int32" />
+    <Property Name="PopulationGroupEstimated" Type="Int32" />
+    <Property Name="PopulationGroupProjected" Type="Int32" />
+    <Property Name="ServedSubstanceAbuseNumOfBedCurrent" Type="Int32" />
+    <Property Name="ServedSubstanceAbuseNumOfBedDayCurrent" Type="Int32" />
+    <Property Name="ServedSubstanceAbuseNumOfBedNext" Type="Int32" />
+    <Property Name="ServedSubstanceAbuseNumOfBedDayNext" Type="Int32" />
+    <Property Name="ServedPsychiatricNumOfBedCurrent" Type="Int32" />
+    <Property Name="ServedPsychiatricNumOfBedDayCurrent" Type="Int32" />
+    <Property Name="ServedPsychiatricNumOfBedNext" Type="Int32" />
+    <Property Name="ServerdPsychiatricNumOfBedDayNext" Type="Int32" />
+    <Property Name="StabilizeGeneralHealthNumOfBedsCurrent" Type="Int32" />
+    <Property Name="StabilizeGeneralHealthNumofBedDaysCurrent" Type="Int32" />
+    <Property Name="StabilizeGeneralHealthNumOfBedsNext" Type="Int32" />
+    <Property Name="StabilizeGeneralHealthNumOfBedDaysNext" Type="Int32" />
+    <Property Name="StabilizeMentallyNumOfBedsCurrent" Type="Int32" />
+    <Property Name="StabilizeMentallyNumOfBedDaysCurrent" Type="Int32" />
+    <Property Name="StabilizeMentallyNumOfBedsNext" Type="Int32" />
+    <Property Name="StabilizeMetallyNumOfBedDaysNext" Type="Int32" />
+    <Property Name="StabilizeChildrenNumOfBedsCurrent" Type="Int32" />
+    <Property Name="StabilizeChildrenNumOfBedDaysCurrent" Type="Int32" />
+    <Property Name="StabilizeChildrenNumOfBedsNext" Type="Int32" />
+    <Property Name="StabilizeChildrenNumOfBedDaysNext" Type="Int32" />
+    <Property Name="RevenueOutGeneralMentalCurrent" Type="Int32" />
+    <Property Name="RevenueOutGeneralMentalNext" Type="Int32" />
+    <Property Name="RevenueOutMentalCurrent" Type="Int32" />
+    <Property Name="RevenueOutMentalNext" Type="Int32" />
+    <Property Name="RevenueOutChildrenCurrent" Type="Int32" />
+    <Property Name="RevenueOutChildrenNext" Type="Int32" />
+    <Property Name="RevenueOutOtherCurrent" Type="Int32" />
+    <Property Name="RevenueOutOtherNext" Type="Int32" />
+    <Property Name="RevenueInGeneralMentalCurrent" Type="Int32" />
+    <Property Name="RevenueInGeneralMentalNext" Type="Int32" />
+    <Property Name="RevenueInMentalCurrent" Type="Int32" />
+    <Property Name="RevenueInMentalNext" Type="Int32" />
+    <Property Name="RevenueInChildrentCurrent" Type="Int32" />
+    <Property Name="RevenueInChildrentNext" Type="Int32" />
+    <Property Name="RevenueInOther1Current" Type="Int32" />
+    <Property Name="RevenueInOther1Next" Type="Int32" />
+    <Property Name="RevenueInOther2Current" Type="Int32" />
+    <Property Name="RevenueInOther2Next" Type="Int32" />
+    <Property Name="InPatientServicesYearEnd" Type="Int32" />
+    <Property Name="InPatientServicesProjection" Type="Int32" />
+    <Property Name="OutPatientServicesYearEnd" Type="Int32" />
+    <Property Name="OutPatientServicesProjection" Type="Int32" />
+    <Property Name="RentsLeasedYearEnd" Type="Int32" />
+    <Property Name="RentsLeasedProjection" Type="Int32" />
+    <Property Name="GrantsResearchYearEnd" Type="Int32" />
+    <Property Name="GrantsResearchProjection" Type="Int32" />
+    <Property Name="DonationsYearEnd" Type="Int32" />
+    <Property Name="DonationsProjection" Type="Int32" />
+    <Property Name="OtherIncomeYearEnd" Type="Int32" />
+    <Property Name="OtherIncomeProjection" Type="Int32" />
+    <Property Name="ContractualAdjustmentYearEnd" Type="Int32" />
+    <Property Name="ContractualAdjustmentProjection" Type="Int32" />
+    <Property Name="BadDeptYearEnd" Type="Int32" />
+    <Property Name="BadDeptProjection" Type="Int32" />
+    <Property Name="FreeServiceYearEnd" Type="Int32" />
+    <Property Name="FreeServiceProjection" Type="Int32" />
+    <Property Name="OutsideServiceYearEnd" Type="Int32" />
+    <Property Name="OutsideServiceProjection" Type="Int32" />
+    <Property Name="AnnualPayrollYearEnd" Type="Int32" />
+    <Property Name="AnnualPayrollProjection" Type="Int32" />
+    <Property Name="VisitAccord1" Type="Boolean" />
+    <Property Name="VisitAccord2" Type="Boolean" />
+    <Property Name="VisitAccord3" Type="Boolean" />
+    <Property Name="VisitAccord4" Type="Boolean" />
+    <Property Name="VisitAccord5" Type="Boolean" />
+    <Property Name="VisitAccord6" Type="Boolean" />
+    <Property Name="VisitAccord7" Type="Boolean" />
+    <Property Name="VisitAccord8" Type="Boolean" />
+    <Property Name="VisitAccord9" Type="Boolean" />
+    <Property Name="VisitAccord10" Type="Boolean" />
+    <Property Name="VisitAccord11" Type="Boolean" />
+    <Property Name="VisitAccord12" Type="Boolean" />
+    <Property Name="VisitAccord13" Type="Boolean" />
+    <Property Name="VisitAccord14" Type="Boolean" />
+    <Property Name="Submitted" Type="Boolean" />
+    <Property Name="SubmittedDate" Type="DateTime" Precision="3" />
+    <Property Name="SubmittedUser" Type="String" MaxLength="125" FixedLength="false" Unicode="false" />
+    <Property Name="AdultDirectStaff" Type="Int32" />
+    <Property Name="AdultClient" Type="Int32" />
+    <Property Name="AdultRatio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MinorDirectStaff" Type="Int32" />
+    <Property Name="MinorClient" Type="Int32" />
+    <Property Name="MinorRatio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AnticipatedClient" Type="Int32" />
+    <Property Name="TotalAutos" Type="Int32" />
+    <Property Name="TotalDrivers" Type="Int32" />
+    <Property Name="SecuritiesOpen" Type="Int32" />
+    <Property Name="SecuritiesOvernight" Type="Int32" />
+    <Property Name="SecuritiesOff" Type="Int32" />
+    <Property Name="TransportFunds" Type="Boolean" />
+    <Property Name="IPAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="UserAgent" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="LockUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="LockTime" Type="DateTime" Precision="3" />
+    <Property Name="IsLocked" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="PsychiatrySchedule">
+    <Key>
+      <PropertyRef Name="PsychiatryScheduleID" />
+    </Key>
+    <Property Name="PsychiatryScheduleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberCoverageID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialtyID" Type="Int32" />
+    <Property Name="RetroDate" Type="DateTime" Precision="0" />
+    <Property Name="BoardCertifiedID" Type="Int32" />
+    <Property Name="BoardEligibleID" Type="Int32" />
+    <Property Name="HoursWorked" Type="Int32" />
+    <Property Name="ContractorEmployeeID" Type="Int32" />
+    <Property Name="OwnMalpracticeID" Type="Int32" />
+    <Property Name="DateAdded" Type="DateTime" Precision="0" />
+    <Property Name="DateRemoved" Type="DateTime" Precision="0" />
+    <Property Name="SpecialtyOther" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PsychiatryScheduleHold">
+    <Key>
+      <PropertyRef Name="PsychiatryScheduleHoldID" />
+    </Key>
+    <Property Name="PsychiatryScheduleHoldID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PsychiatryScheduleID" Type="Int32" Nullable="false" />
+    <Property Name="MemberCoverageID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialtyID" Type="Int32" />
+    <Property Name="RetroDate" Type="DateTime" Precision="0" />
+    <Property Name="BoardCertifiedID" Type="Int32" />
+    <Property Name="BoardEligibleID" Type="Int32" />
+    <Property Name="HoursWorked" Type="Int32" />
+    <Property Name="ContractorEmployeeID" Type="Int32" />
+    <Property Name="OwnMalpracticeID" Type="Int32" />
+    <Property Name="DateAdded" Type="DateTime" Precision="0" />
+    <Property Name="DateRemoved" Type="DateTime" Precision="0" />
+    <Property Name="EditType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="COI" Type="Boolean" Nullable="false" />
+    <Property Name="ScheduleStatusID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialtyOther" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="OtherSchedule">
+    <Key>
+      <PropertyRef Name="OtherScheduleID" />
+    </Key>
+    <Property Name="OtherScheduleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberCoverageID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialtyID" Type="Int32" />
+    <Property Name="RetroDate" Type="DateTime" Precision="0" />
+    <Property Name="BoardCertifiedID" Type="Int32" />
+    <Property Name="BoardEligibleID" Type="Int32" />
+    <Property Name="HoursWorked" Type="Int32" />
+    <Property Name="ContractorEmployeeID" Type="Int32" />
+    <Property Name="OwnMalpracticeID" Type="Int32" />
+    <Property Name="DateAdded" Type="DateTime" Precision="0" />
+    <Property Name="DateRemoved" Type="DateTime" Precision="0" />
+    <Property Name="SpecialtyOther" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="OtherScheduleHold">
+    <Key>
+      <PropertyRef Name="OtherScheduleHoldID" />
+    </Key>
+    <Property Name="OtherScheduleHoldID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OtherScheduleID" Type="Int32" Nullable="false" />
+    <Property Name="MemberCoverageID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialtyID" Type="Int32" />
+    <Property Name="RetroDate" Type="DateTime" Precision="0" />
+    <Property Name="BoardCertifiedID" Type="Int32" />
+    <Property Name="BoardEligibleID" Type="Int32" />
+    <Property Name="HoursWorked" Type="Int32" />
+    <Property Name="ContractorEmployeeID" Type="Int32" />
+    <Property Name="OwnMalpracticeID" Type="Int32" />
+    <Property Name="DateAdded" Type="DateTime" Precision="0" />
+    <Property Name="DateRemoved" Type="DateTime" Precision="0" />
+    <Property Name="EditType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="COI" Type="Boolean" Nullable="false" />
+    <Property Name="ScheduleStatusID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="SpecialtyOther" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PremiumHold">
+    <Key>
+      <PropertyRef Name="PremiumHoldID" />
+    </Key>
+    <Property Name="PremiumHoldID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberCoverageID" Type="Int32" Nullable="false" />
+    <Property Name="PolicyYearID" Type="Int32" Nullable="false" />
+    <Property Name="Property" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Auto" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="D_O" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Crime" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Fiduciary" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="EmployedLawyers" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="PL_GL" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Umbrella" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="PrimaryCare" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Pollution" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Kidnap" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Cyber" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="EditType" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="t_Users">
+    <Key>
+      <PropertyRef Name="rid" />
+      <PropertyRef Name="uname" />
+      <PropertyRef Name="pwd" />
+    </Key>
+    <Property Name="rid" Type="Int32" Nullable="false" />
+    <Property Name="uname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pwd" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="userRole" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CustomParam">
+    <Key>
+      <PropertyRef Name="CustomParamID" />
+    </Key>
+    <Property Name="CustomParamID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomReportID" Type="Int32" Nullable="false" />
+    <Property Name="CustomParamTypeID" Type="Int32" Nullable="false" />
+    <Property Name="ParamName" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+    <Property Name="ParamTitle" Type="String" Nullable="false" MaxLength="125" FixedLength="false" Unicode="false" />
+    <Property Name="ParamWidth" Type="Int32" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <Property Name="DropSQL" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CustomParamType">
+    <Key>
+      <PropertyRef Name="CustomParamTypeID" />
+    </Key>
+    <Property Name="CustomParamTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="125" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="CustomReport">
+    <Key>
+      <PropertyRef Name="CustomReportID" />
+    </Key>
+    <Property Name="CustomReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReportName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ReportQuery" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CustomReportTypeID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="CustomReportType">
+    <Key>
+      <PropertyRef Name="CustomReportTypeID" />
+    </Key>
+    <Property Name="CustomReportTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="125" FixedLength="false" Unicode="true" />
+    <Property Name="DateDeleted" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomRole">
+    <Key>
+      <PropertyRef Name="CustomReportTypeID" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="CustomReportTypeID" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="JobFunction">
+    <Key>
+      <PropertyRef Name="JobFunctionID" />
+    </Key>
+    <Property Name="JobFunctionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobFunction1" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+</Schema>

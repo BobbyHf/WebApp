@@ -1,0 +1,79 @@
+﻿@model BHIP.Model.DriverInfoViewModel
+@using BHIP.Model.Helper
+<script>
+    $(document).ready(function () {
+        $('.DriverDOB').mask("99/99/9999")
+        $('.DriverDateAdded').mask("99/99/9999")
+        $('.DriverDateRemoved').mask("99/99/9999")
+    });
+
+</script>
+
+<div class="main">
+    <div style="text-align: left; width: 100%;">
+        @{Html.EnableClientValidation();}
+        @{Html.EnableUnobtrusiveJavaScript();}
+        @using (Html.BeginForm("EditDriverInfo", "MemberCov", System.Web.Mvc.FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
+        {
+            @Html.HiddenFor(m => m.DriverInfoScheduleID)
+            @Html.HiddenFor(m => m.MemberCoverageID)
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control inputfield inputwidth-500" })
+                    @Html.ValidationMessageFor(m => m.FirstName)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control inputfield inputwidth-500" })
+                    @Html.ValidationMessageFor(m => m.LastName)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.DOB, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.DOB, new { @class = "form-control DriverDOB inputfield inputwidth-175", @Value = (Model.DOB == null ? string.Empty : Model.DOB.Value.ToString("MM/dd/yyyy")) })
+                    @Html.ValidationMessageFor(m => m.DOB)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.StateID, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.StateID, MemberInformation.GetStateList(Model.StateID), "--Select--", new { @class = "form-control inputfield inputwidth-150" })
+                    @Html.ValidationMessageFor(m => m.StateID)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.LicenseNumber, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.LicenseNumber, new { @class = "form-control inputfield inputwidth-175" })
+                    @Html.ValidationMessageFor(m => m.LicenseNumber)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.DateAdded, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.DateAdded, new { @class = "form-control DriverDateAdded inputfield inputwidth-175", @Value = (Model.DateAdded == null ? string.Empty : Model.DateAdded.Value.ToString("MM/dd/yyyy")) })
+                    @Html.ValidationMessageFor(m => m.DateAdded)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.DateRemoved, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.DateRemoved, new { @class = "form-control DriverDateRemoved inputfield inputwidth-175", @Value = (Model.DateRemoved == null ? string.Empty : Model.DateRemoved.Value.ToString("MM/dd/yyyy")) })
+                    @Html.ValidationMessageFor(m => m.DateRemoved)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Comments, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.Comments, 10, 55, new { @class = "form-control inputfield inputwidth-500" })
+                    @Html.ValidationMessageFor(m => m.Comments)
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

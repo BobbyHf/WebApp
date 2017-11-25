@@ -1,0 +1,34 @@
+﻿@model BHIP.Model.VehicleDeleteViewModel
+@using BHIP.Model.Helper
+<script>
+    $(document).ready(function () {
+        $('.VehicleDateRemoved').mask("99/99/9999")
+    });
+
+</script>
+
+
+<div class="main">
+    <div style="background-color: white;">Enter the date when it should be deleted:</div>
+    <div style="text-align: left; width: 100%;">
+        @{Html.EnableClientValidation();}
+        @{Html.EnableUnobtrusiveJavaScript();}
+        @using (Html.BeginForm("DeleteVehicle", "MemberCov", System.Web.Mvc.FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
+        {
+            @Html.HiddenFor(m => m.MemberCoverageID)
+            @Html.HiddenFor(m => m.VehicleScheduleID)
+            <div class="form-group">
+                @Html.LabelFor(m => m.DateDeleted, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.DateDeleted, new { @class = "form-control inputfield VehicleDateRemoved inputwidth-150", @Value = (Model.DateDeleted == null ? string.Empty : Model.DateDeleted.Value.ToString("MM/dd/yyyy")) })
+                    @Html.ValidationMessageFor(m => m.DateDeleted)
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+
+

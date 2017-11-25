@@ -1,0 +1,1933 @@
+﻿@using BHIP.Model.Helper
+@using BHIP.MVCHelpers
+@model BHIP.Model.RenewalViewModel
+@{
+    ViewBag.Title = "Index";
+}
+@section Scripts {
+    @Scripts.Render("~/Scripts/jquery-migrate-1.2.1.js")
+    @Scripts.Render("~/Scripts/jquery.maskedinput.js")
+    @Scripts.Render("~/Scripts/jquery.mask.js")
+    @Scripts.Render("~/Scripts/DialogForm.js")
+    @Scripts.Render("~/Scripts/Renewal.js")
+    @Scripts.Render("~/Scripts/RenewalValidation.js")
+
+    @Scripts.Render("~/Scripts/jquery.handsontable.full.js")
+    @Scripts.Render("~/Scripts/jquery.handsontable.removeRow.js")
+    @Scripts.Render("~/Scripts/idle-timer.js")
+    @Scripts.Render("~/Scripts/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/respond.js")
+    @Scripts.Render("~/Scripts/moment.js")
+
+
+}
+
+@section Styles {
+    <link type="text/css" href="@Url.Content("~/Content/jquery.handsontable.full.css")" rel="stylesheet" />
+    <link type="text/css" href="@Url.Content("~/Content/jquery.handsontable.removeRow.css")" rel="stylesheet" />
+}
+@{
+    var havingAdminRole = false;
+
+    if (Model.UserRoles != null && Model.UserRoles.Count > 0)
+    {
+        havingAdminRole = Model.UserRoles.Any(x => x.Name.ToLower() == "authorized rep" || x.Name.ToLower() == "administrator");
+    }
+}
+
+<script>
+    $(function () {
+        $("#accordion").accordion({
+            active: 0,
+            //collapsible: true,
+            autoHeight: false,
+            heightStyle: "content"
+        });
+    });
+
+    $(function () {
+        $("#frmRenewal").validate({
+            ignore: false
+        });
+    });
+    var collapsible = $(".selector").accordion("option", "collapsible");
+    $(".selector").accordion("option", "collapsible", true);
+
+    $(document).ready(function () {
+
+        $('input[type="radio"]').change(function (event) {
+            if ($(this).closest("td").length > 0) {
+                if ($(this).closest("td").find("[id*='spnExtra']").length == 0) {
+                    $(this).closest("td").append("<span id='spnExtra' style='color:white;'>*</span>");
+                }
+            }
+        });
+
+        $('input[type="radio"]').each(function () {
+            if ($(this).closest("td").length > 0) {
+                if ($(this).closest("td").find("span:contains('*')").length == 0 && $(this).closest("td").find("[id*='spnExtra']").length == 0) {
+                    $(this).closest("td").append("<span id='spnExtra' style='color:white;'>*</span>");
+                }
+            }
+        });
+
+        /* jquery.mask.min.js */
+        $('.intcomma').masked('$###,###,###,##0', { reverse: true, maxlength: false });
+        $('.decimalcomma').masked('###,###,###,##0.00', { reverse: false, maxlength: false });
+        $('.int').masked('###########00', { reverse: true, maxlength: false });
+        $('.percent').masked('##0.00%', { reverse: true });
+
+        $("#ContactPhone").mask("(999) 999-9999");
+        $("#AuthorizePhone").mask("(999) 999-9999");
+        $("#PhoneNumber").mask("(999) 999-9999");
+        $("#PhysicalZipcode").mask("99999?-9999");
+        $("#MailingZipcode").mask("99999?-9999");
+
+        $("#AuthorizeZip").mask("99999?-9999");
+        //$('#OperationsStartDate').mask("99/99/9999")
+
+        $('#accordion h3').click(function (event) {
+            window.scroll(0, 0);
+        });
+
+        var date_validator_regexp = /(^$|^(0[1-9]|1[012])[/](0[1-9]|[12][0-9]|3[01])[/][0-9]{4}$)/;
+        var limit_validator_regexp = /(^[\s\S]{0,250}$)/;
+
+        $("#gridInspectionBody").handsontable({
+            startRows: 1,
+            startCols: 2,
+            colHeaders: ["Name", "Type"],
+            columnSorting: false,
+            enterBeginsEditing: false,
+            autoWrapRow: true,
+            autoWrapCol: true,
+            minSpareRows: 1,
+            colWidths: [350, 350],
+            removeRowPlugin: true,
+            //wordWrap: true,
+            columns: [
+              {
+                  data: "InspectName"
+              },
+              {
+                  data: "InspectType"
+              }
+            ]
+        });
+        $("#gridInspectionBody").data('handsontable').loadData(jQuery.parseJSON($("#InspectionBodyGrid").val()));
+
+        $("#gridHandleFunds").handsontable({
+            startRows: 1,
+            startCols: 2,
+            colHeaders: ["Job function", "Total number of employees"],
+            columnSorting: false,
+            enterBeginsEditing: false,
+            autoWrapRow: true,
+            autoWrapCol: true,
+            minSpareRows: 1,
+            colWidths: [350, 350],
+            removeRowPlugin: true,
+            wordWrap: true,
+            columns: [
+              {
+                  data: "JobFunction",
+              },
+              {
+                  data: 'NumOfEmployees',
+                  type: 'numeric',
+                  format: '0,0',
+                  allowInvalid: true
+              }
+            ]
+        });
+        $("#gridHandleFunds").data('handsontable').loadData(jQuery.parseJSON($("#HandleFundsGrid").val()));
+
+        $("#btnSearch").click(function (e) {
+            //alert("in click" + $("#drpMember").val());
+
+            var url = '@Url.Action("Index", "Renewal", new { id = "__id__" })';
+            window.location.href = url.replace('__id__', $("#drpMember").val());
+
+        });
+
+        $(window).on('beforeunload', function () {
+                $.get("/Renewal/Unlock", { id: $("#RenewalID").val() },
+                    function (data) {
+
+                    }, "json");
+        });
+
+        //$(window).bind('beforeunload', function (e) {
+        //    alert("unlock");
+        //    $.get("/Renewal/UnlockRenewal", { id: $("#RenewalID").val() },
+        //        function (data) {
+
+        //        }, "json");
+        //});
+        //window.addEventListener('beforeunload', function (event) {
+        //   alert("beforeunload");
+        //});
+        //window.addEventListener('unload', function (event) {
+        //    alert("unload")
+        //});
+        //$(window).unload(function () {
+        //    alert("page unload");
+        //});
+
+    });
+</script>
+<style type="text/css">
+    .nodisplay {
+        display: none;
+    }
+
+    table#tableRiskQuestions {
+        font-family: verdana,arial,sans-serif;
+        font-size: 11px;
+        color: #333333;
+        border-width: 1px;
+        border-color: #999999;
+        border-collapse: collapse;
+    }
+
+    .foot {
+        text-align: center;
+    }
+
+    #accordion .ui-accordion-header {
+        background: #ccc;
+    }
+</style>
+
+<div class="bubble">
+    <div class="rectangle">
+        <h2>Renewal Application</h2>
+    </div>
+    <div class="triangle-l"></div>
+    <div class="triangle-r"></div>
+
+    <div class="main">
+        <table id="Table3" border="0" cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+                <td>
+                    <!-- DROP DOWNLIST -->
+                    <div style="margin-top: 10px;">
+                        <span style="width: 100px;display: inline-block;">Members:</span>
+                        @if (User.IsInRole("Dropdown"))
+                        {
+                            @Html.DropDownListFor(m => m.MemberID, Model.GetMemberList(Model.MemberID), "--Select--", new { @id = "drpMember", style = "font-size: 14px;" })
+                        }
+                        else
+                        {
+                            @Html.DropDownListFor(m => m.MemberID, Model.GetMemberList(Model.MemberID), "--Select--", new { @id = "drpMember", style = "font-size: 14px;", @disabled = "disabled" })
+
+                        }
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <button type="button" id="btnSearch">Search</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="495"><span id="Label1" style="color: Black; font-family: Arial; font-size: Large; font-weight: bold; height: 32px; width: 280px;">&nbsp;</span></td>
+            </tr>
+        </table>
+    </div>
+    @Html.HiddenFor(x => x.IsRenewLocked, new { id = "isLocked", @name = "isLocked" })
+    @using (Html.BeginForm("SaveRenewal", "Renewal", FormMethod.Post, new { enctype = "multipart/form-data", @id = "frmRenewal", @class = "form-horizontal" }))
+    {
+        Html.EnableClientValidation();
+        Html.EnableUnobtrusiveJavaScript();
+        <div id="accordion">
+            <h3 id="accordion1">1. Renewal Application</h3>
+            <div id="accordion1Div">
+                @Html.HiddenFor(model => model.RenewalID)
+                @Html.HiddenFor(model => model.MemberID)
+                @Html.HiddenFor(model => model.CurrentYear)
+                @Html.HiddenFor(x => x.IsRenewLocked, new { id = "isRenewLocked", @name = "isRenewLocked" })
+                @Html.HiddenFor(x => x.VisitAccord1, new { id = "VisitAccord1" })
+                <p>
+                    <span style="font-weight: bolder;">DIRECTIONS:</span> Please complete the Renewal Application
+                    in its entirety.  If any information is incorrect, please correct the information in the space provided.
+                </p>
+
+                <p>
+                    After a section is completed, click on the “Save/Next” button; the section heading that was completed
+                    will then turn green. If the section heading does not turn green, please refer to any fields marked
+                    with a red asterisk, as these fields must be addressed.
+
+                </p>
+
+                <p>
+                    Please note that you can save your work at any time by clicking on the “Save/Next” button. This
+                    will preserve the information you have input, and will allow you to resume the process later.
+                </p>
+
+                <p>
+                    Once all sections have been completed, the authorized representative should proceed to the “Renewal
+                    Application Agreement” section, click on the Renewal Application Agreement box, and click on "Submit
+                    Renewal Application." An email will then be sent to the authorized representative confirming that the
+                    Renewal Application has been received.
+
+                </p>
+
+                <p>
+                    If you have any questions when completing this Renewal Application, please contact Tricia Bowman at <a href="mailto:tricia.bowman@ashtontiffany.com">tricia.bowman@ashtontiffany.com</a>,
+                    or Caitlin Ostrander at <a href="mailto:caitlin.ostrander@ashtontiffany.com">caitlin.ostrander@ashtontiffany.com</a>.
+                </p>
+
+                <p>
+                    <button type="button" id="btnSaveAccord1" @(Model.IsRenewLocked == true ? "disabled" : "") class="btn btn-primary">Save/Next</button>
+                </p>
+            </div>
+            <h3 id="accordion2">2. General Information</h3>
+            <div id="accordion2Div">
+                @Html.HiddenFor(x => x.VisitAccord2, new { id = "VisitAccord2" })
+                <p style="font-weight: bold;">
+                    Please verify the following information, and complete any missing information.
+                </p>
+                <label>Primary Physical Address</label>
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(m => m.PhysicalAddress, new { @class = "col-md-2 unbold text-left" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.PhysicalAddress, new { @class = "form-control inputwidth-500" })
+                        @Html.ValidationMessageFor(model => model.PhysicalAddress)
+                    </div>
+                </div>
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(m => m.PhysicalCity, new { @class = "col-md-2 unbold text-left" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.PhysicalCity, new { @class = "form-control inputwidth-175", @style = "display: inline-block;" }) @Html.LabelFor(m => m.PhysicalStateID, new { @class = "control-label unbold", @style = "vertical-align: top;" }) @Html.DropDownListFor(m => m.PhysicalStateID, MemberInformation.GetStateList(Model.PhysicalStateID ?? 0), "--Select--", new { @class = "form-control inputwidth-150", @style = "display: inline-block;" })
+                        @Html.ValidationMessageFor(model => model.PhysicalCity) @Html.ValidationMessageFor(model => model.PhysicalStateID)
+                    </div>
+                </div>
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(m => m.PhysicalZipcode, new { @class = "col-md-2 unbold text-left" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.PhysicalZipcode, new { @class = "form-control inputwidth-175" })
+                        @Html.ValidationMessageFor(model => model.PhysicalZipcode)
+                    </div>
+                </div>
+                <label>Mailing Address</label>
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(m => m.MailingAddress, new { @class = "col-md-2 unbold text-left" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.MailingAddress, new { @class = "form-control inputwidth-500" })
+                        @Html.ValidationMessageFor(model => model.MailingAddress)
+                    </div>
+                </div>
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(m => m.MailingCity, new { @class = "col-md-2 unbold text-left" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.MailingCity, new { @class = "form-control inputwidth-175", @style = "display: inline-block;" }) @Html.LabelFor(m => m.MailingStateID, new { @class = "control-label unbold", @style = "vertical-align: top;" }) @Html.DropDownListFor(m => m.MailingStateID, MemberInformation.GetStateList(Model.PhysicalStateID ?? 0), "--Select--", new { @class = "form-control inputwidth-150", @style = "display: inline-block;" })
+                        @Html.ValidationMessageFor(model => model.MailingCity) @Html.ValidationMessageFor(model => model.MailingStateID)
+                    </div>
+                </div>
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(m => m.MailingZipcode, new { @class = "col-md-2 unbold text-left" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.MailingZipcode, new { @class = "form-control inputwidth-175" })
+                        @Html.ValidationMessageFor(model => model.MailingZipcode)
+                    </div>
+                </div>
+
+                <br /><br />
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 unbold text-left" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control inputwidth-175", @style = "display: inline-block;" })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber)
+                    </div>
+                </div>
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(m => m.Website, new { @class = "col-md-2 unbold text-left" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Website, new { @class = "form-control inputwidth-500" })
+                        @Html.ValidationMessageFor(model => model.Website)
+                    </div>
+                </div>
+
+                <p>
+                    <button type="button" id="btnSaveAccord2" @(Model.IsRenewLocked == true ? "disabled" : "") class="btn btn-primary">Save/Next</button>
+                </p>
+            </div>
+            <h3 id="accordion3">3. Contact Information</h3>
+            <div id="accordion3Div">
+                @Html.HiddenFor(x => x.VisitAccord3, new { id = "VisitAccord3" })
+                <label>Primary Contact</label>
+                <div>
+                    This individual serves as the primary contact for BHIP.
+                </div>
+                <br />
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(m => m.ContactPrefix, new { @class = "col-md-2 unbold text-left" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.ContactPrefix, new { @class = "form-control inputwidth-100" })
+                        @Html.ValidationMessageFor(model => model.ContactPrefix)
+                    </div>
+                </div>
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(m => m.ContactFirstName, new { @class = "col-md-2 unbold text-left" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.ContactFirstName, new { @class = "form-control inputwidth-500" })
+                        @Html.ValidationMessageFor(model => model.ContactFirstName)
+                    </div>
+                </div>
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(m => m.ContactLastName, new { @class = "col-md-2 unbold text-left" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.ContactLastName, new { @class = "form-control inputwidth-500" })
+                        @Html.ValidationMessageFor(model => model.ContactLastName)
+                    </div>
+                </div>
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(m => m.ContactTitle, new { @class = "col-md-2 unbold text-left" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.ContactTitle, new { @class = "form-control inputwidth-500" })
+                        @Html.ValidationMessageFor(model => model.ContactTitle)
+                    </div>
+                </div>
+                @Html.HiddenFor(m => m.ContactEmail)
+                @Html.HiddenFor(m => m.ContactPhone)
+                <div>&nbsp;</div>
+                <label>Authorized Representative</label>
+                <div>
+                    This individual serves as the authorized representative and makes coverage and financial decisions on behalf of the agency.
+                </div>
+                <br />
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(m => m.AuthorizePrefix, new { @class = "col-md-2 unbold text-left" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.AuthorizePrefix, new { @class = "form-control inputwidth-100" })
+                        @Html.ValidationMessageFor(model => model.AuthorizePrefix)
+                    </div>
+                </div>
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(m => m.AuthorizeFirstName, new { @class = "col-md-2 unbold text-left" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.AuthorizeFirstName, new { @class = "form-control inputwidth-500" })
+                        @Html.ValidationMessageFor(model => model.AuthorizeFirstName)
+                    </div>
+                </div>
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(m => m.AuthorizeLastName, new { @class = "col-md-2 unbold text-left" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.AuthorizeLastName, new { @class = "form-control inputwidth-500" })
+                        @Html.ValidationMessageFor(model => model.AuthorizeLastName)
+                    </div>
+                </div>
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(m => m.AuthorizeTitle, new { @class = "col-md-2 unbold text-left" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.AuthorizeTitle, new { @class = "form-control inputwidth-500" })
+                        @Html.ValidationMessageFor(model => model.AuthorizeTitle)
+                    </div>
+                </div>
+                <div>
+                    In an effort to improve communication with our members, we ask that you review and update the
+                    contact information for the individuals who work with BHIP, who are listed below.
+                </div>
+                <br />
+                <div id="ContactScheduleGrid" class="form-group">
+                    @Html.Partial("_ContactScheduleGrid", Model.ContactList, new ViewDataDictionary { { "MemberCoverageID", Model.GetMemberCoverageID(Model.MemberID) } })
+                </div>
+                <div id="ContactScheduleHoldGrid" class="form-group">
+                    @Html.Partial("_ContactScheduleHoldGrid", Model.ContactHoldList)
+                </div>
+                <p>
+                    <button type="button" id="btnSaveAccord3" @(Model.IsRenewLocked == true ? "disabled" : "") class="btn btn-primary">Save/Next</button>
+                </p>
+            </div>
+            <h3 id="accordion4">4. Operations</h3>
+            <div id="accordion4Div">
+                @Html.HiddenFor(x => x.VisitAccord4, new { id = "VisitAccord4" })
+                <p style="font-weight: bold;">Complete the following information regarding agency operations.</p>
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(model => model.FederalID, new { @class = "col-md-4 unbold text-left" })
+                    <div>
+                        @Html.TextBoxFor(model => model.FederalID, new { @readonly = "true", @disabled = "true", @class = "form-control disabled inputwidth-200" })
+                        @Html.ValidationMessageFor(model => model.FederalID)
+                    </div>
+                </div>
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(model => model.OperationsStartDate, new { @class = "col-md-4 unbold text-left" })
+                    <div>
+                        @Html.TextBoxFor(model => model.OperationsStartDate, "{0:MM/dd/yyyy}", new { @readonly = "true", @disabled = "true", @class = "form-control disabled inputwidth-200" })
+                        @Html.ValidationMessageFor(model => model.OperationsStartDate)
+                    </div>
+                </div>
+                <div class="form-group pad20 bottom2">
+                    @Html.LabelFor(model => model.OperationsType, new { @class = "col-md-4 unbold text-left" })
+                    <div>
+                        @Html.TextBoxFor(model => model.OperationsType, new { @readonly = "true", @disabled = "true", @class = "form-control disabled inputwidth-200" })
+                        @Html.ValidationMessageFor(model => model.OperationsType)
+                    </div>
+                </div>
+                <br />
+                <div>@Html.DisplayQuestions("Operations1", BHIP.Model.ProjectGlobals.CurrentYear, Model.MemberID, "Operations1")</div>
+                <div>@Html.DisplayQuestions("Operations2", BHIP.Model.ProjectGlobals.CurrentYear, Model.MemberID, "Operations2")</div>
+                <div>@Html.DisplayQuestions("Operations3", BHIP.Model.ProjectGlobals.CurrentYear, Model.MemberID, "Operations3")</div>
+
+                <p>
+                    <button type="button" id="btnSaveAccord4" @(Model.IsRenewLocked == true ? "disabled" : "") class="btn btn-primary">Save/Next</button>
+                </p>
+            </div>
+            <h3 id="accordion5">5. Licensing And Accreditation</h3>
+            <div id="accordion5Div">
+                @Html.HiddenFor(x => x.VisitAccord5, new { id = "VisitAccord5" })
+                <div>@Html.DisplayQuestions("Licensing1", BHIP.Model.ProjectGlobals.CurrentYear, Model.MemberID, "Licensing1")</div>
+                <br />
+                <div>List all licenses held:</div>
+                <div id="LicenseSchedule">@Html.Partial("_LicenseSchedule", Model.LicenseList, new ViewDataDictionary { { "MemberID", Model.MemberID } })</div>
+                <div>@Html.DisplayQuestions("Licensing2", BHIP.Model.ProjectGlobals.CurrentYear, Model.MemberID, "Licensing2")</div>
+
+                <br /><br />
+                <div id="gridInspectionBody"></div>
+                @Html.HiddenFor(model => model.InspectionBodyGrid, new { @Value = Model.InspectionBodyGrid })
+
+                <br /><br />
+                <p>
+                    <button type="button" id="btnSaveAccord5" @(Model.IsRenewLocked == true ? "disabled" : "") class="btn btn-primary">Save/Next</button>
+                </p>
+            </div>
+            <h3 id="accordion6">6. Financial Information</h3>
+            <div id="accordion6Div">
+                @Html.HiddenFor(x => x.VisitAccord6, new { id = "VisitAccord6" })
+                <p style="font-weight: bold;">
+                    Please provide the requested financial information below.
+                </p>
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <span style="font-weight: bold;">List sources and amounts of revenue:</span>
+                        </td>
+                        <td align="center">
+                            Last 12 months
+                        </td>
+                        <td align="center">
+                            Next 12 months
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="pad20">Charitable contributions</span>
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.CharitableContribLast12, new { @class = "intcomma  text-right inputwidth-185 form-control error-block", @onblur = "AddSourceRevenue();" })@Html.ValidationMessageFor(model => model.CharitableContribLast12)
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.CharitableContribNext12, new { @class = "intcomma text-right inputwidth-185 form-control error-block", @onblur = "AddSourceRevenue();" })@Html.ValidationMessageFor(model => model.CharitableContribNext12)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="pad20">Governmental funding (local, state or federal)</span>
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.GovFundingLast12, new { @class = "intcomma text-right inputwidth-185 form-control error-block", @onblur = "AddSourceRevenue();" })@Html.ValidationMessageFor(model => model.GovFundingLast12)
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.GovFundingNext12, new { @class = "intcomma text-right inputwidth-185 form-control error-block", @onblur = "AddSourceRevenue();" })@Html.ValidationMessageFor(model => model.GovFundingNext12)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="pad20">Fee for service</span>
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.FeeServiceLast12, new { @class = "intcomma text-right inputwidth-185 form-control error-block", @onblur = "AddSourceRevenue();" })@Html.ValidationMessageFor(model => model.FeeServiceLast12)
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.FeeServiceNext12, new { @class = "intcomma text-right inputwidth-185 form-control error-block", @onblur = "AddSourceRevenue();" })@Html.ValidationMessageFor(model => model.FeeServiceNext12)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="pad20">Other: @Html.TextBoxFor(model => model.OtherDesc)</span>
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.OtherLast12, new { @class = "intcomma text-right inputwidth-185 form-control error-block", @onblur = "AddSourceRevenue();" })@Html.ValidationMessageFor(model => model.OtherLast12)
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.OtherNext12, new { @class = "intcomma text-right inputwidth-185 form-control error-block", @onblur = "AddSourceRevenue();" })@Html.ValidationMessageFor(model => model.OtherNext12)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="pad20">Total revenue:</span>
+                        </td>
+                        <td align="center">
+                            <input type="text" id="revenueLast12" readonly="true" disabled class="intcomma form-control inputwidth-185 text-right disabled" />
+                        </td>
+                        <td align="center">
+                            <input type="text" id="revenueNext12" readonly="true" disabled class="intcomma form-control inputwidth-185 text-right disabled" />
+                        </td>
+                    </tr>
+                </table>
+                <br /><br />
+
+                <div class="form-group form-group-sm less_height">
+                    <span class="text-left" style="font-weight: bold;">Does the agency hold or transport any funds from any one location?</span>
+                    @Html.RadioButtonFor(x => x.TransportFunds, true, new { id = "TransportFunds" }) Yes @Html.RadioButtonFor(x => x.TransportFunds, false, new { id = "TransportFunds" }) No @Html.ValidationMessageFor(x => x.TransportFunds)
+                </div>
+                <div class="pad20">
+                    <i>If yes, what is the maximum amount</i>:
+                </div>
+                <br /><br />
+                <table style="width: 100%">
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td class="inputwidth-185" align="center">
+                            On Premises<br />
+                            While Open
+                        </td>
+                        <td class="inputwidth-185" align="center">
+                            On Premises<br />
+                            Overnight
+                        </td>
+                        <td class="inputwidth-185" align="center">
+                            Off Premises
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pad20">Money</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.MoneyOpen, new { @class = "col-md-2 form-control inputwidth-185 intcomma text-right" })
+                            @Html.ValidationMessageFor(model => model.MoneyOpen)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.MoneyOvernight, new { @class = "col-md-2 form-control inputwidth-185 intcomma text-right" })
+                            @Html.ValidationMessageFor(model => model.MoneyOvernight)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.MoneyOff, new { @class = "col-md-2 form-control inputwidth-185 intcomma text-right" })
+                            @Html.ValidationMessageFor(model => model.MoneyOff)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pad20">Checks received</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.ChecksOpen, new { @class = "col-md-2 form-control inputwidth-185 intcomma text-right" })
+                            @Html.ValidationMessageFor(model => model.ChecksOpen)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.ChecksOvernight, new { @class = "col-md-2 form-control inputwidth-185 intcomma text-right" })
+                            @Html.ValidationMessageFor(model => model.ChecksOvernight)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.ChecksOff, new { @class = "col-md-2 form-control inputwidth-185 intcomma text-right" })
+                            @Html.ValidationMessageFor(model => model.ChecksOff)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pad20">Negotiable securities</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.SecuritiesOpen, new { @class = "col-md-2 form-control inputwidth-185 intcomma text-right" })
+                            @Html.ValidationMessageFor(model => model.SecuritiesOpen)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.SecuritiesOvernight, new { @class = "col-md-2 form-control inputwidth-185 intcomma text-right" })
+                            @Html.ValidationMessageFor(model => model.SecuritiesOvernight)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.SecuritiesOff, new { @class = "col-md-2 form-control inputwidth-185 intcomma text-right" })
+                            @Html.ValidationMessageFor(model => model.SecuritiesOff)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="pad20">Payroll</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.PayrollOpen, new { @class = "col-md-2 form-control inputwidth-185 intcomma text-right" })
+                            @Html.ValidationMessageFor(model => model.PayrollOpen)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.PayrollOvernight, new { @class = "col-md-2 form-control inputwidth-185 intcomma text-right" })
+                            @Html.ValidationMessageFor(model => model.PayrollOvernight)
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(model => model.PayrollOff, new { @class = "col-md-2 form-control inputwidth-185 intcomma text-right" })
+                            @Html.ValidationMessageFor(model => model.PayrollOff)
+                        </td>
+                    </tr>
+                </table>
+                <br /><br />
+                <div>@Html.DisplayQuestions("Financial", BHIP.Model.ProjectGlobals.CurrentYear, Model.MemberID, "Financial")</div>
+
+                <br /><br />
+                <div id="PlanSchedule">@Html.Partial("_AgencyPlanSchedule", Model.AgencyPlanList, new ViewDataDictionary { { "MemberID", Model.MemberID } })</div>
+                <p>
+                    List the number of all officers/employees other than agents and partners who handle or have custody of funds (money, checks, negotiable securities), by job function:
+                </p>
+                <br />
+                <div id="gridHandleFunds"></div>
+                @Html.HiddenFor(model => model.HandleFundsGrid, new { @Value = Model.HandleFundsGrid })
+                <br /><br />
+                <p>
+                    <button type="button" id="btnSaveAccord6" @(Model.IsRenewLocked == true ? "disabled" : "") class="btn btn-primary">Save/Next</button>
+                </p>
+            </div>
+            <h3 id="accordion7">7. Staff And Provider Information</h3>
+            <div id="accordion7Div">
+                @Html.HiddenFor(x => x.VisitAccord7, new { id = "VisitAccord7" })
+                <div>@Html.DisplayQuestions("Staff", BHIP.Model.ProjectGlobals.CurrentYear, Model.MemberID, "Staff")</div>
+                <p style="font-weight: bold;">
+                    Please provide information on union vs. non-union status for each of the employee categories below.
+                </p>
+                <table style="width: 100%">
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td align="center">
+                            Non-union
+                        </td>
+                        <td align="center">
+                            Union (if applicable)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="pad20">Full-time:</span>
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.NonunionFulltime, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddCurrentEmployees();" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.UnionFulltime, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddCurrentEmployees();" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="pad20">Part-time:</span>
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.NonunionParttime, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddCurrentEmployees();" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.UnionParttime, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddCurrentEmployees();" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="pad20">Seasonal:</span>
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.NonunionSeasonal, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddCurrentEmployees();" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.UnionSeasonal, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddCurrentEmployees();" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="pad20">Temporary:</span>
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.NonunionTemporary, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddCurrentEmployees();" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.UnionTemporary, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddCurrentEmployees();" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="pad20">Independent contractors:</span>
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.NonunionIndependent, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddCurrentEmployees();" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.UnionIndependent, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddCurrentEmployees();" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="pad20" style="font-weight: bold;">Total:</span>
+                        </td>
+                        <td align="center">
+                            <input type="text" id="totalCurrentNonUnion" readonly="true" disabled class="form-control inputwidth-175 intcomma text-right disabled" />
+                        </td>
+                        <td align="center">
+                            <input type="text" id="totalCurrentUnion" readonly="true" disabled class="form-control inputwidth-175 intcomma text-right disabled" />
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <p style="font-weight: bold;">
+                    List the staff-to-client ratio for each of the agency's programs:
+                </p>
+                <div>
+                    <table style="width: 100%">
+                        <tr>
+                            <td>
+                                Program
+                            </td>
+                            <td align="center">
+                                Direct Service Staff
+                            </td>
+                            <td align="center">
+                                # of Clients
+                            </td>
+                            <td align="center">
+                                Ratio
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Adults
+                            </td>
+                            <td align="center">
+                                @Html.TextBoxFor(model => model.AdultDirectStaff, new { @class = "form-control inputwidth-175 intcomma text-right" })
+                            </td>
+                            <td align="center">
+                                @Html.TextBoxFor(model => model.AdultClient, new { @class = "form-control inputwidth-175 intcomma text-right" })
+                            </td>
+                            <td align="center">
+                                @Html.TextBoxFor(model => model.AdultRatio, new { @class = "form-control inputwidth-175 intcomma text-right" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Minors
+                            </td>
+                            <td align="center">
+                                @Html.TextBoxFor(model => model.MinorDirectStaff, new { @class = "form-control inputwidth-175 intcomma text-right" })
+                            </td>
+                            <td align="center">
+                                @Html.TextBoxFor(model => model.MinorClient, new { @class = "form-control inputwidth-175 intcomma text-right" })
+                            </td>
+                            <td align="center">
+                                @Html.TextBoxFor(model => model.MinorRatio, new { @class = "form-control inputwidth-175 intcomma text-right" })
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+                <p>
+                    <b>To update the behavioral health provider schedule, please follow the instructions below.</b>
+                </p>
+                <div>
+                    <ul>
+                        <li>Please check the behavioral health provider schedule for accuracy, and be sure to fill in all blanks.</li>
+                        <li>Correct any inaccurate information.</li>
+                        <li>
+                            For new behavioral health providers, click the "Add" button, input all required fields, then click the "Save" button.
+                            Any additions, deletions, or changes will show in the Pending table for review by BHIP staff.
+                        </li>
+                    </ul>
+                </div>
+                <br />
+                <div id="PsychiatryScheduleGrid" class="form-group">
+                    @Html.Partial("~/Views/MemberCov/_PsychiatryScheduleGrid.cshtml", Model.PsychiatryList, new ViewDataDictionary { { "MemberCoverageID", Model.MemberCoverageID } })
+                </div>
+                <div id="PsychiatryScheduleHoldGrid" class="form-group">
+                    @Html.Partial("~/Views/MemberCov/_PsychiatryScheduleHoldGrid.cshtml", Model.PsychiatryHoldList, new ViewDataDictionary { { "MemberCoverageID", Model.MemberCoverageID } })
+                </div>
+                <div>
+                    <p style="font-weight: bold;">
+                        Please update the following section only if your agency offers primary care services.
+                    </p>
+                    <p>
+                        <b>To update the primary care provider schedule, please follow the instructions below:</b>
+                    </p>
+                    <ul>
+                        <li>Please check the primary care provider schedule for accuracy, and be sure to fill in all blanks.</li>
+                        <li>Correct any inaccurate information.</li>
+                        <li>
+                            For new primary care providers, click the "Add" button, input all required fields, then click "Save" button.
+                            Any additions, deletions, or changes will show in the Pending table for review by BHIP staff.
+                        </li>
+                    </ul>
+                </div>
+                <p style="font-weight: bold;">
+                    For primary care operations, please indicate the total number of anticipated client visits in @BHIP.Model.ProjectGlobals.NextYear: @Html.TextBoxFor(model => model.AnticipatedClient, new { @class = "intcomma text-right inputfield inputwidth-150" })
+                </p>
+                <div id="PrimaryCareScheduleGrid" class="form-group">
+                    @Html.Partial("~/Views/MemberCov/_PrimaryCareScheduleGrid.cshtml", Model.PrimaryCareList, new ViewDataDictionary { { "MemberCoverageID", Model.MemberCoverageID } })
+                </div>
+                <div id="PrimaryCareScheduleHoldGrid" class="form-group">
+                    @Html.Partial("~/Views/MemberCov/_PrimaryCareScheduleHoldGrid.cshtml", Model.PrimaryCareHoldList, new ViewDataDictionary { { "MemberCoverageID", Model.MemberCoverageID } })
+                </div>
+                <p>
+                    <button type="button" id="btnSaveAccord7" @(Model.IsRenewLocked == true ? "disabled" : "") class="btn btn-primary">Save/Next</button>
+                </p>
+            </div>
+            <h3 id="accordion8">8. Procedures</h3>
+            <div id="accordion8Div">
+                @Html.HiddenFor(x => x.VisitAccord8, new { id = "VisitAccord8" })
+                <div>@Html.DisplayQuestions("Procedures1", BHIP.Model.ProjectGlobals.CurrentYear, Model.MemberID, "Procedures1")</div>
+                <div>@Html.DisplayQuestions("Procedures2", BHIP.Model.ProjectGlobals.CurrentYear, Model.MemberID, "Procedures2")</div>
+                <div>@Html.DisplayQuestions("Procedures3", BHIP.Model.ProjectGlobals.CurrentYear, Model.MemberID, "Procedures3")</div>
+                <p>
+                    <button type="button" id="btnSaveAccord8" @(Model.IsRenewLocked == true ? "disabled" : "") class="btn btn-primary">Save/Next</button>
+                </p>
+            </div>
+            <h3 id="accordion9">9. Professional Liability Services</h3>
+            <div id="accordion9Div">
+                @Html.HiddenFor(x => x.VisitAccord9, new { id = "VisitAccord9" })
+                <div>@Html.DisplayQuestions("ProfLiab1", BHIP.Model.ProjectGlobals.CurrentYear, Model.MemberID, "ProfLiab1")</div>
+                <p style="font-weight: bold;">
+                    Please provide the census information requested below. For all @BHIP.Model.ProjectGlobals.CurrentYear questions, use actual numbers January
+                    through July, and then estimate value for the remainder of the year.
+                </p>
+                <p style="font-weight: bold;">
+                    Indicate the number of <span style="font-style: italic;">unduplicated clients</span> served in each of the following categories.
+                </p>
+                <table style="width: 100%">
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td align="center">
+                            @BHIP.Model.ProjectGlobals.CurrentYear<br />
+                            Estimated
+                        </td>
+                        <td align="center">
+                            @BHIP.Model.ProjectGlobals.NextYear<br />
+                            Projected
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Substance abuse:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.UnduplicatedSubstanceAbuseEstimated, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.UnduplicatedSubstanceAbuseProjected, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            General mental health:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.UnduplicatedGeneralHealthEstimated, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.UnduplicatedGeneralHealthProjected, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Seriously mentally ill:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.UnduplicatedMentallyEstimated, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.UnduplicatedMentallyProjected, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Children:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.UnduplicatedChildrenEstimated, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.UnduplicatedChildrenProjected, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                </table>
+                <br /><br />
+                <p style="font-weight: bold;">Indicate the number of <span style="font-style: italic;">billable services (encounters)</span> in each of the following categories.</p>
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td align="center">
+                            @BHIP.Model.ProjectGlobals.CurrentYear<br />
+                            Estimated
+                        </td>
+                        <td align="center">
+                            @BHIP.Model.ProjectGlobals.NextYear<br />
+                            Projected
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Substance abuse:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.BillableSubstanceAbuseEstimated, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.BillableSubstanceAbuseProjected, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            General mental health:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.BillableGeneralHealthEstimated, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.BillableGeneralHealthProjected, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Seriously mentally ill:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.BillableMentalEstimated, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.BillableMentalProjected, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Children:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.BillableChildrenEstimated, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.BillableChildrenProjected, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                </table>
+                <br /><br />
+                <p style="font-weight: bold;">
+                    Indicate the number of billable services (encounters) received by each of the following populations.
+                </p>
+                <table style="width: 100%">
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td align="center">
+                            @BHIP.Model.ProjectGlobals.CurrentYear<br />
+                            Estimated
+                        </td>
+                        <td align="center">
+                            @BHIP.Model.ProjectGlobals.NextYear<br />
+                            Projected
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Case management:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.PopulationCaseManagementEstimated, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.PopulationCaseManagementProjected, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Psychiatry:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.PopulationPsychiatryEstimated, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.PopulationPsychiatryProjected, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Methadone:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.PopulationMethadoneEstimated, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.PopulationMethadoneProjected, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Living skills training:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.PopulationLivingSkillsEstimated, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.PopulationLivingSkillsProjected, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Individual therapy:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.PopulationIndividualEstimated, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.PopulationIndividualProjected, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Family therapy:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.PopulationFamilyEstimated, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.PopulationFamilyProjected, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Group therapy:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.PopulationGroupEstimated, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.PopulationGroupProjected, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                </table>
+                <br /><br />
+                <p style="font-weight: bold;">
+                    Indicate the number of individuals served for <span style="font-style: italic;">inpatient</span> services.
+                </p>
+                <table style="width: 100%">
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td align="center">
+                            @BHIP.Model.ProjectGlobals.CurrentYear<br />
+                            # of beds
+                        </td>
+                        <td align="center">
+                            @BHIP.Model.ProjectGlobals.CurrentYear<br />
+                            # of bed days
+                        </td>
+                        <td align="center">
+                            @BHIP.Model.ProjectGlobals.NextYear<br />
+                            # of beds
+                        </td>
+                        <td align="center">
+                            @BHIP.Model.ProjectGlobals.NextYear<br />
+                            # of bed days
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Substance abuse:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.ServedSubstanceAbuseNumOfBedCurrent, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.ServedSubstanceAbuseNumOfBedDayCurrent, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.ServedSubstanceAbuseNumOfBedNext, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.ServedSubstanceAbuseNumOfBedDayNext, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Psychiatric stabilization:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.ServedPsychiatricNumOfBedCurrent, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.ServedPsychiatricNumOfBedDayCurrent, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.ServedPsychiatricNumOfBedNext, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.ServerdPsychiatricNumOfBedDayNext, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+
+                    </tr>
+                </table>
+                <br /><br />
+                <p>
+                    <span style="font-weight: bold;">If possible, break down psychiatric stabilization into the following categories.</span>
+                </p>
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td align="center">
+                            @BHIP.Model.ProjectGlobals.CurrentYear<br />
+                            # of beds
+                        </td>
+                        <td align="center">
+                            @BHIP.Model.ProjectGlobals.CurrentYear<br />
+                            # of bed days
+                        </td>
+                        <td align="center">
+                            @BHIP.Model.ProjectGlobals.NextYear<br />
+                            # of beds
+                        </td>
+                        <td align="center">
+                            @BHIP.Model.ProjectGlobals.NextYear<br />
+                            # of bed days
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            General mental health:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.StabilizeGeneralHealthNumOfBedsCurrent, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.StabilizeGeneralHealthNumofBedDaysCurrent, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.StabilizeGeneralHealthNumOfBedsNext, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.StabilizeGeneralHealthNumOfBedDaysNext, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Seriously mentally ill:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.StabilizeMentallyNumOfBedsCurrent, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.StabilizeMentallyNumOfBedDaysCurrent, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.StabilizeMentallyNumOfBedsNext, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.StabilizeMetallyNumOfBedDaysNext, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Children:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.StabilizeChildrenNumOfBedsCurrent, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.StabilizeChildrenNumOfBedDaysCurrent, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.StabilizeChildrenNumOfBedsNext, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.StabilizeChildrenNumOfBedDaysNext, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                </table>
+                <br /><br />
+                <p style="font-weight: bold;">Indicate the amount of service revenue you expect to produce in <span style="font-style: italic;">outpatient</span> services.</p>
+                <table style="width: 100%">
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td align="center">
+                            Estimated<br />
+                            @BHIP.Model.ProjectGlobals.CurrentYear<br />
+                            Amount($)
+                        </td>
+                        <td align="center">
+                            Projected<br />
+                            @BHIP.Model.ProjectGlobals.NextYear<br />
+                            Amount($)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            General mental health, incl. substance abuse:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RevenueOutGeneralMentalCurrent, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RevenueOutGeneralMentalNext, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Seriously mentally ill:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RevenueOutMentalCurrent, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RevenueOutMentalNext, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Children:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RevenueOutChildrenCurrent, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RevenueOutChildrenNext, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Other:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RevenueOutOtherCurrent, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RevenueOutOtherNext, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                </table>
+                <br /><br />
+                <p style="font-weight: bold;">Indicate the amount of service revenue you expect to produce in <span stye="font-style: italic;">inpatient</span> services.</p>
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td align="center">
+                            Estimated<br />
+                            @BHIP.Model.ProjectGlobals.CurrentYear<br />
+                            Amount($)
+                        </td>
+                        <td align="center">
+                            Projected<br />
+                            @BHIP.Model.ProjectGlobals.NextYear<br />
+                            Amount($)
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            General mental health, incl. substance abuse:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RevenueInGeneralMentalCurrent, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RevenueInGeneralMentalNext, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Seriously mentally ill:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RevenueInMentalCurrent, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RevenueInMentalNext, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Children:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RevenueInChildrentCurrent, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RevenueInChildrentNext, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Other:
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RevenueInOther1Current, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RevenueInOther1Next, new { @class = "intcomma text-right inputwidth-185 form-control" })
+                        </td>
+                    </tr>
+                </table>
+                <br /><br />
+
+                <p>
+                    <button type="button" id="btnSaveAccord9" @(Model.IsRenewLocked == true ? "disabled" : "") class="btn btn-primary">Save/Next</button>
+                </p>
+            </div>
+            <h3 id="accordion10">10. Property Information</h3>
+            <div id="accordion10Div">
+                @Html.HiddenFor(x => x.VisitAccord10, new { id = "VisitAccord10" })
+
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <b>Total building value:</b>
+                        </td>
+                        <td class="pull-right">
+                            @Html.TextBoxFor(model => model.TotalBuilding, new { @readonly = "true", @class = "form-control inputwidth-175 intcomma text-right disabled" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Total contents value:</b>
+                        </td>
+                        <td class="pull-right">
+                            @Html.TextBoxFor(model => model.TotalContent, new { @readonly = "true", @class = "form-control inputwidth-175 intcomma text text-right disabled" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Total insurable value:</b>
+                        </td>
+                        <td class="pull-right">
+                            @Html.TextBoxFor(model => model.TotalInsurable, new { @readonly = "true", @class = "form-control inputwidth-175 intcomma text-right disabled" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Total square footage:</b>
+                        </td>
+                        <td class="pull-right">
+                            @Html.TextBoxFor(model => model.TotalFootage, new { @readonly = "true", @class = "form-control inputwidth-175 intcomma text-right disabled" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Cost per square foot:</b>
+                        </td>
+                        <td class="pull-right">
+                            @Html.TextBoxFor(model => model.CostSquareFoot, new { @readonly = "true", @class = "form-control inputwidth-175 intcomma text-right disabled" })
+                        </td>
+                    </tr>
+                </table>
+                <br /><br />
+                <div>@Html.DisplayQuestions("PropQ", BHIP.Model.ProjectGlobals.CurrentYear, Model.MemberID, "PropQ")</div>
+                <p>
+                    <b>To update the property schedule, please follow the instructions below:</b>
+                </p>
+                <ul>
+                    <li>Please check the property schedule for accuracy, and be sure to fill in all blanks.</li>
+                    <li>Correct any inaccurate information.</li>
+                    <li>Adjust the total value of the buildings and contents as necessary.</li>
+                    <li>
+                        For new property, click the "Add" button, input all required fields, then click the "Save" button. Any additions,
+                        deletions, or changes will show in the Pending table for review by BHIP staff.
+                    </li>
+                </ul>
+                <p>
+                    As a reminder, agencies should report their property values at full replacement cost. The cost per square foot (with
+                    contents) will update upon approval of the Pending Changes section.
+                </p>
+                <div id="PropertyScheduleGrid" class="form-group">
+                    @Html.Partial("~/Views/MemberCov/_PropertyScheduleGrid.cshtml", Model.PropertyList, new ViewDataDictionary { { "MemberCoverageID", Model.MemberCoverageID } })
+                </div>
+                <div id="PropertyScheduleHoldGrid" class="form-group">
+                    @Html.Partial("~/Views/MemberCov/_PropertyScheduleHoldGrid.cshtml", Model.PropertyHoldList)
+                </div>
+                <br />
+                <p>
+                    <button type="button" id="btnSaveAccord10" @(Model.IsRenewLocked == true ? "disabled" : "") class="btn btn-primary">Save/Next</button>
+                </p>
+            </div>
+            <h3 id="accordion11">11. Business Interruption</h3>
+            <div id="accordion11Div">
+                @Html.HiddenFor(x => x.VisitAccord11, new { id = "VisitAccord11" })
+                <p style="font-weight: bold;">
+                    Please complete the following business interruption worksheet. For all @BHIP.Model.ProjectGlobals.CurrentYear questions, use actual numbers
+                    for January through July, and then estimate values for the remainder of the year.
+                </p>
+                <table style="width: 100%">
+                    <tr>
+                        <td>
+                            Description
+                        </td>
+                        <td align="center">
+                            @BHIP.Model.ProjectGlobals.CurrentYear<br />
+                            Year-end financials
+                        </td>
+                        <td align="center">
+                            @BHIP.Model.ProjectGlobals.NextYear<br />
+                            Projections
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            A. Income from following sources:
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;&nbsp;&nbsp;In-patient services
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.InPatientServicesYearEnd, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.InPatientServicesProjection, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;&nbsp;&nbsp;Out-patient services
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.OutPatientServicesYearEnd, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.OutPatientServicesProjection, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;&nbsp;&nbsp;Rents from leased departments
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RentsLeasedYearEnd, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.RentsLeasedProjection, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;&nbsp;&nbsp;Grants and research income
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.GrantsResearchYearEnd, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.GrantsResearchProjection, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;&nbsp;&nbsp;Donations
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.DonationsYearEnd, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.DonationsProjection, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;&nbsp;&nbsp;Other income
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.OtherIncomeYearEnd, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.OtherIncomeProjection, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            B. Total income:
+                        </td>
+                        <td align="center">
+                            <input type="text" id="totalIncomeYearEnd" readonly="true" disabled class="form-control inputwidth-175 intcomma text-right disabled" />
+                        </td>
+                        <td align="center">
+                            <input type="text" id="totalIncomeProj" readonly="true" disabled class="form-control inputwidth-175 intcomma text-right disabled" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>C. Deduct cost of:</td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;&nbsp;&nbsp;Contractual adjustments
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.ContractualAdjustmentYearEnd, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.ContractualAdjustmentProjection, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;&nbsp;&nbsp;Bad debt
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.BadDeptYearEnd, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.BadDeptProjection, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;&nbsp;&nbsp;Free services
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.FreeServiceYearEnd, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.FreeServiceProjection, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;&nbsp;&nbsp;Outside services
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.OutsideServiceYearEnd, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.OutsideServiceProjection, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            D. Total deductions:
+                        </td>
+                        <td align="center">
+                            <input type="text" id="totalDeductionsYearEnd" readonly="true" disabled class="form-control inputwidth-175 intcomma text-right disabled" />
+                        </td>
+                        <td align="center">
+                            <input type="text" id="totalDeductionsProjections" readonly="true" disabled class="form-control inputwidth-175 intcomma text-right disabled" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            E. Total insurable income ("B" minus "D")
+                        </td>
+                        <td align="center">
+                            <input type="text" id="totalInsurableYearEnd" readonly="true" disabled class="form-control inputwidth-175 intcomma text-right disabled" />
+                        </td>
+                        <td align="center">
+                            <input type="text" id="totalInsurableProjections" readonly="true" disabled class="form-control inputwidth-175 intcomma text-right disabled" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            F. Annual ordinary payroll
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.AnnualPayrollYearEnd, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                        <td align="center">
+                            @Html.TextBoxFor(model => model.AnnualPayrollProjection, new { @class = "form-control inputwidth-175 intcomma text-right", @onblur = "AddBusinessInterruption();" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            G. Insurable income ("E" minus "F")
+                        </td>
+                        <td align="center">
+                            <input type="text" id="insurableIncomeYearEnd" readonly="true" disabled class="form-control inputwidth-175 intcomma text-right disabled" />
+                        </td>
+                        <td align="center">
+                            <input type="text" id="insurableIncomeProjection" readonly="true" disabled class="form-control inputwidth-175 intcomma text-right disabled" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            H. Largest ordinary payroll expense (90-day)
+                        </td>
+                        <td align="center">
+                            <input type="text" id="largestPayrollYearEnd" readonly="true" disabled class="form-control inputwidth-175 intcomma text-right disabled" />
+                        </td>
+                        <td align="center">
+                            <input type="text" id="largestPayrollProjection" readonly="true" disabled class="form-control inputwidth-175 intcomma text-right disabled" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Total amount of insurance ("H" plus "G")
+                        </td>
+                        <td align="center">
+                            <input id="amountOfInsuranceYearEnd" readonly="true" disabled class="form-control inputwidth-175 intcomma text-right disabled number" />
+                        </td>
+                        <td align="center">
+                            <input id="amountOfInsuranceProjection" readonly="true" disabled class="form-control inputwidth-175 intcomma text-right disabled" />
+                        </td>
+                    </tr>
+                </table>
+                <br /><br />
+                <p>
+                    <button type="button" id="btnSaveAccord11" @(Model.IsRenewLocked == true ? "disabled" : "") class="btn btn-primary">Save/Next</button>
+                </p>
+            </div>
+            <h3 id="accordion12">12. Automobile and Driver Information</h3>
+            <div id="accordion12Div">
+                @Html.HiddenFor(x => x.VisitAccord12, new { id = "VisitAccord12" })
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <b>Total number of autos:</b>
+                        </td>
+                        <td align="left">
+                            @Html.TextBoxFor(model => model.TotalAutos, new { @disabled = "true", @class = "form-control intcomma pull-right inputwidth-150 text-right" })
+                            @Html.HiddenFor(model => model.TotalAutos)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Total number of drivers:</b>
+                        </td>
+                        <td align="left">
+                            @Html.TextBoxFor(model => model.TotalDrivers, new { @disabled = "true", @class = "form-control intcomma pull-right inputwidth-150 text-right" })
+                            @Html.HiddenFor(model => model.TotalDrivers)
+                        </td>
+                    </tr>
+                </table>
+                <div>@Html.DisplayQuestions("Auto", BHIP.Model.ProjectGlobals.CurrentYear, Model.MemberID, "Auto")</div>
+                <p>
+                    <b>To update the auto schedule, please follow the instructions below:</b>
+                </p>
+                <ul>
+                    <li>Please check the schedule of licensed autos for accuracy, and be sure to fill in all blanks.</li>
+                    <li>Correct any inaccurate information.</li>
+                    <li>Delete any autos no longer owned by the agency.</li>
+                    <li>
+                        For newly purchased autos, click the "Add" button, input all required fields, and click the "Save" button.
+                        Any additions, deletions, or changes will show in the Pending table for review by BHIP staff.
+                    </li>
+                    <li>Autos are automatically sorted by year. You can change how the schedule is sorted by clicking on a section heading.</li>
+                </ul>
+                <div id="VehicleScheduleGrid" class="form-group">
+                    @Html.Partial("~/Views/MemberCov/_VehicleScheduleGrid.cshtml", Model.VehicleList, new ViewDataDictionary { { "MemberCoverageID", Model.MemberCoverageID } })
+                </div>
+                <div id="VehicleScheduleHoldGrid" class="form-group">
+                    @Html.Partial("~/Views/MemberCov/_VehicleScheduleHoldGrid.cshtml", Model.VehicleHoldList)
+                </div>
+                <p>
+                    <b>To update the driver schedule, please follow the instructions below:</b>
+                </p>
+                <ul>
+                    <li>Please check the schedule of drivers for accuracy, and be sure to fill in all blanks.</li>
+                    <li>Correct any inaccurate information.</li>
+                    <li>Delete any drivers no longer employed/contracted with the agency.</li>
+                    <li>
+                        For newly added drivers, click the "Add" button, input all required fields, then click the "Save" button. Any
+                        additions, deletions or changes will show in the Pending table for review by BHIP staff.
+                    </li>
+                    <li>Drivers are automatically sorted by last name. You can change how the schedule is sorted by clicking on a section heading.</li>
+                </ul>
+                <div id="DriverInfoScheduleGrid" class="form-group">
+                    @Html.Partial("~/Views/MemberCov/_DriverInfoScheduleGrid.cshtml", Model.DriverInfoList, new ViewDataDictionary { { "MemberCoverageID", Model.MemberCoverageID } })
+                </div>
+                <div id="DriverInfoScheduleHoldGrid" class="form-group">
+                    @Html.Partial("~/Views/MemberCov/_DriverInfoScheduleHoldGrid.cshtml", Model.DriverInfoHoldList)
+                </div>
+
+
+                <p>
+                    <button type="button" id="btnSaveAccord12" class="btn btn-primary">Save/Next</button>
+                </p>
+            </div>
+            <h3 id="accordion13">13. Attachments</h3>
+            <div id="accordion13Div">
+                @Html.HiddenFor(x => x.VisitAccord13, new { id = "VisitAccord13" })
+                <div>
+                    <div style="font-weight: bold;">The following documents are required for insurance renewal.  Please select “Add New Document” to attach.</div>
+                    <br />
+                    <ol>
+                        <li>Any new or revised policies or procedures relating to any of the sections of the application since the last renewal.</li>
+                        <li>Most recent audited financial statements.</li>
+                        <li>Most recent internal financial statements.</li>
+                        <li>Most current 5500s (if not under HCIC’s plan).</li>
+                        <li>Most current EEO1 Reports.</li>
+                        <li>Board of directors and officer list.</li>
+                        <li>Updated clinic licenses.</li>
+                        <li>Completed pollution application (<a href="/documents/pollution application.doc" target="_blank">click here to download)</a>.</li>
+                        <li>Completed cyber application (<a href="/documents/cyber application.doc" target="_blank">click here to download</a>).</li>
+                        <li>Most recent workers’ compensation declarations page.</li>
+                    </ol>
+                </div>
+                <div id="Document" class="form-group">
+                    @Html.Partial("_Document", Model.Attachments, new ViewDataDictionary { { "RenewalID", Model.RenewalID } })
+                </div>
+                <p>
+                    <button type="button" id="btnSaveAccord13" @(Model.IsRenewLocked == true ? "disabled" : "") class="btn btn-primary">Save/Next</button>
+                </p>
+            </div>
+            <h3 id="accordion14">14. Renewal Application Agreement</h3>
+            <div id="accordion14Div">
+                @Html.HiddenFor(x => x.VisitAccord14, new { id = "VisitAccord14" })
+                <p>
+                    By selecting the Renewal Application Agreement checkbox below, I, as the authorized representative,
+                    agree that I have read and understand this @BHIP.Model.ProjectGlobals.NextYear Renewal Application and declare, to my knowledge,
+                    that all statements are true and complete. I further declare and represent that I will advise the Behavioral
+                    Health Insurance Pool, Inc. (BHIP), in writing, by December 31, @BHIP.Model.ProjectGlobals.CurrentYear, of any occurrence
+                    or event that renders or that could render these statements untrue or incomplete.
+                </p>
+                <p>
+                    A green section heading indicates that the section is complete; all other sections need
+                    to be reviewed and completed.  A red asterisk will mark any fields within that section
+                    that are required.  As soon as all sections are complete, the "Submit" button will become
+                    enabled and you can submit your completed Renewal Application.
+                </p>
+                <div>
+                    @if (havingAdminRole)
+                    {
+                        <input type="checkbox" id="chkAgree" name="chkAgree" />
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="chkAgree" disabled="disabled" name="chkAgree" />
+                    }
+                    Renewal Application Agreement
+                </div>
+                <br /><br />
+                <div class="form-group form-group-sm less_height bottom2">
+                    <label class="col-lg-5 control-label">Signature of Authorized Representative:</label>
+                    <div class="col-xs-8 form-control inputwidth-500">
+                        @Model.AuthorizeFirstName @Model.AuthorizeLastName
+                    </div>
+                </div>
+                <div class="form-group form-group-sm less_height bottom2">
+                    <label class="col-lg-5 control-label">Title of Authorized Representative:</label>
+                    <div class="col-xs-8 form-control inputwidth-500">
+                        @Model.AuthorizeTitle
+                    </div>
+                </div>
+                <div class="form-group form-group-sm less_height">
+                    <label class="col-lg-5 control-label">Date:</label>
+                    <div class="col-xs-8 form-control inputwidth-150">
+                        @DateTime.Now.ToString("MM/dd/yyyy")
+                    </div>
+                </div>
+
+                <p>
+                   
+                        <button disabled="disabled" type="button" id="btnSubmitRenewal" name="btnSubmitRenewal" class="btn btn-primary btn-lg">Submit Renewal</button>
+                </p>
+            </div>
+        </div>
+    }
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Session Expiration Warning</h4>
+            </div>
+            <div class="modal-body">
+                <p>You've been inactive for a while. For your security, we'll log you out automatically. Click "Stay Online" to continue your session. </p>
+                <p>Your session will expire in <span class="bold" id="sessionSecondsRemaining">120</span> seconds.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="extendSession" type="button" class="btn btn-default btn-success" data-dismiss="modal">Stay Online</button>
+                <button id="logoutSession" type="button" class="btn btn-default" data-dismiss="modal">Logout</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="mdlLoggedOut" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">You have been logged out</h4>
+            </div>
+            <div class="modal-body">
+                <p>Your session has expired.</p>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function ($) {
+        var
+            session = {
+                //Logout Settings
+                inactiveTimeout: 300000,     //(ms) The time until we display a warning message 90000
+                warningTimeout: 300000,      //(ms) The time until we log them out
+                minWarning: 300000,           //(ms) If they come back to page (on mobile), The minumum amount, before we just log them out
+                warningStart: null,         //Date time the warning was started
+                warningTimer: null,         //Timer running every second to countdown to logout
+                logout: function () {       //Logout function once warningTimeout has expired
+                    //window.location = settings.autologout.logouturl;
+                    window.location = "/";
+                    //$("#mdlLoggedOut").modal("show");
+                },
+
+                //Keepalive Settings
+                keepaliveTimer: null,
+                keepaliveUrl: "",
+                keepaliveInterval: 300000,     //(ms) the interval to call said url
+                keepAlive: function () {
+                }
+            }
+        ;
+
+
+        $(document).on("idle.idleTimer", function (event, elem, obj) {
+            //Get time when user was last active
+            var
+                diff = (+new Date()) - obj.lastActive - obj.timeout,
+                warning = (+new Date()) - diff
+            ;
+
+            //On mobile js is paused, so see if this was triggered while we were sleeping
+            if (diff >= session.warningTimeout || warning <= session.minWarning) {
+                $("#mdlLoggedOut").modal("show");
+            } else {
+                //Show dialog, and note the time
+                $('#sessionSecondsRemaining').html(Math.round((session.warningTimeout - diff) / 1000));
+                $("#myModal").modal("show");
+                session.warningStart = (+new Date()) - diff;
+
+                //Update counter downer every second
+                session.warningTimer = setInterval(function () {
+                    var remaining = Math.round((session.warningTimeout / 1000) - (((+new Date()) - session.warningStart) / 1000));
+                    if (remaining >= 0) {
+                        $('#sessionSecondsRemaining').html(remaining);
+                    } else {
+                        session.logout();
+                    }
+                }, 1000)
+            }
+        });
+
+        // create a timer to keep server session alive, independent of idle timer
+        session.keepaliveTimer = setInterval(function () {
+            session.keepAlive();
+        }, session.keepaliveInterval);
+
+        //User clicked ok to extend session
+        $("#extendSession").click(function () {
+            clearTimeout(session.warningTimer);
+            $.get("/Renewal/KeepLocked", { id: $("#RenewalID").val() },
+                function (data) {
+
+                }, "json");
+        });
+        //User clicked logout
+        $("#logoutSession").click(function () {
+            session.logout();
+            $.get("/Renewal/Unlock", { id: $("#RenewalID").val() },
+                function (data) {
+
+                }, "json");
+        });
+
+        //Set up the timer, if inactive for 10 seconds log them out
+        $(document).idleTimer(session.inactiveTimeout);
+    })(jQuery);
+</script>

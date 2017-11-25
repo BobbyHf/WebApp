@@ -1,0 +1,170 @@
+﻿@model BHIP.Model.ReportViewModel
+
+<script src="@Url.Content("~/Scripts/bootstrap.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery-migrate-1.2.1.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.maskedinput.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.mask.js")" type="text/javascript"></script>
+<style>
+    .ui-dialog {
+        z-index: 1000 !important;
+    }
+</style>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        /* jquery.mask.min.js */
+        $('.intcomma').masked('###,###,###,##0', { reverse: true, maxlength: false });
+        $('.intnocomma').masked('###########0', { reverse: true, maxlength: false });
+        $('.decimalcomma').masked('###,###,###,##0.00', { reverse: true, maxlength: false });
+        $('.yearmask').masked('###0', { reverse: true, maxlength: 4 });
+        $('.datemask').mask("99/99/9999");
+
+        $("#btnSubmit").click(function () {
+            var isInvalid = false;
+            $("#divstatus").html("");
+            if ($("#drpReports").val() == 0) {
+                AlertBox('Please select a report before printing.', function () { }, 'Select Report');
+                isInvalid = true;
+            }
+            else {
+                $('.rptControls').each(function () {
+                    if ($(this).val().length == 0) {
+                        isInvalid = true;
+                    }
+                });
+
+
+
+                var sending = '';
+
+
+                $('.rptControls').each(function () {
+                    if (sending.length == 0) {
+                        sending = $(this).attr("id") + '^' + $(this).val();
+                    }
+                    else {
+                        sending = sending + "~" + $(this).attr("id") + '^' + $(this).val();
+                    }
+                });
+                
+                //alert('/viewer.aspx?rptname=' + $("#ReportName").val() + '&valuetopass=' + sending);
+                if (!isInvalid) {
+
+                    var reportids = ["104", "1111"];
+                    var check = reportids.indexOf($("#drpReports").val());
+                    //alert(check);
+                    if (check > -1) {
+                        var form = $("#myForm");
+                        $.ajax({
+                            url: '/viewer2.aspx?rptname=' + $("#ReportName").val() + '&values=' + sending,
+                            data: form.serialize(),
+                            type: 'POST',
+                            complete: function () {
+                                //$.unblockUI();
+
+                            },
+                            success: function (data) {
+                                //alert(data);
+                                if (data == "OK") { $("#divstatus").html("<span style='color:green;'>File saved.<span>"); } else { $("#divstatus").html("<span style='color:red;'>Error Occured, File not saved.<span>"); }
+                            },
+                            error: function () {
+                                $("#divstatus").html("<span style='color:red;'>Error Occured, File not saved.<span>");
+                            }
+                        });
+                    }
+                    else {
+                        window.open('/viewer.aspx?rptname=' + $("#ReportName").val() + '&values=' + sending, '_blank');
+                    }
+                                        
+                }
+                else {
+                    AlertBox('Please fill in the required fields before printing.', function () { }, 'Select Report');
+                }
+            }
+            return false;
+        });
+
+        function AlertBox(dialogText, okFunc, dialogTitle) {
+            $('<div style="padding: 10px; max-width: 500px; word-wrap: break-word; z-index: 5000;" data-backdrop="true">' + dialogText + '</div>').dialog({
+                draggable: false,
+                modal: true,
+                resizable: false,
+                width: 'auto',
+                position: { my: "top", at: "center", of: window },
+                title: dialogTitle || 'Confirm',
+                minHeight: 75,
+                buttons: {
+                    OK: function () {
+                        if (typeof (okFunc) == 'function') {
+                            setTimeout(okFunc, 50);
+                        }
+                        $(this).dialog('destroy');
+                    },
+                }
+            });
+        }
+        $('#an').val(@Model.AgreementNumber).attr("selected", "selected");
+    });
+</script>
+
+@{
+
+}
+<div style="width: 100%;">
+    @{
+        if (Model.ParamList != null)
+        {
+            <div>
+                @Html.Hidden("ReportName", Model.ReportName)
+                @Model.Description<br /><br />
+            </div>
+            foreach (var item in Model.ParamList)
+            {
+                if (item.ParamTitle == "hidden")
+                {
+                    @Html.Hidden(item.ParamName, Model.AgreementNumber, new { @class = "rptControls" })
+                }
+                else if (item.ParamTitle == "PDF")
+                {
+                    @Html.Hidden(item.ParamName, "Y", new { @class="rptControls"})
+                }
+                else
+                {
+                    <div>
+                        <span style="width: 25%;">@Html.Label(item.ParamTitle)</span><br />
+                        @if (item.ParamDescription == "Year")
+                        {
+                            @Html.TextBox(item.ParamName, null, new { @style = "width: " + item.ParamWidth + "px; font-size: 14px; margin-bottom: 15px;", @class = "rptControls yearmask" })
+                        }
+                        else if (item.ParamDescription == "Integer")
+                        {
+                            @Html.TextBox(item.ParamName, null, new { @style = "width: " + item.ParamWidth + "px; font-size: 14px; margin-bottom: 15px;", @class = "rptControls intnocomma" })
+                        }
+                        else if (item.ParamDescription == "Date")
+                        {
+                            @Html.TextBox(item.ParamName, null, new { @style = "width: " + item.ParamWidth + "px; font-size: 14px; margin-bottom: 15px;", @class = "rptControls datemask", @required = "required" })
+                        }
+                        else if (item.ParamDescription == "DropDown")
+                        {
+                            // if the sql has a placeholder for an agreement number, put the number in.
+                            item.DropSQL = item.DropSQL.Replace("{an}", Model.AgreementNumber.ToString());
+
+                            // if the sql has a placeholder for a contact name, put the name in.
+                            item.DropSQL = item.DropSQL.Replace("{cn}", Model.ContactName);
+
+                            @Html.DropDownList(item.ParamName, Model.GetData(item.DropSQL).AsEnumerable(), "--Select--", new { @style = "font-size: 14px; margin-bottom: 15px;", @class = "rptControls" })
+                        }
+                        else
+                        {
+                            @Html.TextBox(item.ParamName, null, new { @style = "width: " + item.ParamWidth + "px; font-size: 14px; margin-bottom: 15px;", @class = "rptControls" })
+                        }
+                    </div>
+                }
+            }
+
+            <button id="btnSubmit" value="button" onclick="return false;" style="margin-top: 15px;">Submit</button> <div id="divstatus" style="display: inline;"></div>
+        
+        }
+    }
+</div>
+

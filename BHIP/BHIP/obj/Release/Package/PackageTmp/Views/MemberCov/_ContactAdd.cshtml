@@ -1,0 +1,56 @@
+﻿@model BHIP.Model.ContactScheduleViewModel
+
+<script>
+    $(document).ready(function () {
+        $(".ContactPhone").mask("(999) 999-9999");
+        $(".ContactPhoneExt").mask("9?9999");
+    });
+
+</script>
+<div class="main">
+    <div style="text-align: left; width: 100%;">
+        @{Html.EnableClientValidation();}
+        @{Html.EnableUnobtrusiveJavaScript();}
+
+        @using (Html.BeginForm("AddContact", "MemberCov", System.Web.Mvc.FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
+        {
+            @Html.HiddenFor(m => m.MemberCoverageID)
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.ContactFirstName, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.ContactFirstName, new { @class = "form-control inputfield inputwidth-500" })
+                    @Html.ValidationMessageFor(model => model.ContactFirstName)
+                </div>
+            </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContactLastName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ContactLastName, new { @class = "form-control inputfield inputwidth-500" })
+            @Html.ValidationMessageFor(model => model.ContactLastName)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContactTitle, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ContactTitle, new { @class = "form-control inputfield inputwidth-500" })
+            @Html.ValidationMessageFor(model => model.ContactTitle)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContactEmail, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ContactEmail, new { @class = "form-control inputfield inputwidth-500" })
+            @Html.ValidationMessageFor(model => model.ContactEmail)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ContactPhone, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ContactPhone, new { @class = "form-control inputfield ContactPhone inputwidth-175", @style = "display: inline-block;" }) @Html.LabelFor(m => m.ContactPhoneExt, new { @class = "control-label", @style = "vertical-align: top; display: inline-block;" }) @Html.TextBoxFor(m => m.ContactPhoneExt, new { @class = "form-control inputfield ContactPhoneExt inputwidth-100", @style = "display: inline-block;" })
+            @Html.ValidationMessageFor(model => model.ContactFirstName)
+        </div>
+    </div>
+        }
+    </div>
+</div>

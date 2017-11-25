@@ -1,0 +1,87 @@
+﻿@model IEnumerable<BHIP.Model.LicenseViewModel>
+@using BHIP.MVCHelpers
+<script type="text/javascript">
+    function ConfirmLicenseDelete() {
+        if (confirm("Do you want to delete this license?")) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+</script>
+@{
+    int memberId = 0;
+    
+    if (Model.Count() > 0)
+    {
+        memberId = Model.DefaultIfEmpty().First().MemberID;    
+    }
+    else
+    {
+        memberId = Convert.ToInt32(ViewData["MemberID"]);
+    }
+}
+<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered">
+    <thead>
+        <tr style="color: white; font-weight: bold; background-color: #808080; text-align: left; -moz-border-radius: 15px; border-radius: 15px;">
+            <td colspan="10" class="table-header">
+                @Html.ImageDialogLink("AddLicense", "Renewal", new { id = memberId }, "Add License", "LicenseSchedule", Url.Action("RefreshLicense/" + memberId), Html.ResolveUrl("~/Content/images/add-button.png"), "Add License", "475", "575", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                Add New License
+            </td>
+        </tr>
+        <tr class="table-header">
+            <th>Edit</th>
+            <th>Delete</th>
+            <th>
+                License
+            </th>
+            <th>
+                State Agency
+            </th>
+            <th>
+               License Type
+            </th>
+            <th>
+                Expiration Date
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ImageDialogLink("EditLicense", "Renewal", new { id = item.LicenseID }, "Edit License", "LicenseSchedule", Url.Action("RefreshLicense/" + item.MemberID), Html.ResolveUrl("~/Content/images/edit-button.png"), "Edit License", "475", "575", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                    </td>
+                    <td>
+                        @Ajax.ActionLink(" ", "DeleteLicense", new { id = item.LicenseID, mid = item.MemberID }, new AjaxOptions() { UpdateTargetId = "LicenseSchedule", OnBegin = "return ConfirmLicenseDelete()", OnComplete = "" }, new { style = "background: url('" + Html.ResolveUrl("~/Content/images/delete-button.png") + "') no-repeat center right;display:block; height:32px; width:32px;margin-top:-2px;text-decoration:none;" })
+                    </td>
+                    <td>
+                        <div title="License" class="schedule-line">@item.License</div>
+                    </td>
+                    <td>
+                        <div title="State Agency" class="schedule-line">@item.StateAgency</div>
+                    </td>
+                    <td>
+                        <div title="License Type" class="schedule-line">@item.LicenseType</div>
+                    </td>
+                    <td>
+                        <div title="Expiration Date" class="schedule-line">@String.Format("{0:M/d/yyyy}", item.ExpirationDate)</div>
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+    <tfoot>
+        <tr style="color: white; font-weight: bold; background-color: #808080; text-align: left; -moz-border-radius: 15px; border-radius: 15px;">
+            <th colspan="10" class="table-header">
+                @Html.ImageDialogLink("AddLicense", "Renewal", new { id = memberId }, "Add License", "LicenseSchedule", Url.Action("RefreshLicense/" + memberId), Html.ResolveUrl("~/Content/images/add-button.png"), "Add License", "375", "475", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                Add New License
+            </th>
+        </tr>
+    </tfoot>
+</table>

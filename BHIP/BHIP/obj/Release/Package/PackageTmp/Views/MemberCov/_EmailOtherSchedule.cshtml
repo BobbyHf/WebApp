@@ -1,0 +1,48 @@
+﻿@model BHIP.Model.EmailOtherSchedule
+
+@*@if (Model.OtherScheduleAddList.Count > 0)
+{
+    @Html.Raw("Please see the following new Other Provider Schedules for " + Model.MemberName + ":%0D%0A")
+    foreach (BHIP.Model.SendingOtherSchedule otherAdd in Model.OtherScheduleAddList)
+    {
+        @Html.Raw("Provider: " + otherAdd.FirstName + " " + otherAdd.LastName + ", " + otherAdd.Title + "%0D%0A")
+        @Html.Raw("Date of Hire: " + otherAdd.DateOfHire + "%0D%0A")
+        @Html.Raw("Board Certified: " + otherAdd.BoardCertified + "%0D%0A")
+        @Html.Raw("Board Eligible: " + otherAdd.BoardEligible + "%0D%0A")
+        @Html.Raw("Hours per week: " + otherAdd.HoursPerWeek + "%0D%0A")
+        @Html.Raw("Contracted or Employed: " + otherAdd.EmploymentType + "%0D%0A")
+        @Html.Raw("Carries own malpractice: " + otherAdd.Malpractice + "%0D%0A")
+        @Html.Raw("%0D%0A")
+    }
+    @Html.Raw("%0D%0A%0D%0A")
+}
+
+@if (Model.OtherScheduleDeleteList.Count > 0)
+{
+    @Html.Raw("Please remove the following Other Provider Schedules for " + Model.MemberName + ":%0D%0A")
+    foreach (BHIP.Model.SendingOtherSchedule otherDelete in Model.OtherScheduleDeleteList)
+    {
+        @Html.Raw("Provider: " + otherDelete.FirstName + " " + otherDelete.LastName + ", " + otherDelete.Title + "%0D%0A")
+        @Html.Raw("Date of Hire: " + otherDelete.DateOfHire + "%0D%0A")
+        @Html.Raw("Date Deleted: " + otherDelete.DateRemoved + "%0D%0A")
+        @Html.Raw("%0D%0A")
+    }
+    @Html.Raw("%0D%0A%0D%0A")
+}*@
+
+@if (Model.OtherScheduleCOIList.Count > 0)
+{
+    @Html.Raw("A certificate of insurance has been requested for the following:%0D%0A")
+    foreach (BHIP.Model.SendingOtherSchedule otherCOI in Model.OtherScheduleCOIList)
+    {
+        @Html.Raw("Provider: " + otherCOI.FirstName + " " + otherCOI.LastName + ", " + otherCOI.Title + "%0D%0A")
+        @Html.Raw("Date of Hire: " + otherCOI.DateOfHire + "%0D%0A")
+        @Html.Raw("Board Certified: " + otherCOI.BoardCertified + "%0D%0A")
+        @Html.Raw("Board Eligible: " + otherCOI.BoardEligible + "%0D%0A")
+        @Html.Raw("Hours per week: " + otherCOI.HoursPerWeek + "%0D%0A")
+        @Html.Raw("Contracted or Employed: " + otherCOI.EmploymentType + "%0D%0A")
+        @Html.Raw("Carries own malpractice: " + otherCOI.Malpractice + "%0D%0A")
+        @Html.Raw("%0D%0A")
+    }
+    @Html.Raw("%0D%0A%0D%0A")
+}

@@ -1,0 +1,33 @@
+﻿@model BHIP.Model.EmailDriverInfo
+
+@if (Model.DriverInfoAddList.Count > 0)
+{
+    @Html.Raw("Please add the following driver(s) for " + Model.MemberName + ":%0D%0A")
+    foreach (BHIP.Model.SendingDriverInfo driverAdd in Model.DriverInfoAddList)
+    {
+        @Html.Raw("First Name: " + driverAdd.FirstName + "%0D%0A")
+        @Html.Raw("Last Name: " + driverAdd.LastName + "%0D%0A")
+        @Html.Raw("DOB: " + driverAdd.DOB + "%0D%0A")
+        @Html.Raw("Driver License: " + driverAdd.License + "%0D%0A")
+        @Html.Raw("State: " + driverAdd.StateName + "%0D%0A")
+        @Html.Raw("Date Added: " + driverAdd.DateAdded + "%0D%0A")
+        @Html.Raw("%0D%0A")
+    }
+    @Html.Raw("%0D%0A%0D%0A")
+}
+
+@if (Model.DriverInfoDeleteList.Count > 0)
+{
+    @Html.Raw("Please remove the following driver(s) for " + Model.MemberName + ":%0D%0A")
+    foreach (BHIP.Model.SendingDriverInfo driverDelete in Model.DriverInfoDeleteList)
+    {
+        @Html.Raw("First Name: " + driverDelete.FirstName + "%0D%0A")
+        @Html.Raw("Last Name: " + driverDelete.LastName + "%0D%0A")
+        @Html.Raw("DOB: " + driverDelete.DOB + "%0D%0A")
+        @Html.Raw("Driver License: " + driverDelete.License + "%0D%0A")
+        @Html.Raw("State: " + driverDelete.StateName + "%0D%0A")
+        @Html.Raw("Date Deleted: " + driverDelete.DateRemoved + "%0D%0A")
+        @Html.Raw("%0D%0A")
+    }
+    @Html.Raw("%0D%0A%0D%0A")
+}

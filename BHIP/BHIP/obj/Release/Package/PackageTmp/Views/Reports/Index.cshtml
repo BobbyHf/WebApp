@@ -1,0 +1,46 @@
+﻿@model BHIP.Model.ReportViewModel
+@{
+    ViewBag.Title = "Reports";
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#drpReports").change(function () {
+            var idParam = getParameterByName("id", window.location.href);
+
+            var url = '/Reports?id=' + idParam + '&rptID=' + $("#drpReports").val();
+            window.location.href = url;
+        });
+    });
+
+    function getParameterByName(name, href) {
+        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var regexS = "[\\?&]" + name + "=([^&#]*)";
+        var regex = new RegExp(regexS);
+        var results = regex.exec(href);
+        if (results == null)
+            return "";
+        else
+            return decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+</script>
+
+<div class="bubble">
+    <div class="rectangle">
+        <h2>REPORTS</h2>
+    </div>
+    <div class="triangle-l"></div>
+    <div class="triangle-r"></div>
+
+    <div class="main">
+        <div style="text-align: left; width: 100%; padding: 20px 20px 20px 20px;">
+            <div style="margin-bottom: 15px;">
+                @Html.DropDownListFor(x => x.ReportID, Model.ReportList, "--Select--", new { id = "drpReports", @style = "font-size: 14px; width: 600px;" })
+            </div>
+            <div>
+                @Html.Partial("/Views/Reports/_Report.cshtml", Model)
+            </div>
+        </div>
+    </div>
+</div>

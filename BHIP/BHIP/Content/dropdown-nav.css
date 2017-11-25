@@ -1,0 +1,206 @@
+﻿@charset "UTF-8";
+/* CSS Document */
+
+/* top level
+--------------------------------------------*/
+
+@font-face{ font-family: 'OpenSans-CondLight-webfont'; src: url('/fonts/OpenSans-CondLight-webfont.eot'); src: url('/fonts/OpenSans-CondLight-webfont.eot?iefix') format('eot'), url('/fonts/OpenSans-CondLight-webfont.woff') format('woff'), url('/fonts/OpenSans-CondLight-webfont.ttf') format('truetype'), url('/fonts/OpenSans-CondLight-webfont.svg#webfont') format('svg'); }
+
+
+
+
+.menuTemplate2-top
+{
+    font-family: 'OpenSans-CondLight-webfont','Arial Narrow','Bodoni MT', 'Agency FB';
+	font-weight:bold;
+	font-size:17px;
+}
+
+.menuTemplate2
+{
+    margin: 0 auto; width: auto;float:left;
+    position:relative;
+   // z-index:1000;
+    height: 36px;
+    background: none;
+    border: none;
+    font-family: Arial, 'Helvetica', sans-serif;
+    list-style: none;
+    padding: 0;
+}
+
+.sub-title{
+	font-size:14px;
+	line-height:30px;
+	padding:7px 0px 10px 0px;
+	font-weight:bolder;
+	}
+.sub-title a {
+	color:#000;
+	text-decoration:none;
+	}
+.sub-title a:hover {
+	color:#000;
+	text-decoration:underline;
+	}
+	
+.blocks {
+	width:200px;
+	margin-right:15px;
+	float:left;
+	}
+
+.menuTemplate2 li
+{
+    padding: 0;
+    float: left;
+    height: 34px;
+    _height:36px;/*IE6 Hack*/
+    position: relative;/*delete it if you want submenu to be positioned relative to the whole menu instead of this li element*/
+    z-index:5;
+    border-left:1px solid;
+    border-right:1px solid;
+    border-top:1px solid;
+    border-color:transparent;
+    _border-color:#FFF;/*IE6 Hack*/
+}
+
+.menuTemplate2 li:hover, .menuTemplate2 li.onhover
+{
+    border-color:#727070;
+    border-top:1px solid #727070;
+    border-bottom:1px solid #727070;
+}
+.menuTemplate2 a
+{
+    padding: 0 10px;
+    line-height: 34px; /*Note: keep this value the same as the height of .menuTemplate2 li */
+    font-size: 12px;
+    font-weight: normal;
+    display: inline-block;
+    outline: 0;
+    text-decoration: none;
+    color: #000;
+    position: relative;
+}
+
+
+.menuTemplate2 li:hover a, .menuTemplate2 li.onhover a
+{
+    background-color: #FFF;
+    color: #000;
+    z-index: 9; 
+}
+.menuTemplate2 a.arrow
+{
+    background: url(/Content/images/arrows.gif) no-repeat right center;
+}
+ 
+        
+/*Used to align a top-level item to the right*/        
+.menuTemplate2 li.menuRight
+{
+    float: right;
+    margin-right: 0px;
+}
+        
+/*for the top-level separators*/
+.menuTemplate2 li.separator
+{
+    display:none;
+}
+               
+        
+/* sub level
+--------------------------------------------*/
+        
+.menuTemplate2 .drop
+{
+    position: absolute;
+   // z-index:5;
+    left: -9999px;
+    border: 1px solid #727070;
+	background: #FFF url(/Content/images/bg_grad.gif) repeat-x 0 0;
+    text-align: left;
+    padding: 20px;  
+    top:31px;
+}
+
+.menuTemplate2 .drop a
+{
+    padding-left: 0px;
+    padding-right: 0px;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: normal;
+    display: inline;
+    text-align: left;
+    
+    position: static;
+   // z-index: 0;
+}
+
+.menuTemplate2 li:hover .drop, .menuTemplate2 li.onhover .drop
+{
+    left: -1px;/*Use this property to change offset of the dropdown*/
+}
+.menuTemplate2 li:hover .dropToLeft, .menuTemplate2 li.onhover .dropToLeft
+{
+    left: auto;
+    right: -1px;
+}
+.menuTemplate2 li:hover .dropToLeft2, .menuTemplate2 li.onhover .dropToLeft2
+{
+    left: auto;
+    right: -60px;
+}
+
+/* Elements within the drop down sub-menu
+--------------------------------------------*/
+
+.menuTemplate2 div.drop div div
+{
+    padding-right: 25px;
+}
+.menuTemplate1 li:hover .drop a, .menuTemplate1 li.onhover .drop a
+{
+    background: none;
+    background-image:none;
+    padding:0 0;
+}
+.menuTemplate2 div.drop div a
+{
+    line-height: 24px;  
+    color: #000;
+    background:none;
+}
+.menuTemplate2 div.drop div a:hover
+{
+    text-decoration:underline;
+    cursor:pointer;
+    color:#000;
+}
+
+.menuTemplate2 div.left {float:left;}
+
+ 
+     
+/* CSS3 effects
+--------------------------------------------*/
+
+/*for top-level*/
+.decor2_1 
+{
+}
+
+/*for submenu.*/
+.decor2_2 
+{
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+
+    -moz-box-shadow: 0 0 14px #AAA;
+    -webkit-box-shadow: 0 0 14px #AAA;
+    box-shadow: 0 0 14px #AAA;  
+}

@@ -1,0 +1,51 @@
+﻿@model BHIP.Model.ReportTrust
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div style="text-align: left; width: 100%; padding: 40px 50px 40px 50px;">
+    <h2>Details</h2>
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ReportTypeID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReportTypeID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ReportName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReportName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ReportTitle)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ReportTitle)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ReportID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

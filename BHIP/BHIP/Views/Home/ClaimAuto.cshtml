@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Automobile Claim";
+}
+<script src="@Url.Content("~/Scripts/Fileuploader.js")" type="text/javascript"></script>
+<div class="bubble">
+    <div class="rectangle">
+        <h2>REPORT AN AUTOMOBILE CLAIM</h2>
+    </div>
+    <div class="triangle-l"></div>
+    <div class="triangle-r"></div>
+
+    <div class="main">
+        <div style="text-align: left; width: 100%; padding: 40px 50px 40px 50px;">
+            @using (Html.BeginForm("SaveAutoClaim", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <p>
+                    The <a href="~/documents/claims/autolossform.pdf" target="_blank">
+                        Automobile Loss Report Form
+                    </a> should be used to report actual or potential auto claims arising from business operations.
+                </p>
+                <span class="paragraph-head">Guidelines</span>
+                <p>
+                    Below is a list of sample incidents/occurrences that may result in the filing of a loss report.
+                </p>
+                <ul style="list-style-type: decimal;">
+                    <li>Collision (with other vehicle, fixed object, or animal)</li>
+                    <li>Cracked windshield</li>
+                    <li>Vandalism</li>
+                    <li>Theft</li>
+                    <li>Fire- storm-related damage</li>
+                    <li>Property damage to others</li>
+                    <li>Bodily injuries due to accident (in the case of an employee or employees injured while working, the report should be filed with the workers' compensation carrier rather than BHIP)</li>
+                </ul>
+                @*<div>Please email the completed loss form to <a href="mailto:AdminBHIP@BHIPAZ.org">AdminBHIP@BHIPAZ.org</a>.</div>*@
+                <div>Please attach the completed loss form and supporting documents below and submit.</div>
+                <br />
+                <div>
+                    <p>
+                        <span class="paragraph-head">File Upload</span>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span style="color: red">@ViewBag.FileNotSelected</span><br />
+
+
+
+                                </td>
+                                <td></td>
+                                <td>
+
+                                    <div id="pnlFiles" style="width:350px;text-align:left;">
+                                        <input type="file" name="file" id="file" accept="application/pdf" multiple="multiple" />
+                                    </div>
+                                    <div id="pnlListBox" style="border-style:Inset;height:119px;width:350px;overflow:auto;">
+                                    </div>
+                                    <input id="btnAdd" onclick="javascript: Add();" style="width: 60px" type="button"
+                                           runat="server" value="Add" />
+                                    <input id="btnClear" onclick="javascript: Clear();" style="width: 60px" type="button"
+                                           value="Clear" runat="server" />
+                                    <br />
+                                    <span id="lblCaption"></span>
+                                    <br />
+                                    <input type="submit" id="btnSubmit" style="width: 60px" value="Submit" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </p>
+                </div>
+            }
+        </div>
+
+    </div>
+
+
+</div>

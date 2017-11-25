@@ -1,0 +1,36 @@
+﻿@model IEnumerable<BHIP.Model.Member>
+
+@{
+    ViewBag.Title = "Member Administration";
+}
+<div style="text-align: left; width: 100%; padding: 40px 50px 40px 50px;">
+
+    <h2>Member Administration</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Member Name
+            </th>
+            <th>
+
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MemberId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MemberId })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

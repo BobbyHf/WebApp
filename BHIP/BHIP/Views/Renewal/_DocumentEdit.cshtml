@@ -1,0 +1,146 @@
+﻿@model BHIP.Model.DocumentViewModel
+
+
+<script src="@Url.Content("~/Scripts/DocumentEdit.js")" type="text/javascript"></script>
+
+<style>
+    body {
+        padding: 30px;
+    }
+
+    form {
+        display: block;
+        margin: 20px auto;
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 15px;
+    }
+
+    .progress {
+        position: relative;
+        width: 500px;
+        border: 1px solid #ddd;
+        padding: 1px;
+        border-radius: 3px;
+    }
+
+    .bar {
+        background-color: #0094ff;
+        width: 0%;
+        height: 20px;
+        border-radius: 3px;
+    }
+
+    .percent {
+        position: absolute;
+        display: inline-block;
+        top: 3px;
+        left: 48%;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        //$('#EffectiveDate').datepicker();
+        //$('#EffectiveDate').mask("99/99/9999")
+    });
+
+
+    $('#frmDocument').submit(function (e) {        
+        SaveDocumentForm();
+
+       $(this).closest("div.ui-dialog-content").dialog("destroy");
+    });
+
+    function SaveDocumentForm() {
+        var bar = $('.bar');
+        var percent = $('.percent');
+        var status = $('#status');
+
+        var data = new FormData();
+        var files = $("#fileUpload").get(0).files;
+
+        switch (getExtension(getExtension($('#fileUpload').prop("files")[0]['name']))) {
+            case 'exe': case 'dll': case 'com': case 'bat':
+                alert('Invalid document, you can not upload these doc types!');
+                break;
+            default:
+                // Add the uploaded image content to the form data collection
+                if (files.length > 0) {
+                    data.append("DocumentId", $('#DocumentId').val());
+                    data.append("RenewalId", $('#RenewalId').val());
+                    data.append("EffectiveDate", $('#EffectiveDate').val());
+                    data.append("ddlDocumentType", $('#ddlDocumentType').val());
+                    data.append("fileName", $('#fileName').val());
+                    data.append("UploadedImage", files[0]);
+                }
+
+                var _Id = $('#RenewalId').val();
+
+                // Make Ajax request with the contentType = false, and procesDate = false
+                var ajaxRequest = $.ajax({
+                    type: "POST",
+                    url: "/Renewal/SaveEditDocument",
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (data) {
+                        $(this).closest("div.ui-dialog-content").dialog("destroy");
+
+                        url = "/Renewal/RefreshAddDocument/?id=_Renewal";
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: { Id: _Id },
+                            success: function (data) {
+                                $("#Document").html(data).show();
+                            },
+                            error: function (x, e) {
+                                alert("there is an error: " + x.responseText);
+                            }
+                        });
+                    },
+                    error: function (reponse) {
+                    }
+                });
+        }
+    }
+
+    function getExtension(filename) {
+        return filename.split('.').pop().toLowerCase();
+    }
+</script>
+<form id="frmDocument" method="post" enctype="multipart/form-data">
+    @Html.HiddenFor(model => model.RenewalId)
+    @Html.HiddenFor(model => model.DocumentId)
+    <input type="hidden" id="EffectiveDate" name="EffectiveDate" value="@DateTime.Now.ToShortDateString()" />
+    <input type="hidden" id="fileName" name="fileName">
+    <div>Please complete the information in the fields below.</div>
+    <div>&nbsp;</div>
+        <table style="width: 100%">
+            <tr class="nodisplay">
+                <td class="dialog-left-column">Load Date:</td>
+                <td class="dialog-right-column">
+                    @Html.TextBoxFor(model => model.LoadDate, new { @size = "10", @readonly = "readonly", @style = "font-size: medium;", @Value = (Model.LoadDate == null ? string.Empty : Model.LoadDate.Value.ToString("MM/dd/yyyy")) })
+                </td>
+            </tr>
+            <tr>
+                <td class="dialog-left-column">Document:</td>
+                <td class="dialog-right-column">
+                    @Html.DropDownList("ddlDocumentType", Model.GetDocumentTypeList(Model.DocTypeId) as IEnumerable<SelectListItem>, Model.Name, new { id = "ddlDocumentType", @style = "font-size: medium;" })
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><div style="color:red">You must choose a document to upload to BHIP system.</div></td>
+            </tr>
+            <tr>
+                <td class="dialog-left-column">Select File to Upload:</td>
+                <td class="dialog-right-column">
+                    <div for="fileUpload">
+                        <input type="file" id="fileUpload" name="fileUpload" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+</form>
+

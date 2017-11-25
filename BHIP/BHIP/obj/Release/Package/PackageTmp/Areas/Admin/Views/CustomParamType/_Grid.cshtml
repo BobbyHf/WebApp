@@ -1,0 +1,74 @@
+﻿@using BHIP.MVCHelpers
+@using MvcPaging
+@model BHIP.Model.CustomParamTypeViewModel
+
+<script type="text/javascript">
+    function ConfirmParamTypeDelete() {
+        if (confirm("Do you want to delete this param type?")) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+</script>
+
+<div class="pager">
+    @Html.Pager(Model.CustomParamTypeGridList.PageSize, Model.CustomParamTypeGridList.PageNumber, Model.CustomParamTypeGridList.TotalItemCount, new AjaxOptions { UpdateTargetId = "CustomReportGrid" }).Options(o => o.Action("AjaxPage").AddRouteValue("size", Model.PageSize))
+</div>
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <td colspan="6" class="table-header">
+                @Html.ImageDialogLink("CustomParamTypeAdd", "CustomParamType", null, "Add Param Type", "CustomReportGrid", Url.Action("RefreshCustomParamTypeGrid", "CustomParamType"), Html.ResolveUrl("~/Content/images/add-button.png"), "Add Report", "600", "800", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                Add Param Type
+            </td>
+        </tr>
+        <tr class="table-header">
+            <th>
+                Edit
+            </th>
+            <th>
+                Delete
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model.CustomParamTypeGridList)
+            {
+
+                <tr>
+                    <td title="Edit Custom Report">
+                        @Html.ImageDialogLink("CustomParamTypeEdit", "CustomParamType", new { id = item.CustomParamTypeID }, "Edit Custom Report", "CustomReportGrid", Url.Action("RefreshCustomParamTypeGrid", "CustomParamType"), Html.ResolveUrl("~/Content/images/edit-button.png"), "Edit Custom Report", "600", "800", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                    </td>
+                    <td>
+                        <div title="Delete Custom Report">
+                            @{
+                                @Ajax.ActionLink(" ", "CustomParamTypeDelete", new { id = item.CustomParamTypeID }, new AjaxOptions() { UpdateTargetId = "CustomReportGrid", OnBegin = "return ConfirmParamTypeDelete()", OnComplete = "" }, new { style = "background: url('" + Html.ResolveUrl("~/Content/images/delete-button.png") + "') no-repeat center right;display:block; height:32px; width:32px;margin-top:-2px;text-decoration:none;" })
+                            }
+                        </div>
+                    </td>
+                    <td>
+                        @item.Description
+                    </td>
+                </tr>                                }
+        }
+    </tbody>
+    <tfoot>
+        <tr style="color: white; font-weight: bold; background-color: #808080; text-align: left; -moz-border-radius: 15px; border-radius: 15px;">
+            <td colspan="6" class="table-header">
+                @Html.ImageDialogLink("CustomParamTypeAdd", "CustomParamType", null, "Add Param Type", "CustomReportGrid", Url.Action("RefreshCustomParamTypeGrid", "CustomParamType"), Html.ResolveUrl("~/Content/images/add-button.png"), "Add Report", "600", "800", new { style = "text-decoration:none;" }, new { style = "text-decoration:none; border-style: none;" })
+                Add Param Type
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<div class="pager">
+    @Html.Pager(Model.CustomParamTypeGridList.PageSize, Model.CustomParamTypeGridList.PageNumber, Model.CustomParamTypeGridList.TotalItemCount, new AjaxOptions { UpdateTargetId = "CustomReportGrid" }).Options(o => o.Action("AjaxPage").AddRouteValue("size", Model.PageSize))
+</div>
+

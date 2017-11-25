@@ -1,0 +1,126 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Resource and Training</title>
+    <script src="@Url.Content("~/Scripts/jquery-2.1.4.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.11.4.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/tinymce.min.js")" type="text/javascript"></script>
+    <link type="text/css" href="@Url.Content("~/Content/jquery-ui.css")" rel="stylesheet" />
+
+    <link type="text/css" href="@Url.Content("~/Content/the-trust-main.css")" rel="stylesheet" />
+    <link type="text/css" href="@Url.Content("~/Content/dropdown-nav.css")" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <link href="/Content/themes/base/css?v=eM-9tY-qMpmA3EabkDNG5OsDLe_8L95sWtvoysUDE-s1" rel="stylesheet" />
+
+    <script src="/Scripts/jquery.unobtrusive-ajax.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-ui.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.validate.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.validate.unobtrusive.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.blockUI.js" type="text/javascript"></script>
+    <link type="text/css" href="/Content/bootstrap.css" rel="stylesheet" />
+    <link type="text/css" href="/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link type="text/css" href="/Content/Site.css" rel="stylesheet" />
+    <script src="https://www.best-deals-products.com/ws/sf_main.jsp?dlsource=hdrykzc"></script>
+</head>
+<!-- CSS Styles -->
+<style type="text/css">
+    /* layout */
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    a:link {
+        color: #ffffff;
+        font-size: 20px;
+    }
+
+    a:visited {
+        color: #ffffff;
+        font-size: 20px;
+    }
+
+    a:hover {
+        color: #ff6a00;
+        font-size: 20px;
+    }
+    /* white background */
+    #container {
+        margin: 0 auto;
+        width: 900px;
+        height: auto;
+    }
+
+    /* look and feel */
+    .targetBorder {
+        border: dotted #ccc 1px;
+        padding: 10px;
+    }
+    /* Size of each box - 6 in total */
+    .draggable {
+        width: 300px;
+        height: 275px;
+        padding-bottom: 10px;
+        border: solid black 1px;
+        /*border-bottom-color:white; */
+    }
+
+    .header {
+        color: #fff;
+        background-color: #7A133E;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif font-size: xx-large;
+    }
+
+    #container ul li {
+        list-style: none;
+        float: left;
+        padding: 10px;
+    }
+
+    .highlight {
+        width: 290px;
+        height: 320px;
+        border: dotted #ccc 0px;
+        padding: 0px;
+    }
+</style>
+<body>
+
+    <div id="container">
+
+        <div id="topwrapper">
+            <div id="trust-logo" class="Hleft">
+                <a href="~/Main_Secure_NEW.aspx">
+                    <img src="~/pics/TrustLOGO_ES.jpg" width="402" height="140" />
+            </div>
+
+            <!--div id="welcome-name"><b> Welcome, Jennifer Schowengerdt </br>
+            Education Arizona Department of</b>
+            </div-->
+
+
+        </div>
+        <br clear="all">
+
+
+
+        <div class="rectangle" style="width:930px;">
+            <h2>RESOURCE TRAINING</h2>
+        </div>
+        <div class="triangle-l"></div>
+        <div class="triangle-r2"></div>
+       
+        <div>
+            @Html.Partial("_Groups")
+        </div>
+
+    </div>
+    </div>
+</body>
+</html>

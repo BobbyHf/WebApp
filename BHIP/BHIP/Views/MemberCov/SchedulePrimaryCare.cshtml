@@ -1,0 +1,77 @@
+﻿@using BHIP.Model.Helper
+@model BHIP.Model.MemberCoverageViewModel
+
+@{
+    ViewBag.Title = "Primary Care Schedule";
+}
+@section Scripts {
+    @Scripts.Render("~/Scripts/jquery-migrate-1.2.1.js")
+    @Scripts.Render("~/Scripts/jquery.maskedinput.js")
+    @Scripts.Render("~/Scripts/jquery.mask.js")
+    @Scripts.Render("~/Scripts/DialogForm.js")
+}
+
+
+<script>
+    function SubmitForm() {
+        // window.location.href = "/MemberCov/SchedulePrimaryCare/" + $("#MemberID").val();
+        var filerType = $("#dropdownFilterType").val();
+        if (filerType == '' || filerType == '0') {
+            window.location.href = "/MemberCov/SchedulePrimaryCare/" + $("#MemberID").val();
+        }
+        else {
+            window.location.href = '/MemberCov/SchedulePrimaryCare?id=' + $("#MemberID").val() + ":" + $("#dropdownFilterType").val();
+        }
+    }
+
+</script>
+
+<div class="bubble">
+    <div class="rectangle">
+        <h2>PRIMARY CARE PROVIDER SCHEDULE</h2>
+    </div>
+    <div class="triangle-l"></div>
+    <div class="triangle-r"></div>
+
+    <div class="main">
+        <div style="text-align: left; width: 100%;">
+            <br />
+            <p>
+                To make changes to the Primary Care Provider Schedule, select "Add," Edit," or "Delete" below. Input information into all required fields and select "Save" before closing. To request a Certificate of Insurance, select "Edit" and check the "Request a Certificate of Insurance" box.
+            </p>
+            <table id="Table3" border="0" cellspacing="0" cellpadding="0" width="100%">
+                <tr>
+                    <td>
+                        <!-- DROP DOWNLIST -->
+                        <div style="margin-top: 10px;">
+                            <span style="width: 100px;display: inline-block;">Members:</span>
+                            @if (User.IsInRole("Dropdown"))
+                            {
+                                @Html.DropDownListFor(m => m.MemberID, Model.GetMemberList(Model.MemberID), "--Select--", new { style = "font-size: 14px;" })
+                                @Html.DropDownListFor(m => m.filterTypeId, Model.GetScheduleFilterTypeList(), "--Select--", new { @id = "dropdownFilterType", style = "font-size: 14px;" })
+                            }
+                            else
+                            {
+                                @Html.DropDownListFor(m => m.MemberID, Model.GetMemberList(Model.MemberID), "--Select--", new { style = "font-size: 14px;", @disabled = "disabled" })
+                                @Html.DropDownListFor(m => m.filterTypeId, Model.GetScheduleFilterTypeList(), "--Select--", new { @id = "dropdownFilterType", style = "font-size: 14px;", @disabled = "disabled" })
+                            }
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <button type="button" id="btnSearch" onclick="return SubmitForm();">Search</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div>&nbsp;</div>
+            <div id="PrimaryCareScheduleGrid" class="form-group">
+                @*@Html.Partial("_PrimaryCareScheduleGrid", Model.PrimaryCareList)*@
+                @Html.Partial("~/Views/MemberCov/_PrimaryCareScheduleGrid.cshtml", Model.PrimaryCareList, new ViewDataDictionary { { "MemberCoverageID", Model.MemberCoverageID } })
+            </div>
+            <div>&nbsp;</div>
+            <div id="PrimaryCareScheduleHoldGrid" class="form-group">
+                @Html.Partial("_PrimaryCareScheduleHoldGrid", Model.PrimaryCareHoldList)
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,117 @@
+﻿@model BHIP.Model.MenuViewModel
+
+<ul class="menuTemplate2 decor2_1">
+    
+    @if (Model.menuView != null)
+    {
+        bool firstTime = true;
+        bool levelOne = false;
+        bool levelTwo = false;
+        bool levelThree = false;
+        int levelCount = 0;
+        int rowCount = -1;
+
+        foreach (var item in Model.menuView)
+        {
+            if (rowCount >= 10 && item.Level != 1)
+            {
+
+                if (levelThree)
+                {
+                    levelThree = false;
+                }
+                else if (levelTwo)
+                {
+                    levelTwo = false;
+                }
+                else if (levelOne)
+                {
+                    levelOne = false;
+                }
+                
+                @Html.Raw("</div></div>");
+                @Html.Raw("<div class=\"left\">");
+                @Html.Raw("<div>");
+                rowCount = 0;
+            }
+            rowCount++;
+            
+            if (item.Level == 1)
+            {
+                rowCount = 0;
+            }
+            
+            if ((item.Level == 1 || item.Level == 2) && levelThree)
+            {
+                levelThree = false;
+            }
+            if (item.Level == 1 && levelTwo)
+            {
+                @Html.Raw("</div>");
+                levelTwo = false;
+            }
+            if (item.Level == 1 && levelOne)
+            {
+                @Html.Raw("<div style='clear: both;'></div>");
+                @Html.Raw("</div></div>");
+                @Html.Raw("</li>");
+                levelOne = false;
+            }
+            if (item.Level == 1)
+            {
+                if (firstTime == false)
+                {
+                    Html.Raw("<li class=\"separator\"></li>");
+                }
+                levelCount++;
+                
+                @Html.Raw("<li>")
+                @Html.Raw("<a href=\"#Horizontal-Menus\" class=\"noarrow\"><span class=\"menuTemplate2-top\">" + item.Title + "</span></a>");
+                @Html.Raw("<div class=\"drop decor2_2 " + (levelCount == item.LevelCount ? "dropToLeft" : "") + "\" style=\"min-width: 350px;\">");
+                if (firstTime == false)
+                { 
+                    @Html.Raw("<div class=\"left\">");
+                    @Html.Raw("<div>");
+                }
+                levelOne = true;
+            }
+
+            if (item.Level == 2 && levelTwo == false && firstTime == true)
+            {
+                @Html.Raw("<div class=\"left\">");
+                @Html.Raw("<div>");
+                levelTwo = true;
+                firstTime = false;
+            }
+
+            if (item.Level == 2 && String.IsNullOrEmpty(item.Link))
+            {
+                @Html.Raw("<span class=\"sub-title\">" + item.Title + "</span><br />");
+                                                                                                                                                            levelTwo = true;
+                //levelOne = false;
+            }
+            else if (item.Level == 2)
+            {
+                @Html.Raw("<span class=\"sub-title\"><a href=\"" + item.Link + "\" style=\"font-weight: bolder; font-size: 14px;\">" + item.Title + "</a>" + "</span><br />");
+                @*@Html.Raw("<a href=\"" + item.Link + "\">" + item.Title + "</a><br />");*@
+               levelTwo = true;
+            }
+                
+            if (item.Level == 3 && levelThree == false)
+            {
+                levelThree = true;
+            }
+            if (item.Level == 3)
+            {
+                @Html.Raw("&nbsp;&nbsp;<a href=\"" + item.Link + "\">" + item.Title + "</a><br />");
+            }
+        }
+
+        if (levelOne)
+        {
+            @Html.Raw("<div style='clear: both;'></div>");
+            @Html.Raw("</div></div></li>");
+        }        
+    }
+</ul>
+

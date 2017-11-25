@@ -1,0 +1,136 @@
+﻿@model BHIP.Model.CustomParamViewModel
+
+@{ 
+    BHIP.Model.CustomReportsViewModel reportModel = new BHIP.Model.CustomReportsViewModel();
+    
+
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        // if the form is in a dialog box {
+        var form = $('#myForm');
+        form
+            .removeData('validator')
+            .removeData('nobtrusiveValidation');
+        $.validator.unobtrusive.parse(form); // }
+
+        $.fn.extend({
+            // form validation {
+            isValid: function () {
+                var self = $(this);
+                $.validator.unobtrusive.parse(self);
+                return self.data('unobtrusiveValidation').validate();
+            } // }
+        });
+    });
+    function CheckError()
+    {
+        var isError = false;
+        var isValid = false;
+
+        if (!$("#CustomParamTypeID").valid()) {
+            isError = true;
+        }
+
+        if (!$("#ParamName").valid()) {
+            isError = true;
+        }
+
+        return isError;
+    }
+    $(function () {
+        $('#btnCancel').click(function () {
+            $('#param_content').load('@Url.Action("ParamList", "CustomReports", new { id = Model.CustomReportID })');
+        });
+    });
+
+    $("#btnSave").click(function (e) {
+
+        if (!$('#myForm').isValid()) {
+            return false;
+            }
+
+        var form = $("#myForm");
+
+        $.validator.unobtrusive.parse("form");
+            $.ajax({
+                url: '/Admin/CustomReports/AddParam',
+                data: form.serialize(),
+                type: 'POST',
+                complete: function () {
+                    $('#param_content').load('@Url.Action("ParamList", "CustomReports", new { id = Model.CustomReportID })');
+                },
+                success: function (data) {
+                }
+            });
+
+    });
+</script>
+
+
+@using (Html.BeginForm("AddParam", "CustomReports", FormMethod.Post, new { enctype = "multipart/form-data", id = "myForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.CustomReportID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CustomParamTypeID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CustomParamTypeID, Model.GetParameterTypeSelect(Model.CustomParamTypeID), "--Select--", new { id = "CustomParamTypeID", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CustomParamTypeID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ParamName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ParamName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ParamName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ParamTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ParamTitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ParamTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ParamWidth, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ParamWidth, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ParamWidth, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DisplayOrder, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DisplayOrder, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DisplayOrder, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DropSQL, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.DropSQL, new { @cols = 50, @rows = 15 })
+                @Html.ValidationMessageFor(model => model.DropSQL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Save" id="btnSave" class="btn btn-default" />&nbsp;&nbsp;
+                <input type="button" value="Cancel" id="btnCancel" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

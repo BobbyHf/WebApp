@@ -1,0 +1,81 @@
+﻿@using BHIP.Model.Helper
+@using System.Web.Mvc.Html
+@model IEnumerable<BHIP.Model.PendingScheduleViewModel>
+@{
+    ViewBag.Title = "Pending Schedule";
+}
+
+<div class="bubble">
+    <div class="rectangle">
+        <h2>PENDING SCHEDULES</h2>
+    </div>
+    <div class="triangle-l"></div>
+    <div class="triangle-r"></div>
+
+    <div class="main">
+        <div style="text-align: left; width: 100%;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%" class="table table-striped table-bordered">
+                <thead>
+                    <tr class="table-header">
+                        <th>
+                            &nbsp;
+                        </th>
+                        <th>
+                            Behavioral Health
+                        </th>
+                        <th>
+                            Primary Care
+                        </th>
+                        <th>
+                            Property
+                        </th>
+                        <th>
+                            Vehicles
+                        </th>
+                        <th>Drivers</th>
+                        <th>Others Schedules</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td>
+                                    @item.Name
+                                </td>
+                                 <td>
+                                     <a href="~/MemberCov/PendingPsychiatry/@item.MemberCoverageID">@item.CountPsychiatry</a>
+                                </td>
+                                <td>
+                                    <a href="~/MemberCov/PendingPrimaryCare/@item.MemberCoverageID">@item.CountPrimaryCare</a>
+                                </td>
+                                <td>
+                                    <a href="~/MemberCov/PendingProperty/@item.MemberCoverageID">@item.CountProperty</a>
+                                </td>
+                                <td>
+                                    <a href="~/MemberCov/PendingVehicles/@item.MemberCoverageID">@item.CountVehicle</a>
+                                </td>
+                                <td>
+                                    <a href="~/MemberCov/PendingDriverInfo/@item.MemberCoverageID">@item.CountDriverInfo</a>
+                                </td>
+                                <td>
+                                    <a href="~/MemberCov/PendingOtherSchedule/@item.MemberCoverageID">@item.CountOtherSchedules</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+                <tfoot>
+                    <tr style="color: white; font-weight: bold; background-color: #808080; text-align: left; -moz-border-radius: 15px; border-radius: 15px;">
+                        <td colspan="9" class="table-header">
+                            &nbsp;
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+</div>

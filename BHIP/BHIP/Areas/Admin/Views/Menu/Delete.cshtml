@@ -1,0 +1,54 @@
+﻿@model BHIP.Model.MenuView
+
+@{
+    ViewBag.Title = "Delete Menu";
+}
+<script>
+    $(document).ready(function () {
+        
+        $('#cancelButton').click(function (e) {
+            document.location.href = '@Url.Action("Index", "Menu")';
+        });
+    });
+</script>
+<h2>Delete Menu.</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(x => x.Parent)
+    @Html.HiddenFor(x => x.MenuID)
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Title, new { @class = "form-control", @disabled = "disabled" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Link, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Link, new { @class = "form-control", @disabled = "disabled" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Delete" class="btn btn-default" />&nbsp;&nbsp;<input type="button" id="cancelButton" value="Cancel" class="btn btn-default"  />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

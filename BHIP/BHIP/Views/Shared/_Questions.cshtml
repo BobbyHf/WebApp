@@ -1,0 +1,50 @@
+﻿@model IEnumerable<BHIP.Model.QuestionsViewModel>
+
+
+@{
+    BHIP.Model.QuestionsViewModel model = new BHIP.Model.QuestionsViewModel();
+    
+                // get the section information.
+            BHIP.Model.QuestionSectionViewModel sectionModel = new BHIP.Model.QuestionSectionViewModel();
+            sectionModel = model.GetQuestionSection(Model.FirstOrDefault().Se);
+
+            // the top level div tag
+            TagBuilder divBuilder = new TagBuilder("div");
+
+            // the section name div tag
+            TagBuilder divSectionName = new TagBuilder("div");
+
+            // check to see if there is a question description to add.
+            if (sectionModel != null)
+            {
+                if (sectionModel.SectionText != null)
+                {
+                    divSectionName.InnerHtml += sectionModel.SectionText;
+                    divBuilder.InnerHtml += divSectionName.ToString();
+                }
+            }
+            else
+            {
+                divSectionName.InnerHtml += string.Empty;
+                divBuilder.InnerHtml += divSectionName.ToString();
+            }
+
+            // the question section header text.
+            TagBuilder divSectionHeader = new TagBuilder("div");
+
+            // check to see if there is header text to add.
+            if (sectionModel != null)
+            {
+                if (sectionModel.HeaderText != null)
+                {
+                    divSectionHeader.InnerHtml += sectionModel.HeaderText;
+                    divBuilder.InnerHtml += divSectionHeader.ToString();
+                }
+            }
+            else
+            {
+                divSectionHeader.InnerHtml += string.Empty;
+                divBuilder.InnerHtml += divSectionHeader.ToString();
+            }
+}
+@if (Model.)

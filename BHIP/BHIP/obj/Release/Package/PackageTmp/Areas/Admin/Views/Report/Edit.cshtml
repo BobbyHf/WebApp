@@ -1,0 +1,116 @@
+﻿@model BHIP.Model.ReportViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div style="text-align: left; width: 100%; padding: 40px 50px 40px 50px;">
+    <h2>Edit Report</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ReportID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ReportTypeID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.ReportTypeID, Model.GetReporTypes(Model.ReportTypeID ?? 0), "--Select--", new { id = "drpReportType", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ReportTypeID)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ReportName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ReportName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ReportName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ReportTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ReportTitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ReportTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <p>
+                    @Html.ActionLink("Create New", "Create", "ReportParam", new { id = Model.ReportID }, new { @style = "font-weight: normal;" })
+                </p>
+                <table class="table">
+                    <tr>
+                        <th>
+                            Param Name
+                        </th>
+                        <th>
+                            Param Title
+                        </th>
+                        <th>
+                            Param Width
+                        </th>
+                        <th>
+                            SQL
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model.ParamList)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ParamName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ParamTitle)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ParamWidth)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DropSQL)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", "ReportParam", new { id = item.ReportParamID, rptId = Model.ReportID }, new { @style = "font-weight: normal;" }) |
+                                @Html.ActionLink("Delete", "Delete", "ReportParam", new { id = item.ReportParamID, rptId = Model.ReportID }, new { @style = "font-weight: normal;" })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+            <div class="form-group">
+                @Html.Label("Roles", new { @class = "control-label col-md-2" })
+                <span class=" col-md-10">
+                    @foreach (var item in Model.RolesList)
+                    {
+                        <input type="checkbox" name="SelectedRoles" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+                        @Html.Label(item.Text, new { @class = "control-label" })<br />
+                    }
+                </span>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>

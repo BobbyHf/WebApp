@@ -1,0 +1,29 @@
+﻿@model BHIP.Model.ContactViewModel
+
+
+<table>
+    <tr>
+        <td>@Html.LabelFor(m => m.Name)</td>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(m => m.Company)</td>
+        <td>@Model.Company</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(m => m.Email)</td>
+        <td>@Model.Email</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(m => m.Phone)</td>
+        <td>@Model.Phone</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(m => m.Subject)</td>
+        <td>@Model.Subject</td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(m => m.Comment)</td>
+        <td>@Model.Comment</td>
+    </tr>
+</table>

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<BHIP.Model.ReportParam>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div style="text-align: left; width: 100%; padding: 40px 50px 40px 50px;">
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReportID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReportParamTypeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParamName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParamTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParamWidth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisplayOrder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DropSQL)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReportID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReportParamTypeID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParamName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParamTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParamWidth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DisplayOrder)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DropSQL)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ReportParamID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ReportParamID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ReportParamID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
